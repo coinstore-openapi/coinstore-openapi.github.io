@@ -454,9 +454,6 @@
                     <a href="#symbol-ticker" class="toc-h2 toc-link" data-title="按 Symbol 的 Ticker信息"><strong>按 Symbol 的 Ticker信息</strong></a>
                   </li>
                   <li>
-                    <a href="#symbol-ticker-2" class="toc-h2 toc-link" data-title="全市场所有Symbol 的 Ticker信息"><strong>全市场所有Symbol 的 Ticker信息</strong></a>
-                  </li>
-                  <li>
                     <a href="#b98f66bf84" class="toc-h2 toc-link" data-title="深度信息"><strong>深度信息</strong></a>
                   </li>
                   <li>
@@ -768,17 +765,11 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <td>账户状态 1:可用 4:冻结</td>
 </tr>
 </tbody></table>
-<h1 id='6631e26181'>资金相关</h1><h2 id='05cec30dc0'><span id="2">资金划转</span></h2>
-<blockquote>
-<p>目前支持合约&lt;一&gt;现货划转, API域名地址 <code>https://futures.api.coinstore.com/api</code>  调用支持ApiKey与Token</p>
-</blockquote>
-<h3 id='http-2'>HTTP请求:</h3>
+<h1 id='6631e26181'>资金相关</h1><h2 id='05cec30dc0'><span id="2">资金划转</span></h2><h4 id='lt-gt-api-https-futures-api-coinstore-com-api-apikey-token'>目前支持合约&lt;一&gt;现货划转, API域名地址 <code>https://futures.api.coinstore.com/api</code>  调用支持ApiKey与Token</h4><h3 id='http-2'>HTTP请求:</h3>
 <ul>
 <li>POST /common/account/transfer</li>
 </ul>
-
-<p><strong>请求参数</strong></p>
-
+<h3 id='1f9ac54b15-2'>请求参数</h3>
 <table><thead>
 <tr>
 <th>param</th>
@@ -813,44 +804,34 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 </tr>
 </tbody></table>
 
-<p><strong>支持划转的币种</strong></p>
-
 <blockquote>
-<p>USDT、BOBC、DREAMS</p>
+<p>请求示例</p>
 </blockquote>
-
-<p><strong>请求示例</strong>
-<code>json
-{
-    &quot;currencyCode&quot;:&quot;USDT&quot;,
-    &quot;amount&quot;:&quot;5&quot;,
-    &quot;transferType&quot;:&quot;spot-to-future&quot;,
-    &quot;clientId&quot;:&quot;SFT1679454569469&quot;
-}
-</code>
-<strong>响应参数</strong></p>
-
-<p>失败参数示例:
-<code>json
-{
-  &quot;code&quot;: 101040502,
-  &quot;msg&quot;: &quot;request field missing&quot;,
-  &quot;data&quot;: null
-}
-</code>
-成功:
-<code>json
-{
-    &quot;code&quot;: 200,
-    &quot;msg&quot;: null,
-    &quot;data&quot;:0
-}
-</code></p>
-
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"currencyCode"</span><span class="p">:</span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"amount"</span><span class="p">:</span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"transferType"</span><span class="p">:</span><span class="s2">"spot-to-future"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"clientId"</span><span class="p">:</span><span class="s2">"SFT1679454569469"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
 <blockquote>
-<p>其他响应code说明</p>
+<p>响应数据:失败参数示例:</p>
 </blockquote>
-
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">101040502</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"request field missing"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>响应数据:成功:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='code'>其他响应code说明</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -912,7 +893,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
     </span><span class="p">],</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='1f9ac54b15-2'>请求参数</h3>
+</span></code></pre></div><h3 id='1f9ac54b15-3'>请求参数</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1070,7 +1051,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
     </span><span class="p">],</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='1f9ac54b15-3'>请求参数</h3>
+</span></code></pre></div><h3 id='1f9ac54b15-4'>请求参数</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1232,7 +1213,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
         </span><span class="nl">"ordId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1722183748419690</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='1f9ac54b15-4'>请求参数</h3>
+</span></code></pre></div><h3 id='1f9ac54b15-5'>请求参数</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1306,7 +1287,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='1f9ac54b15-5'>请求参数</h3>
+</span></code></pre></div><h3 id='1f9ac54b15-6'>请求参数</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1369,7 +1350,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <ul>
 <li>POST /trade/order/place</li>
 </ul>
-<h3 id='1f9ac54b15-6'>请求参数</h3>
+<h3 id='1f9ac54b15-7'>请求参数</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1507,7 +1488,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <ul>
 <li>POST /trade/order/placeBatch</li>
 </ul>
-<h3 id='1f9ac54b15-7'>请求参数</h3>
+<h3 id='1f9ac54b15-8'>请求参数</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1649,7 +1630,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='1f9ac54b15-8'>请求参数</h3>
+</span></code></pre></div><h3 id='1f9ac54b15-9'>请求参数</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2820,47 +2801,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 }
 </code></pre></div><h3 id='stream'>Stream 名称</h3>
 <p><code>&lt;symbol&gt;@ticker</code>, eg:  <code>88066@ticker</code></p>
-<h2 id='symbol-ticker-2'><strong>全市场所有Symbol 的 Ticker信息</strong></h2>
-<p>按Symbol刷新的最近24小时精简ticker信息</p>
-<h3 id='stream-2'>Stream 名称:</h3>
-<p><code>!@ticker</code></p>
-
-<blockquote>
-<p>Send</p>
-</blockquote>
-<div class="highlight"><pre class="highlight plaintext"><code> {"op":"SUB","channel":["!@ticker"],"id":1}
-</code></pre></div>
-<blockquote>
-<p>Receive</p>
-</blockquote>
-<div class="highlight"><pre class="highlight plaintext"><code>{
-    "data": [
-        {
-            "channel": "80002@ticker",
-            "open": "9996.24",
-            "high": "10048.6601",
-            "low": "9768.90178",
-            "close": "9833.12538",
-            "volume": "3362.405",
-            "amount": "33212664.57170620732",
-            "symbol": "BTCUSD", 
-            "instrumentId": 80002
-        },
-        {
-            "channel": "80001@ticker",
-            "open": "10001.57",
-            "high": "10053.9441",
-            "low": "9816.23078",
-            "close": "9832.91038",
-            "volume": "3138.93361771",
-            "amount": "31040843.0757471861414",
-            "symbol": "ETHUSD",
-            "instrumentId": 80001
-        },
-        ...
-    ]
-}
-</code></pre></div><h2 id='b98f66bf84'><strong>深度信息</strong></h2>
+<h2 id='b98f66bf84'><strong>深度信息</strong></h2>
 <p>每秒或每100毫秒推送有限档深度信息。</p>
 
 <blockquote>

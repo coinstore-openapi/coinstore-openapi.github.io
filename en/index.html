@@ -782,11 +782,7 @@ needs to be set.</strong></p>
 <td>Account status 1: available 4: deactivated</td>
 </tr>
 </tbody></table>
-<h1 id='funding-related'>Funding Related</h1><h2 id='fund-transfer'><span id="2">Fund transfer</span></h2>
-<blockquote>
-<p>Currently supporting contract&lt;-&gt;spot transfer, API domain name address <code>https://futures.api.coinstore.com/api</code>  Call support for ApiKey and Token</p>
-</blockquote>
-<h3 id='http-request-2'>HTTP Request:</h3>
+<h1 id='funding-related'>Funding Related</h1><h2 id='fund-transfer'><span id="2">Fund transfer</span></h2><h4 id='currently-supporting-contract-lt-gt-spot-transfer-api-domain-name-address-https-futures-api-coinstore-com-api-call-support-for-apikey-and-token'>Currently supporting contract&lt;-&gt;spot transfer, API domain name address <code>https://futures.api.coinstore.com/api</code>  Call support for ApiKey and Token</h4><h3 id='http-request-2'>HTTP Request:</h3>
 <ul>
 <li>POST /common/account/transfer</li>
 </ul>
@@ -825,26 +821,28 @@ needs to be set.</strong></p>
 </tr>
 </tbody></table>
 
-<p><strong>Currencies currently supported for transfer</strong></p>
-
 <blockquote>
-<p>USDT、BOBC、DREAMS</p>
+<p>Request Data</p>
 </blockquote>
-<h4 id='request-data'>Request Data</h4><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"currencyCode"</span><span class="p">:</span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"amount"</span><span class="p">:</span><span class="s2">"5"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"transferType"</span><span class="p">:</span><span class="s2">"spot-to-future"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"clientId"</span><span class="p">:</span><span class="s2">"SFT1679454569469"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='response-data-2'>Response Data</h3>
-<p>Fail:</p>
+</span></code></pre></div>
+<blockquote>
+<p>Response Data Fail:</p>
+</blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">101040502</span><span class="p">,</span><span class="w">
   </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"request field missing"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>Success:</p>
+<blockquote>
+<p>Response Data Success:</p>
+</blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
     </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -928,7 +926,7 @@ needs to be set.</strong></p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='response-data-3'>Response Data</h3>
+<h3 id='response-data-2'>Response Data</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1112,7 +1110,7 @@ needs to be set.</strong></p>
 <td>20</td>
 </tr>
 </tbody></table>
-<h3 id='response-data-4'>Response Data</h3>
+<h3 id='response-data-3'>Response Data</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1296,7 +1294,7 @@ needs to be set.</strong></p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='response-data-5'>Response Data</h3>
+<h3 id='response-data-4'>Response Data</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1370,7 +1368,7 @@ needs to be set.</strong></p>
 <td>cancel all token pair orders without transfer</td>
 </tr>
 </tbody></table>
-<h3 id='response-data-6'>Response Data</h3>
+<h3 id='response-data-5'>Response Data</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1484,7 +1482,7 @@ needs to be set.</strong></p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='response-data-7'>Response Data</h3>
+<h3 id='response-data-6'>Response Data</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1633,7 +1631,7 @@ needs to be set.</strong></p>
 <td>market price buy order required</td>
 </tr>
 </tbody></table>
-<h3 id='response-data-8'>Response Data</h3>
+<h3 id='response-data-7'>Response Data</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1735,7 +1733,7 @@ needs to be set.</strong></p>
 <td>[1,2,3]</td>
 </tr>
 </tbody></table>
-<h3 id='response-data-9'>Response Data</h3>
+<h3 id='response-data-8'>Response Data</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1825,7 +1823,7 @@ needs to be set.</strong></p>
 <td>order id</td>
 </tr>
 </tbody></table>
-<h3 id='response-data-10'>Response Data:</h3>
+<h3 id='response-data-9'>Response Data:</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2002,7 +2000,7 @@ needs to be set.</strong></p>
 </tr>
 </thead><tbody>
 </tbody></table>
-<h3 id='response-data-11'>Response data:</h3>
+<h3 id='response-data-10'>Response data:</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2161,7 +2159,7 @@ needs to be set.</strong></p>
 <td>The number of depths, such as &quot;5, 10, 20, 50, 100&quot;, default 20</td>
 </tr>
 </tbody></table>
-<h3 id='response-data-12'>Response data:</h3>
+<h3 id='response-data-11'>Response data:</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2276,7 +2274,7 @@ needs to be set.</strong></p>
 <td>Number of data bars, [1,2000]</td>
 </tr>
 </tbody></table>
-<h3 id='response-data-13'>Response data:</h3>
+<h3 id='response-data-12'>Response data:</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2424,7 +2422,7 @@ needs to be set.</strong></p>
 <td>Number of data bars, [1,100]</td>
 </tr>
 </tbody></table>
-<h3 id='response-data-14'>Response data:</h3>
+<h3 id='response-data-13'>Response data:</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2544,7 +2542,7 @@ needs to be set.</strong></p>
 <p><strong>default: Query all symbols</strong></p>
 
 <p><strong>query the specified symbol: /v1/ticker/price;symbol=btcusdt,eosusdt,autusdt</strong></p>
-<h3 id='response-data-15'>Response Data:</h3>
+<h3 id='response-data-14'>Response Data:</h3>
 <table><thead>
 <tr>
 <th>code</th>
