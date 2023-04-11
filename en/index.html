@@ -390,6 +390,9 @@
                     <a href="#get-current-orders" class="toc-h2 toc-link" data-title=" Get current orders "><span id="2"> Get current orders </span></a>
                   </li>
                   <li>
+                    <a href="#get-current-orders-v2" class="toc-h2 toc-link" data-title=" Get current orders V2 "><span id="2"> Get current orders V2 </span></a>
+                  </li>
+                  <li>
                     <a href="#get-user-39-s-latest-trade" class="toc-h2 toc-link" data-title=" Get user's latest trade "><span id="3"> Get user's latest trade </span></a>
                   </li>
                   <li>
@@ -409,6 +412,9 @@
                   </li>
                   <li>
                     <a href="#get-order-information" class="toc-h2 toc-link" data-title="Get order information "><span id="14">Get order information </span></a>
+                  </li>
+                  <li>
+                    <a href="#get-order-information-v2" class="toc-h2 toc-link" data-title="Get order information V2 "><span id="14">Get order information V2 </span></a>
                   </li>
               </ul>
           </li>
@@ -1050,9 +1056,195 @@ needs to be set.</strong></p>
 <td></td>
 </tr>
 </tbody></table>
+<h2 id='get-current-orders-v2'><span id="2"> Get current orders V2 </span></h2>
+<p>Get current order v2 version</p>
+<h4 id='the-new-interface-api-domain-name-address-https-api-coinstore-com-call-support-for-apikey-and-token'>The new interface API domain name address <code>https://api.coinstore.com</code>  Call support for ApiKey and Token</h4><h3 id='http-request-4'>HTTP Request:</h3>
+<ul>
+<li>GET /api/v2/trade/order/active</li>
+</ul>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"baseCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A123"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"quoteCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BUY"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"cumQty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"ordId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1758065956225025</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"clOrdId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tLCGVA4g19zuEBwsITXi9g3U624Al0Bw"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"ordType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LIMIT"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"ordQty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"cumAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1134912</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"timeInForce"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GTC"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"ordPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"leavesQty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"avgPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"ordStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUBMITTED"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A123USDT"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1676622290389</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='request-parameters-4'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>code</th>
+<th>type</th>
+<th>required</th>
+<th>comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>N</td>
+<td>token pair</td>
+</tr>
+<tr>
+<td>ordId</td>
+<td>int</td>
+<td>N</td>
+<td>Delegate ID</td>
+</tr>
+<tr>
+<td>clOrdId</td>
+<td>String</td>
+<td>N</td>
+<td>Client delegate ID</td>
+</tr>
+</tbody></table>
+<h3 id='response-data-3'>Response Data</h3>
+<table><thead>
+<tr>
+<th>code</th>
+<th>type</th>
+<th>example</th>
+<th>comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>0</td>
+<td>0: success, other: failure</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td></td>
+<td>error message</td>
+</tr>
+<tr>
+<td>data</td>
+<td>list</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>├─baseCurrency</td>
+<td>string</td>
+<td></td>
+<td>base currency</td>
+</tr>
+<tr>
+<td>├─quoteCurrency</td>
+<td>string</td>
+<td></td>
+<td>quot currency</td>
+</tr>
+<tr>
+<td>├─timeInForce</td>
+<td>string</td>
+<td>GTC</td>
+<td>GTC,IOC,FOK</td>
+</tr>
+<tr>
+<td>├─ordStatus</td>
+<td>string</td>
+<td>SUBMITTED</td>
+<td>NOT_FOUND,SUBMITTING,SUBMITTED,PARTIAL_FILLED,CANCELED,FILLED</td>
+</tr>
+<tr>
+<td>├─avgPrice</td>
+<td>string</td>
+<td></td>
+<td>Average transaction price</td>
+</tr>
+<tr>
+<td>├─ordPrice</td>
+<td>string</td>
+<td></td>
+<td>order price</td>
+</tr>
+<tr>
+<td>├─leavesQty</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>├─ordType</td>
+<td>string</td>
+<td>MARKET</td>
+<td>MARKET,LIMIT,POST_ONLY</td>
+</tr>
+<tr>
+<td>├─ordQty</td>
+<td>string</td>
+<td></td>
+<td>order quantity</td>
+</tr>
+<tr>
+<td>├─cumAmt</td>
+<td>string</td>
+<td></td>
+<td>Transaction amount</td>
+</tr>
+<tr>
+<td>├─side</td>
+<td>string</td>
+<td>BUY</td>
+<td>BUY,SELL</td>
+</tr>
+<tr>
+<td>├─cumQty</td>
+<td>string</td>
+<td></td>
+<td>Transaction quantity</td>
+</tr>
+<tr>
+<td>├─ ordId</td>
+<td>long</td>
+<td></td>
+<td>order id</td>
+</tr>
+<tr>
+<td>├─ clOrdId</td>
+<td>string</td>
+<td></td>
+<td>Client delegate ID</td>
+</tr>
+<tr>
+<td>├─symbol</td>
+<td>string</td>
+<td></td>
+<td>token pair</td>
+</tr>
+<tr>
+<td>├─timestamp</td>
+<td>long</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
 <h2 id='get-user-39-s-latest-trade'><span id="3"> Get user&#39;s latest trade </span></h2>
 <p>Get all trading records</p>
-<h3 id='http-request-4'>HTTP Request:</h3>
+<h3 id='http-request-5'>HTTP Request:</h3>
 <ul>
 <li>GET /trade/match/accountMatches</li>
 </ul>
@@ -1088,7 +1280,7 @@ needs to be set.</strong></p>
     </span><span class="p">],</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-parameters-4'>Request Parameters</h3>
+</span></code></pre></div><h3 id='request-parameters-5'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1104,13 +1296,31 @@ needs to be set.</strong></p>
 <td>symbol</td>
 </tr>
 <tr>
-<td>size</td>
+<td>ordId</td>
 <td>int</td>
 <td>N</td>
-<td>20</td>
+<td>Delegate ID</td>
+</tr>
+<tr>
+<td>pageNum</td>
+<td>int</td>
+<td>N</td>
+<td>Current page number,default 1</td>
+</tr>
+<tr>
+<td>pageSize</td>
+<td>int</td>
+<td>N</td>
+<td>Quantity per page,default  20</td>
+</tr>
+<tr>
+<td>side</td>
+<td>int</td>
+<td>N</td>
+<td>direction -1:SELL 1:BUY</td>
 </tr>
 </tbody></table>
-<h3 id='response-data-3'>Response Data</h3>
+<h3 id='response-data-4'>Response Data</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1248,7 +1458,7 @@ needs to be set.</strong></p>
 </tbody></table>
 <h2 id='cancel-orders'><span id="4"> Cancel orders </span></h2>
 <p>Cancel orders</p>
-<h3 id='http-request-5'>HTTP Request:</h3>
+<h3 id='http-request-6'>HTTP Request:</h3>
 <ul>
 <li>POST /trade/order/cancel</li>
 </ul>
@@ -1272,7 +1482,7 @@ needs to be set.</strong></p>
         </span><span class="nl">"ordId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1722183748419690</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-parameters-5'>Request Parameters</h3>
+</span></code></pre></div><h3 id='request-parameters-6'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1294,7 +1504,7 @@ needs to be set.</strong></p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='response-data-4'>Response Data</h3>
+<h3 id='response-data-5'>Response Data</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1334,7 +1544,7 @@ needs to be set.</strong></p>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='one-click-cancellation'><span id="5"> One-click cancellation </span></h2><h3 id='http-request-6'>HTTP Request:</h3>
+<h2 id='one-click-cancellation'><span id="5"> One-click cancellation </span></h2><h3 id='http-request-7'>HTTP Request:</h3>
 <ul>
 <li>POST /trade/order/cancelAll</li>
 </ul>
@@ -1352,7 +1562,7 @@ needs to be set.</strong></p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-parameters-6'>Request Parameters</h3>
+</span></code></pre></div><h3 id='request-parameters-7'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1368,7 +1578,7 @@ needs to be set.</strong></p>
 <td>cancel all token pair orders without transfer</td>
 </tr>
 </tbody></table>
-<h3 id='response-data-5'>Response Data</h3>
+<h3 id='response-data-6'>Response Data</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1414,11 +1624,11 @@ needs to be set.</strong></p>
         </span><span class="nl">"order_id"</span><span class="p">:</span><span class="mi">11594964764657880</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-7'>HTTP Request:</h3>
+</span></code></pre></div><h3 id='http-request-8'>HTTP Request:</h3>
 <ul>
 <li>POST /trade/order/place</li>
 </ul>
-<h3 id='request-parameters-7'>Request Parameters</h3>
+<h3 id='request-parameters-8'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1482,7 +1692,7 @@ needs to be set.</strong></p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='response-data-6'>Response Data</h3>
+<h3 id='response-data-7'>Response Data</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1557,11 +1767,11 @@ needs to be set.</strong></p>
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-8'>HTTP Request:</h3>
+</span></code></pre></div><h3 id='http-request-9'>HTTP Request:</h3>
 <ul>
 <li>POST /trade/order/placeBatch</li>
 </ul>
-<h3 id='request-parameters-8'>Request Parameters</h3>
+<h3 id='request-parameters-9'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1631,7 +1841,7 @@ needs to be set.</strong></p>
 <td>market price buy order required</td>
 </tr>
 </tbody></table>
-<h3 id='response-data-7'>Response Data</h3>
+<h3 id='response-data-8'>Response Data</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1685,7 +1895,7 @@ needs to be set.</strong></p>
 </tbody></table>
 <h2 id='batch-cancellation-according-to-order-id'><span id="27"> Batch cancellation according to order id </span></h2>
 <p>Batch cancellation according to order id.</p>
-<h3 id='http-request-9'>HTTP Request:</h3>
+<h3 id='http-request-10'>HTTP Request:</h3>
 <ul>
 <li>POST trade/order/cancelBatch</li>
 </ul>
@@ -1711,7 +1921,7 @@ needs to be set.</strong></p>
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-parameters-9'>Request Parameters</h3>
+</span></code></pre></div><h3 id='request-parameters-10'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1733,7 +1943,7 @@ needs to be set.</strong></p>
 <td>[1,2,3]</td>
 </tr>
 </tbody></table>
-<h3 id='response-data-8'>Response Data</h3>
+<h3 id='response-data-9'>Response Data</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1803,11 +2013,11 @@ needs to be set.</strong></p>
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-10'>HTTP Request:</h3>
+</span></code></pre></div><h3 id='http-request-11'>HTTP Request:</h3>
 <ul>
 <li>GET trade/order/orderInfo</li>
 </ul>
-<h3 id='request-parameters-10'>Request Parameters:</h3>
+<h3 id='request-parameters-11'>Request Parameters:</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1823,7 +2033,7 @@ needs to be set.</strong></p>
 <td>order id</td>
 </tr>
 </tbody></table>
-<h3 id='response-data-9'>Response Data:</h3>
+<h3 id='response-data-10'>Response Data:</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1959,6 +2169,193 @@ needs to be set.</strong></p>
 <td></td>
 </tr>
 </tbody></table>
+<h2 id='get-order-information-v2'><span id="14">Get order information V2 </span></h2>
+<p>Get order information v2</p>
+<h4 id='the-new-interface-api-domain-name-address-https-api-coinstore-com-call-support-for-apikey-and-token-2'>The new interface API domain name address <code>https://api.coinstore.com</code>  Call support for ApiKey and Token</h4><h3 id='http-request-12'>HTTP Request:</h3>
+<ul>
+<li>GET /api/v2/trade/order/orderInfo</li>
+</ul>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"baseCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A123"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"quoteCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BUY"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"cumQty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"ordId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1758065956225025</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"clOrdId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tLCGVA4g19zuEBwsITXi9g3U624Al0Bw"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"ordType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LIMIT"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"ordQty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"cumAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1134912</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"timeInForce"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GTC"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"ordPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"leavesQty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"avgPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"ordStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUBMITTED"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A123USDT"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"orderUpdateTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1676622290389</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1676622290389</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='request-parameters-12'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>code</th>
+<th>type</th>
+<th>required</th>
+<th>comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ordId</td>
+<td>int</td>
+<td>N</td>
+<td>Order id (client order number 1 of 2)</td>
+</tr>
+<tr>
+<td>clOrdId</td>
+<td>String</td>
+<td>N</td>
+<td>Client order number (order id optional)</td>
+</tr>
+</tbody></table>
+<h3 id='response-data-11'>Response Data</h3>
+<table><thead>
+<tr>
+<th>code</th>
+<th>type</th>
+<th>example</th>
+<th>comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>0</td>
+<td>0: success, other: failure</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td></td>
+<td>error message</td>
+</tr>
+<tr>
+<td>data</td>
+<td>list</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>├─baseCurrency</td>
+<td>string</td>
+<td></td>
+<td>base currency</td>
+</tr>
+<tr>
+<td>├─quoteCurrency</td>
+<td>string</td>
+<td></td>
+<td>quot currency</td>
+</tr>
+<tr>
+<td>├─timeInForce</td>
+<td>string</td>
+<td>GTC</td>
+<td>GTC,IOC,FOK</td>
+</tr>
+<tr>
+<td>├─ordStatus</td>
+<td>string</td>
+<td>SUBMITTED</td>
+<td>NOT_FOUND,SUBMITTING,SUBMITTED,PARTIAL_FILLED,CANCELED,FILLED</td>
+</tr>
+<tr>
+<td>├─avgPrice</td>
+<td>string</td>
+<td></td>
+<td>Average transaction price</td>
+</tr>
+<tr>
+<td>├─ordPrice</td>
+<td>string</td>
+<td></td>
+<td>order price</td>
+</tr>
+<tr>
+<td>├─leavesQty</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>├─ordType</td>
+<td>string</td>
+<td>MARKET</td>
+<td>MARKET,LIMIT,POST_ONLY</td>
+</tr>
+<tr>
+<td>├─ordQty</td>
+<td>string</td>
+<td></td>
+<td>order quantity</td>
+</tr>
+<tr>
+<td>├─cumAmt</td>
+<td>string</td>
+<td></td>
+<td>Transaction amount</td>
+</tr>
+<tr>
+<td>├─side</td>
+<td>string</td>
+<td>BUY</td>
+<td>BUY,SELL</td>
+</tr>
+<tr>
+<td>├─cumQty</td>
+<td>string</td>
+<td></td>
+<td>Transaction quantity</td>
+</tr>
+<tr>
+<td>├─ ordId</td>
+<td>long</td>
+<td></td>
+<td>order id</td>
+</tr>
+<tr>
+<td>├─ clOrdId</td>
+<td>string</td>
+<td></td>
+<td>Client delegate ID</td>
+</tr>
+<tr>
+<td>├─symbol</td>
+<td>string</td>
+<td></td>
+<td>token pair</td>
+</tr>
+<tr>
+<td>├─orderUpdateTime</td>
+<td>long</td>
+<td></td>
+<td>The time of the last transaction or Order time</td>
+</tr>
+<tr>
+<td>├─timestamp</td>
+<td>long</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
 <h1 id='ticker-related'>Ticker Related</h1><h2 id='ticker'><span id="7">Ticker</span></h2>
 <p>Ticker for all trading pairs in the market</p>
 
@@ -1986,11 +2383,11 @@ needs to be set.</strong></p>
     </span><span class="p">],</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
  </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-11'>HTTP request:</h3>
+</span></code></pre></div><h3 id='http-request-13'>HTTP request:</h3>
 <ul>
 <li>GET /v1/market/tickers</li>
 </ul>
-<h3 id='request-parameters-11'>Request parameters:</h3>
+<h3 id='request-parameters-13'>Request parameters:</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2000,7 +2397,7 @@ needs to be set.</strong></p>
 </tr>
 </thead><tbody>
 </tbody></table>
-<h3 id='response-data-10'>Response data:</h3>
+<h3 id='response-data-12'>Response data:</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2133,11 +2530,11 @@ needs to be set.</strong></p>
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-12'>HTTP request:</h3>
+</span></code></pre></div><h3 id='http-request-14'>HTTP request:</h3>
 <ul>
 <li>GET /v1/market/depth/{symbol}</li>
 </ul>
-<h3 id='request-parameters-12'>Request parameters:</h3>
+<h3 id='request-parameters-14'>Request parameters:</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2159,7 +2556,7 @@ needs to be set.</strong></p>
 <td>The number of depths, such as &quot;5, 10, 20, 50, 100&quot;, default 20</td>
 </tr>
 </tbody></table>
-<h3 id='response-data-11'>Response data:</h3>
+<h3 id='response-data-13'>Response data:</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2242,11 +2639,11 @@ needs to be set.</strong></p>
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-13'>HTTP request:</h3>
+</span></code></pre></div><h3 id='http-request-15'>HTTP request:</h3>
 <ul>
 <li>GET /v1/market/kline/{symbol}</li>
 </ul>
-<h3 id='request-parameters-13'>Request parameters:</h3>
+<h3 id='request-parameters-15'>Request parameters:</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2274,7 +2671,7 @@ needs to be set.</strong></p>
 <td>Number of data bars, [1,2000]</td>
 </tr>
 </tbody></table>
-<h3 id='response-data-12'>Response data:</h3>
+<h3 id='response-data-14'>Response data:</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2396,11 +2793,11 @@ needs to be set.</strong></p>
     </span><span class="p">],</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
  </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-14'>HTTP request:</h3>
+</span></code></pre></div><h3 id='http-request-16'>HTTP request:</h3>
 <ul>
 <li>GET /v1/market/trade/{symbol}</li>
 </ul>
-<h3 id='request-parameters-14'>Request parameters:</h3>
+<h3 id='request-parameters-16'>Request parameters:</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2422,7 +2819,7 @@ needs to be set.</strong></p>
 <td>Number of data bars, [1,100]</td>
 </tr>
 </tbody></table>
-<h3 id='response-data-13'>Response data:</h3>
+<h3 id='response-data-15'>Response data:</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2498,7 +2895,7 @@ needs to be set.</strong></p>
 </tbody></table>
 <h2 id='get-the-latest-price-of-all-symbols'><span id="7"> Get the latest price of all symbols </span></h2>
 <p>Get the latest price of all symbols</p>
-<h3 id='http-request-15'>HTTP Request:</h3>
+<h3 id='http-request-17'>HTTP Request:</h3>
 <ul>
 <li>GET /v1/ticker/price</li>
 </ul>
@@ -2522,7 +2919,7 @@ needs to be set.</strong></p>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-parameters-15'>Request Parameters:</h3>
+</span></code></pre></div><h3 id='request-parameters-17'>Request Parameters:</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2542,7 +2939,7 @@ needs to be set.</strong></p>
 <p><strong>default: Query all symbols</strong></p>
 
 <p><strong>query the specified symbol: /v1/ticker/price;symbol=btcusdt,eosusdt,autusdt</strong></p>
-<h3 id='response-data-14'>Response Data:</h3>
+<h3 id='response-data-16'>Response Data:</h3>
 <table><thead>
 <tr>
 <th>code</th>

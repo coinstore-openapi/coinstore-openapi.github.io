@@ -407,6 +407,12 @@
                     <a href="#2152241f96" class="toc-h2 toc-link" data-title="获取当前订单"><span id="2">获取当前订单</span></a>
                   </li>
                   <li>
+                    <a href="#v2" class="toc-h2 toc-link" data-title="获取当前订单V2"><span id="2">获取当前订单V2</span></a>
+                  </li>
+                  <li>
+                    <a href="#v2-2" class="toc-h2 toc-link" data-title="获取订单信息V2"><span id="2">获取订单信息V2</span></a>
+                  </li>
+                  <li>
                     <a href="#08819af8ba" class="toc-h2 toc-link" data-title="取消委托单"><span id="3">取消委托单</span></a>
                   </li>
                   <li>
@@ -419,7 +425,10 @@
                     <a href="#id" class="toc-h2 toc-link" data-title="根据订单id批量进行撤单"><span id="27">根据订单id批量进行撤单</span></a>
                   </li>
                   <li>
-                    <a href="#8b3c19df49" class="toc-h2 toc-link" data-title="获取用户最新成交"><span id="3">获取用户最新成交</span></a>
+                    <a href="#a14949562d" class="toc-h2 toc-link" data-title="获取用户全部成交"><span id="3">获取用户全部成交</span></a>
+                  </li>
+                  <li>
+                    <a href="#v2-3" class="toc-h2 toc-link" data-title="获取用户全部成交V2"><span id="4">获取用户全部成交V2</span></a>
                   </li>
                   <li>
                     <a href="#274ba04bb9" class="toc-h2 toc-link" data-title="用户强减记录"><span id="3">用户强减记录</span></a>
@@ -1645,14 +1654,9 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <td>合约ID</td>
 </tr>
 <tr>
-<td>- marginRate</td>
+<td>- initMarginRate</td>
 <td>string</td>
 <td>保证金率，全仓时&gt;0，逐仓时&gt;0</td>
-</tr>
-<tr>
-<td>- leverage</td>
-<td>int</td>
-<td>保证金倍数</td>
 </tr>
 <tr>
 <td>- marginType</td>
@@ -1680,12 +1684,12 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <td>开平标志，开仓1，平仓2</td>
 </tr>
 <tr>
-<td>- price</td>
+<td>- orderPrice</td>
 <td>string</td>
 <td>委托价格,order_type等于3（市价）时非必填</td>
 </tr>
 <tr>
-<td>- quantity</td>
+<td>- orderQty</td>
 <td>string</td>
 <td>委托数量</td>
 </tr>
@@ -1710,13 +1714,424 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <td>合约名称</td>
 </tr>
 </tbody></table>
+<h2 id='v2'><span id="2">获取当前订单V2</span></h2>
+<p>获取当前订单 V2 版本</p>
+<h4 id='api-https-futures-coinstore-com-apikey-token'>新接口的 API域名地址 <code>https://futures.coinstore.com</code>  调用支持ApiKey与Token</h4><h3 id='http-8'>HTTP请求:</h3>
+<ul>
+<li>GET /api/v2/trade/order/active</li>
+</ul>
+
+<blockquote>
+<p>响应</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"orderStatus"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"avgPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"matchQty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"matchAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"timeInForce"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderType"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"clOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1626933997000"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"positionEffect"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"marginType"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"stopCondition"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderSubType"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"marginLeverage"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderQty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5000"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"remainQty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5000"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1626933997312000</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"stopPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"initMarginRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1705963943362561"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"contractId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2902104</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="mi">29475591730</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='1f9ac54b15-6'>请求参数</h3>
+<table><thead>
+<tr>
+<th>code</th>
+<th>type</th>
+<th>required</th>
+<th>comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contractId</td>
+<td>int</td>
+<td>N</td>
+<td>合约id</td>
+</tr>
+<tr>
+<td>ordId</td>
+<td>int</td>
+<td>N</td>
+<td>委托ID</td>
+</tr>
+<tr>
+<td>clOrdId</td>
+<td>String</td>
+<td>N</td>
+<td>客户端委托ID</td>
+</tr>
+</tbody></table>
+<h3 id='2213f4c32f-8'>响应数据</h3>
+<table><thead>
+<tr>
+<th>code</th>
+<th>type</th>
+<th>comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>0</td>
+</tr>
+<tr>
+<td>msg</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>list</td>
+<td></td>
+</tr>
+<tr>
+<td>- accountType</td>
+<td>int</td>
+<td>账户类型 1：user 2:system 3:bonus  4:follow</td>
+</tr>
+<tr>
+<td>- contractId</td>
+<td>int</td>
+<td>合约ID</td>
+</tr>
+<tr>
+<td>- orderId</td>
+<td>long</td>
+<td>委托ID</td>
+</tr>
+<tr>
+<td>- clOrderId</td>
+<td>string</td>
+<td>客户端委托ID</td>
+</tr>
+<tr>
+<td>- orderStatus</td>
+<td>int</td>
+<td>委托状态 0：未申报 1:正在申报 2:已申报未成交 3:部分成交 4: 全部成交 5：部分撤单 6： 全部撤单 7:撤单中 8:失效</td>
+</tr>
+<tr>
+<td>- timeInForce</td>
+<td>int</td>
+<td>成交限制类型：1:GTC, 2:IOC, 3:FOK</td>
+</tr>
+<tr>
+<td>- initMarginRate</td>
+<td>string</td>
+<td>保证金率</td>
+</tr>
+<tr>
+<td>- marginLeverage</td>
+<td>int</td>
+<td>保证金倍数</td>
+</tr>
+<tr>
+<td>- marginType</td>
+<td>int</td>
+<td>保证金类型，全仓1，逐仓2</td>
+</tr>
+<tr>
+<td>- orderType</td>
+<td>int</td>
+<td>委托类型 1：LIMIT  2：条件单限价  3：MARKET  4：条件单市价</td>
+</tr>
+<tr>
+<td>- orderSubType</td>
+<td>int</td>
+<td>0（默认值），1（被动委托），2（最近价触发条件委托），3（指数触发条件委托），4（标记价触发条件委托）</td>
+</tr>
+<tr>
+<td>- positionEffect</td>
+<td>int</td>
+<td>开平标志，开仓1，平仓2</td>
+</tr>
+<tr>
+<td>- orderPrice</td>
+<td>string</td>
+<td>委托价格：委托价格,order_type等于3（市价）时非必填</td>
+</tr>
+<tr>
+<td>- orderQty</td>
+<td>string</td>
+<td>委托数量</td>
+</tr>
+<tr>
+<td>- side</td>
+<td>int</td>
+<td>方向 1：做多  -1：做空</td>
+</tr>
+<tr>
+<td>- stopCondition</td>
+<td>int</td>
+<td>止损,order_type等于3（市价）时非必填；值域：1（止盈，未启用），2（止损，未启用），3（只减仓，未启用） //前端不传</td>
+</tr>
+<tr>
+<td>- stopPrice</td>
+<td>string</td>
+<td>止损价格，order_type等于3（市价）时非必填 //条件单时</td>
+</tr>
+<tr>
+<td>- matchQty</td>
+<td>string</td>
+<td>累积成交数量</td>
+</tr>
+<tr>
+<td>- matchAmt</td>
+<td>string</td>
+<td>累积成交金额</td>
+</tr>
+<tr>
+<td>- avgPrice</td>
+<td>String</td>
+<td>成交均价</td>
+</tr>
+<tr>
+<td>- remainQty</td>
+<td>int</td>
+<td>剩余数量</td>
+</tr>
+<tr>
+<td>- orderTime</td>
+<td>long</td>
+<td>委托时间</td>
+</tr>
+</tbody></table>
+<h2 id='v2-2'><span id="2">获取订单信息V2</span></h2>
+<p>获取订单信息 V2 版本</p>
+<h4 id='api-https-futures-coinstore-com-apikey-token-2'>新接口的 API域名地址 <code>https://futures.coinstore.com</code>  调用支持ApiKey与Token</h4><h3 id='http-9'>HTTP请求:</h3>
+<ul>
+<li>GET /api/v2/trade/order/orderInfo</li>
+</ul>
+
+<blockquote>
+<p>响应</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"contractId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100100001</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1736859343912961</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"clOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ZznkeIhHR4yEHmAUF0J6wA#1018"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderStatus"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"timeInForce"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"marginLeverage"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"marginType"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderType"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"positionEffect"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderQty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7134"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"stopCondition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"stopPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"matchQty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"matchAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"avgPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"remainQty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"profitAndLoss"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"feeCurrencyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderUpdateTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1656398147046</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1656398147046</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='1f9ac54b15-7'>请求参数</h3>
+<table><thead>
+<tr>
+<th>code</th>
+<th>type</th>
+<th>required</th>
+<th>comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ordId</td>
+<td>int</td>
+<td>N</td>
+<td>委托ID</td>
+</tr>
+<tr>
+<td>clOrdId</td>
+<td>String</td>
+<td>N</td>
+<td>客户端委托ID</td>
+</tr>
+</tbody></table>
+<h3 id='2213f4c32f-9'>响应数据</h3>
+<table><thead>
+<tr>
+<th>code</th>
+<th>type</th>
+<th>comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>0</td>
+</tr>
+<tr>
+<td>msg</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>list</td>
+<td></td>
+</tr>
+<tr>
+<td>- accountType</td>
+<td>int</td>
+<td>账户类型 1：user 2:system 3:bonus  4:follow</td>
+</tr>
+<tr>
+<td>- contractId</td>
+<td>int</td>
+<td>合约ID</td>
+</tr>
+<tr>
+<td>- orderId</td>
+<td>long</td>
+<td>委托ID</td>
+</tr>
+<tr>
+<td>- clOrderId</td>
+<td>string</td>
+<td>客户端委托ID</td>
+</tr>
+<tr>
+<td>- orderStatus</td>
+<td>int</td>
+<td>委托状态 0：未申报 1:正在申报 2:已申报未成交 3:部分成交 4: 全部成交 5：部分撤单 6： 全部撤单 7:撤单中 8:失效</td>
+</tr>
+<tr>
+<td>- timeInForce</td>
+<td>int</td>
+<td>成交限制类型：1:GTC, 2:IOC, 3:FOK</td>
+</tr>
+<tr>
+<td>- marginLeverage</td>
+<td>int</td>
+<td>保证金倍数</td>
+</tr>
+<tr>
+<td>- marginType</td>
+<td>int</td>
+<td>保证金类型，全仓1，逐仓2</td>
+</tr>
+<tr>
+<td>- orderType</td>
+<td>int</td>
+<td>委托类型 1：LIMIT  2：条件单限价  3：MARKET  4：条件单市价</td>
+</tr>
+<tr>
+<td>- positionEffect</td>
+<td>int</td>
+<td>开平标志，开仓1，平仓2</td>
+</tr>
+<tr>
+<td>- orderPrice</td>
+<td>string</td>
+<td>委托价格：委托价格,order_type等于3（市价）时非必填</td>
+</tr>
+<tr>
+<td>- orderQty</td>
+<td>string</td>
+<td>委托数量</td>
+</tr>
+<tr>
+<td>- side</td>
+<td>int</td>
+<td>方向 1：做多  -1：做空</td>
+</tr>
+<tr>
+<td>- stopCondition</td>
+<td>string</td>
+<td>止损,order_type等于3（市价）时非必填；值域：1（止盈，未启用），2（止损，未启用），3（只减仓，未启用） //前端不传</td>
+</tr>
+<tr>
+<td>- stopPrice</td>
+<td>string</td>
+<td>止损价格，order_type等于3（市价）时非必填 //条件单时</td>
+</tr>
+<tr>
+<td>- matchQty</td>
+<td>string</td>
+<td>累积成交数量</td>
+</tr>
+<tr>
+<td>- matchAmt</td>
+<td>string</td>
+<td>累积成交金额</td>
+</tr>
+<tr>
+<td>- avgPrice</td>
+<td>String</td>
+<td>成交均价</td>
+</tr>
+<tr>
+<td>- remainQty</td>
+<td>string</td>
+<td>剩余数量</td>
+</tr>
+<tr>
+<td>- profitAndLoss</td>
+<td>String</td>
+<td>盈亏</td>
+</tr>
+<tr>
+<td>- fee</td>
+<td>String</td>
+<td>累计手续费</td>
+</tr>
+<tr>
+<td>- feeCurrencyName</td>
+<td>String</td>
+<td>交易手续费币种</td>
+</tr>
+<tr>
+<td>- orderUpdateTime</td>
+<td>long</td>
+<td>订单状态更新时间：若未成交，则系统返回“订单创建时间”；若已成交，则系统返回最近一笔成交的时间</td>
+</tr>
+<tr>
+<td>- orderTime</td>
+<td>long</td>
+<td>委托时间</td>
+</tr>
+</tbody></table>
 <h2 id='08819af8ba'><span id="3">取消委托单</span></h2>
 <p>取消委托单</p>
-<h3 id='http-8'>HTTP请求:</h3>
+<h3 id='http-10'>HTTP请求:</h3>
 <ul>
 <li>POST /api/trade/order/cancel</li>
 </ul>
-<h3 id='1f9ac54b15-6'>请求参数</h3>
+<h3 id='1f9ac54b15-8'>请求参数</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1747,7 +2162,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
     </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cancel order success"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='2213f4c32f-8'>响应数据</h3>
+</span></code></pre></div><h3 id='2213f4c32f-10'>响应数据</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1771,11 +2186,11 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <td>返回数据</td>
 </tr>
 </tbody></table>
-<h2 id='caef340d80'><span id="5">一键撤单</span></h2><h3 id='http-9'>HTTP请求:</h3>
+<h2 id='caef340d80'><span id="5">一键撤单</span></h2><h3 id='http-11'>HTTP请求:</h3>
 <ul>
 <li>POST /api/trade/order/cancelAll</li>
 </ul>
-<h3 id='1f9ac54b15-7'>请求参数</h3>
+<h3 id='1f9ac54b15-9'>请求参数</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1800,7 +2215,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
     </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cancel all order success"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='2213f4c32f-9'>响应数据</h3>
+</span></code></pre></div><h3 id='2213f4c32f-11'>响应数据</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1826,11 +2241,11 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 </tbody></table>
 <h2 id='77aaf08979'><span id="13">批量下单</span></h2>
 <p>批量下单</p>
-<h3 id='http-10'>HTTP请求:</h3>
+<h3 id='http-12'>HTTP请求:</h3>
 <ul>
 <li>POST /api/trade/order/placeBatch</li>
 </ul>
-<h3 id='1f9ac54b15-8'>请求参数</h3>
+<h3 id='1f9ac54b15-10'>请求参数</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1953,7 +2368,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre></div><h3 id='2213f4c32f-10'>响应数据</h3>
+</span></code></pre></div><h3 id='2213f4c32f-12'>响应数据</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1989,11 +2404,11 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 </tbody></table>
 <h2 id='id'><span id="27">根据订单id批量进行撤单</span></h2>
 <p>根据订单id批量进行撤单</p>
-<h3 id='http-11'>HTTP请求:</h3>
+<h3 id='http-13'>HTTP请求:</h3>
 <ul>
 <li>POST /api/trade/orders/del</li>
 </ul>
-<h3 id='1f9ac54b15-9'>请求参数</h3>
+<h3 id='1f9ac54b15-11'>请求参数</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2065,7 +2480,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
         </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='2213f4c32f-11'>响应数据</h3>
+</span></code></pre></div><h3 id='2213f4c32f-13'>响应数据</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2099,9 +2514,9 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <td>失败的订单id集合        [客户端委托ID,错误code,订单id]</td>
 </tr>
 </tbody></table>
-<h2 id='8b3c19df49'><span id="3">获取用户最新成交</span></h2>
+<h2 id='a14949562d'><span id="3">获取用户全部成交</span></h2>
 <p>获取全部成交记录</p>
-<h3 id='http-12'>HTTP请求:</h3>
+<h3 id='http-14'>HTTP请求:</h3>
 <ul>
 <li>GET /api/future/queryHisMatch</li>
 </ul>
@@ -2144,7 +2559,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
   </span><span class="p">}</span><span class="w"> </span><span class="p">],</span><span class="w">
   </span><span class="nl">"msg"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='1f9ac54b15-10'>请求参数</h3>
+</span></code></pre></div><h3 id='1f9ac54b15-12'>请求参数</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2190,7 +2605,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <td>方向 -1上一页 1下一页</td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-12'>响应数据</h3>
+<h3 id='2213f4c32f-14'>响应数据</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2354,9 +2769,179 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <td>卖方平仓盈亏</td>
 </tr>
 </tbody></table>
+<h2 id='v2-3'><span id="4">获取用户全部成交V2</span></h2>
+<p>获取全部成交记录 V2 版本</p>
+<h4 id='api-https-futures-coinstore-com-apikey-token-3'>新接口的 API域名地址 <code>https://futures.coinstore.com</code>  调用支持ApiKey与Token</h4><h3 id='http-15'>HTTP请求:</h3>
+<ul>
+<li>GET /api/v2/trade/order/queryHisMatch</li>
+</ul>
+
+<blockquote>
+<p>响应</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="mi">3431</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"contractId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100300144</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1762426675003393</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"clOrdId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c819f4d2282f486d9ed4711327d6381e"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"matchId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10763</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"tradeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2177</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"execSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"matchAmt"</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.672000000000000000</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"avgPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">112.000000000000000000</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"orderStatus"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"orderRole"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MAKER"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"remainingSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"pnl"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.000168</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"matchTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1680781089260</span><span class="w">
+  </span><span class="p">}</span><span class="w"> </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='1f9ac54b15-13'>请求参数</h3>
+<table><thead>
+<tr>
+<th>code</th>
+<th>type</th>
+<th>required</th>
+<th>comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contractId</td>
+<td>int</td>
+<td>N</td>
+<td>合约id</td>
+</tr>
+<tr>
+<td>ordId</td>
+<td>int</td>
+<td>N</td>
+<td>委托ID</td>
+</tr>
+<tr>
+<td>pageNum</td>
+<td>string</td>
+<td>N</td>
+<td>页数，如果不传参，则默认返回 1 页</td>
+</tr>
+<tr>
+<td>pageSize</td>
+<td>string</td>
+<td>N</td>
+<td>每页数量，默认20</td>
+</tr>
+<tr>
+<td>side</td>
+<td>string</td>
+<td>N</td>
+<td>方向 -1做空 1做多</td>
+</tr>
+</tbody></table>
+<h3 id='2213f4c32f-15'>响应数据</h3>
+<table><thead>
+<tr>
+<th>code</th>
+<th>type</th>
+<th>comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>0</td>
+</tr>
+<tr>
+<td>msg</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td></td>
+</tr>
+<tr>
+<td>- accountId</td>
+<td>int</td>
+<td>账户id</td>
+</tr>
+<tr>
+<td>- contractId</td>
+<td>long</td>
+<td>交易对ID、合约号</td>
+</tr>
+<tr>
+<td>- orderId</td>
+<td>Long</td>
+<td>委托ID</td>
+</tr>
+<tr>
+<td>- clOrdId</td>
+<td>string</td>
+<td>客户端委托ID</td>
+</tr>
+<tr>
+<td>- matchId</td>
+<td>Long</td>
+<td>撮合ID</td>
+</tr>
+<tr>
+<td>- tradeId</td>
+<td>Long</td>
+<td>成交ID</td>
+</tr>
+<tr>
+<td>- execSize</td>
+<td>int</td>
+<td>成交数量</td>
+</tr>
+<tr>
+<td>- matchAmt</td>
+<td>Double</td>
+<td>成交金额</td>
+</tr>
+<tr>
+<td>- avgPrice</td>
+<td>Double</td>
+<td>成交均价</td>
+</tr>
+<tr>
+<td>- orderStatus</td>
+<td>int</td>
+<td>委托状态 0：未申报 1:正在申报 2:已申报未成交 3:部分成交 4: 全部成交 5：部分撤单 6： 全部撤单 7:撤单中 8:失效</td>
+</tr>
+<tr>
+<td>- orderRole</td>
+<td>string</td>
+<td>角色：Taker,Maker</td>
+</tr>
+<tr>
+<td>- remainingSize</td>
+<td>int</td>
+<td>剩余数量</td>
+</tr>
+<tr>
+<td>- pnl</td>
+<td>Double</td>
+<td>盈亏</td>
+</tr>
+<tr>
+<td>- fee</td>
+<td>Double</td>
+<td>累积手续费</td>
+</tr>
+<tr>
+<td>- matchTime</td>
+<td>Long</td>
+<td>成交时间</td>
+</tr>
+</tbody></table>
 <h2 id='274ba04bb9'><span id="3">用户强减记录</span></h2>
 <p>获取全部成交记录</p>
-<h3 id='http-13'>HTTP请求:</h3>
+<h3 id='http-16'>HTTP请求:</h3>
 <ul>
 <li>GET /api/future/queryFlOrders</li>
 </ul>
@@ -2399,7 +2984,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='1f9ac54b15-11'>请求参数</h3>
+</span></code></pre></div><h3 id='1f9ac54b15-14'>请求参数</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2445,7 +3030,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <td>方向 -1上一页 1下一页</td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-13'>响应数据</h3>
+<h3 id='2213f4c32f-16'>响应数据</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2571,7 +3156,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 </tbody></table>
 <h2 id='db55aab9f9'><span id="3">用户强平记录</span></h2>
 <p>获取全部成交记录</p>
-<h3 id='http-14'>HTTP请求:</h3>
+<h3 id='http-17'>HTTP请求:</h3>
 <ul>
 <li>GET /api/future/queryFcOrders</li>
 </ul>
@@ -2614,7 +3199,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='1f9ac54b15-12'>请求参数</h3>
+</span></code></pre></div><h3 id='1f9ac54b15-15'>请求参数</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2660,7 +3245,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <td>方向 -1上一页 1下一页</td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-14'>响应数据</h3>
+<h3 id='2213f4c32f-17'>响应数据</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2784,7 +3369,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <td>被强减用户（盈利方）保证金类型</td>
 </tr>
 </tbody></table>
-<h1 id='43ee760de5'>行情相关</h1><h2 id='k'><span id="7">获取历史K线</span></h2><h3 id='http-15'>HTTP请求:</h3>
+<h1 id='43ee760de5'>行情相关</h1><h2 id='k'><span id="7">获取历史K线</span></h2><h3 id='http-18'>HTTP请求:</h3>
 <ul>
 <li>GET /v1/futureQuot/queryCandlestick</li>
 </ul>
@@ -2810,7 +3395,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
         </span><span class="nl">"contractId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100280034</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='1f9ac54b15-13'>请求参数</h3>
+</span></code></pre></div><h3 id='1f9ac54b15-16'>请求参数</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2873,7 +3458,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <td>[时间戳，开仓价，最高价格，最低价格，收盘价，成交张数]</td>
 </tr>
 </tbody></table>
-<h2 id='0a8d744c83'><span id="7">查询行情快照</span></h2><h3 id='http-16'>HTTP请求:</h3>
+<h2 id='0a8d744c83'><span id="7">查询行情快照</span></h2><h3 id='http-19'>HTTP请求:</h3>
 <ul>
 <li>GET /v1/futureQuot/querySnapshot</li>
 </ul>
@@ -2910,7 +3495,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
         </span><span class="nl">"lp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51001"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='1f9ac54b15-14'>请求参数</h3>
+</span></code></pre></div><h3 id='1f9ac54b15-17'>请求参数</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -3020,7 +3605,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <td>买盘 [价格，张数]</td>
 </tr>
 </tbody></table>
-<h2 id='1690314e40'><span id="7">获取最新成交</span></h2><h3 id='http-17'>HTTP请求:</h3>
+<h2 id='1690314e40'><span id="7">获取最新成交</span></h2><h3 id='http-20'>HTTP请求:</h3>
 <ul>
 <li>GET /v1/futureQuot/queryTickTrade</li>
 </ul>
@@ -3049,7 +3634,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
         </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='1f9ac54b15-15'>请求参数</h3>
+</span></code></pre></div><h3 id='1f9ac54b15-18'>请求参数</h3>
 <table><thead>
 <tr>
 <th>code</th>

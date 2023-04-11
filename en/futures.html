@@ -407,6 +407,12 @@
                     <a href="#get-active-order" class="toc-h2 toc-link" data-title="Get active order"><span id="2">Get active order</span></a>
                   </li>
                   <li>
+                    <a href="#get-active-order-v2" class="toc-h2 toc-link" data-title="Get active order V2"><span id="2">Get active order V2</span></a>
+                  </li>
+                  <li>
+                    <a href="#get-order-info-v2" class="toc-h2 toc-link" data-title="get order info V2"><span id="2">get order info V2</span></a>
+                  </li>
+                  <li>
                     <a href="#cancel-orders" class="toc-h2 toc-link" data-title="Cancel orders"><span id="3">Cancel orders</span></a>
                   </li>
                   <li>
@@ -419,7 +425,10 @@
                     <a href="#batch-cancellation-according-to-order-id" class="toc-h2 toc-link" data-title="Batch cancellation according to order id"><span id="27">Batch cancellation according to order id</span></a>
                   </li>
                   <li>
-                    <a href="#get-user-39-s-latest-trade" class="toc-h2 toc-link" data-title="Get user's latest trade"><span id="3">Get user's latest trade</span></a>
+                    <a href="#get-user-39-s-all-trade-records" class="toc-h2 toc-link" data-title="Get user's all trade records"><span id="3">Get user's all trade records</span></a>
+                  </li>
+                  <li>
+                    <a href="#get-user-39-s-all-trade-records-v2" class="toc-h2 toc-link" data-title="Get user's all trade records V2"><span id="3">Get user's all trade records V2</span></a>
                   </li>
                   <li>
                     <a href="#user-forced-reduction" class="toc-h2 toc-link" data-title="User forced reduction"><span id="3">User forced reduction</span></a>
@@ -1716,13 +1725,434 @@ needs to be set.</strong></p>
 <td>contract name</td>
 </tr>
 </tbody></table>
+<h2 id='get-active-order-v2'><span id="2">Get active order V2</span></h2>
+<p>Get active order V2 version</p>
+<h4 id='the-new-interface-api-domain-name-address-https-futures-coinstore-com-call-support-for-apikey-and-token'>The new interface API domain name address <code>https://futures.coinstore.com</code>  Call support for ApiKey and Token</h4><h3 id='http-request-8'>HTTP Request:</h3>
+<ul>
+<li>GET /api/v2/trade/order/active</li>
+</ul>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"orderStatus"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"avgPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"matchQty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"matchAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"orderPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"timeInForce"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"orderType"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"clOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1626933997000"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"positionEffect"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"marginType"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"stopCondition"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"orderSubType"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"marginLeverage"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"orderQty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5000"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"remainQty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5000"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"orderTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1626933997312000</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"stopPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"initMarginRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1705963943362561"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"contractId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2902104</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="mi">29475591730</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='request-parameters-6'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>code</th>
+<th>type</th>
+<th>required</th>
+<th>comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contractId</td>
+<td>int</td>
+<td>N</td>
+<td>contract id</td>
+</tr>
+<tr>
+<td>ordId</td>
+<td>int</td>
+<td>N</td>
+<td>Delegate ID</td>
+</tr>
+<tr>
+<td>clOrdId</td>
+<td>String</td>
+<td>N</td>
+<td>Client delegate ID</td>
+</tr>
+</tbody></table>
+<h3 id='response-data-8'>Response Data</h3>
+<table><thead>
+<tr>
+<th>code</th>
+<th>type</th>
+<th>comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>0</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>list</td>
+<td></td>
+</tr>
+<tr>
+<td>- accountType</td>
+<td>int</td>
+<td>account type 1：user 2:system 3:bonus  4:follow</td>
+</tr>
+<tr>
+<td>- contractId</td>
+<td>int</td>
+<td>contract id</td>
+</tr>
+<tr>
+<td>- orderId</td>
+<td>long</td>
+<td>Delegate ID</td>
+</tr>
+<tr>
+<td>- clOrderId</td>
+<td>string</td>
+<td>Client delegate ID</td>
+</tr>
+<tr>
+<td>- orderStatus</td>
+<td>int</td>
+<td>order status 0：NOT_DECLARE 1:IN_DECLARE 2:NOT_MATCH 3:PORTION_MATCH 4: ALL_MATCH 5：PORTION_CANCEL 6： ALL_CANCEL 7:IN_CANCEL 8:INVALID</td>
+</tr>
+<tr>
+<td>- timeInForce</td>
+<td>int</td>
+<td>Type of transaction restriction：1:GTC, 2:IOC, 3:FOK</td>
+</tr>
+<tr>
+<td>- initMarginRate</td>
+<td>string</td>
+<td>Margin ratio</td>
+</tr>
+<tr>
+<td>- marginLeverage</td>
+<td>int</td>
+<td>Margin multiple</td>
+</tr>
+<tr>
+<td>- marginType</td>
+<td>int</td>
+<td>margin type, 1: cross, 2: isolated</td>
+</tr>
+<tr>
+<td>- orderType</td>
+<td>int</td>
+<td>order type 1：LIMIT  2：Condition of single price  3：MARKET  4：Conditional market price</td>
+</tr>
+<tr>
+<td>- orderSubType</td>
+<td>int</td>
+<td>0 (default value), 1 (passive order), 2 (latest price triggering conditional order), 3 (index triggering conditional order), 4 (marked price triggering conditional order)</td>
+</tr>
+<tr>
+<td>- positionEffect</td>
+<td>int</td>
+<td>position effect, 1 (open), 2 (close)</td>
+</tr>
+<tr>
+<td>- orderPrice</td>
+<td>string</td>
+<td>non required when order_type is 3 (market)</td>
+</tr>
+<tr>
+<td>- orderQty</td>
+<td>string</td>
+<td>order quantity</td>
+</tr>
+<tr>
+<td>- side</td>
+<td>int</td>
+<td>buy: 1, sell: -1</td>
+</tr>
+<tr>
+<td>- stopCondition</td>
+<td>int</td>
+<td>stop loss, non required when order_type is 3 (market); range: 1 (take profit, not enabled), 2 (stop loss, not enabled), 3 (only reduction, not enabled) //not passed at front-end</td>
+</tr>
+<tr>
+<td>- stopPrice</td>
+<td>string</td>
+<td>stop price, not required when order_type is 3 (market) //in case of conditional order</td>
+</tr>
+<tr>
+<td>- matchQty</td>
+<td>string</td>
+<td>match quantity</td>
+</tr>
+<tr>
+<td>- matchAmt</td>
+<td>string</td>
+<td>match amount</td>
+</tr>
+<tr>
+<td>- avgPrice</td>
+<td>String</td>
+<td>Average transaction price</td>
+</tr>
+<tr>
+<td>- remainQty</td>
+<td>int</td>
+<td>remain   quantity</td>
+</tr>
+<tr>
+<td>- orderTime</td>
+<td>long</td>
+<td>order time</td>
+</tr>
+</tbody></table>
+<h2 id='get-order-info-v2'><span id="2">get order info V2</span></h2>
+<p>get order info V2 version</p>
+<h4 id='the-new-interface-api-domain-name-address-https-futures-coinstore-com-call-support-for-apikey-and-token-2'>The new interface API domain name address <code>https://futures.coinstore.com</code>  Call support for ApiKey and Token</h4><h3 id='http'>HTTP请求:</h3>
+<ul>
+<li>GET /api/v2/trade/order/orderInfo</li>
+</ul>
+
+<blockquote>
+<p>响应</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"contractId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100100001</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1736859343912961</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"clOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ZznkeIhHR4yEHmAUF0J6wA#1018"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderStatus"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"timeInForce"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"marginLeverage"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"marginType"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderType"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"positionEffect"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderQty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7134"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"stopCondition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"stopPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"matchQty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"matchAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"avgPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"remainQty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"profitAndLoss"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"feeCurrencyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderUpdateTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1656398147046</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1656398147046</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='1f9ac54b15'>请求参数</h3>
+<table><thead>
+<tr>
+<th>code</th>
+<th>type</th>
+<th>required</th>
+<th>comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ordId</td>
+<td>int</td>
+<td>N</td>
+<td>Order id</td>
+</tr>
+<tr>
+<td>clOrdId</td>
+<td>String</td>
+<td>N</td>
+<td>Client order number</td>
+</tr>
+</tbody></table>
+<h3 id='2213f4c32f'>响应数据</h3>
+<table><thead>
+<tr>
+<th>code</th>
+<th>type</th>
+<th>comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>0</td>
+</tr>
+<tr>
+<td>msg</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>list</td>
+<td></td>
+</tr>
+<tr>
+<td>- accountType</td>
+<td>int</td>
+<td>account type 1：user 2:system 3:bonus  4:follow</td>
+</tr>
+<tr>
+<td>- contractId</td>
+<td>int</td>
+<td>contract id</td>
+</tr>
+<tr>
+<td>- orderId</td>
+<td>long</td>
+<td>Delegate ID</td>
+</tr>
+<tr>
+<td>- clOrderId</td>
+<td>string</td>
+<td>Client delegate ID</td>
+</tr>
+<tr>
+<td>- orderStatus</td>
+<td>int</td>
+<td>order status 0：NOT_DECLARE 1:IN_DECLARE 2:NOT_MATCH 3:PORTION_MATCH 4: ALL_MATCH 5：PORTION_CANCEL 6： ALL_CANCEL 7:IN_CANCEL 8:INVALID</td>
+</tr>
+<tr>
+<td>- timeInForce</td>
+<td>int</td>
+<td>Type of transaction restriction：1:GTC, 2:IOC, 3:FOK</td>
+</tr>
+<tr>
+<td>- initMarginRate</td>
+<td>string</td>
+<td>Margin ratio</td>
+</tr>
+<tr>
+<td>- marginLeverage</td>
+<td>int</td>
+<td>Margin multiple</td>
+</tr>
+<tr>
+<td>- marginType</td>
+<td>int</td>
+<td>margin type, 1: cross, 2: isolated</td>
+</tr>
+<tr>
+<td>- orderType</td>
+<td>int</td>
+<td>order type 1：LIMIT  2：Condition of single price  3：MARKET  4：Conditional market price</td>
+</tr>
+<tr>
+<td>- orderSubType</td>
+<td>int</td>
+<td>0 (default value), 1 (passive order), 2 (latest price triggering conditional order), 3 (index triggering conditional order), 4 (marked price triggering conditional order)</td>
+</tr>
+<tr>
+<td>- positionEffect</td>
+<td>int</td>
+<td>position effect, 1 (open), 2 (close)</td>
+</tr>
+<tr>
+<td>- orderPrice</td>
+<td>string</td>
+<td>non required when order_type is 3 (market)</td>
+</tr>
+<tr>
+<td>- orderQty</td>
+<td>string</td>
+<td>order quantity</td>
+</tr>
+<tr>
+<td>- side</td>
+<td>int</td>
+<td>buy: 1, sell: -1</td>
+</tr>
+<tr>
+<td>- stopCondition</td>
+<td>String</td>
+<td>stop loss, non required when order_type is 3 (market); range: 1 (take profit, not enabled), 2 (stop loss, not enabled), 3 (only reduction, not enabled) //not passed at front-end</td>
+</tr>
+<tr>
+<td>- stopPrice</td>
+<td>string</td>
+<td>stop price, not required when order_type is 3 (market) //in case of conditional order</td>
+</tr>
+<tr>
+<td>- matchQty</td>
+<td>string</td>
+<td>match quantity</td>
+</tr>
+<tr>
+<td>- matchAmt</td>
+<td>string</td>
+<td>match amount</td>
+</tr>
+<tr>
+<td>- avgPrice</td>
+<td>String</td>
+<td>Average transaction price</td>
+</tr>
+<tr>
+<td>- remainQty</td>
+<td>int</td>
+<td>remain   quantity</td>
+</tr>
+<tr>
+<td>- profitAndLoss</td>
+<td>String</td>
+<td>Profit and loss</td>
+</tr>
+<tr>
+<td>- fee</td>
+<td>String</td>
+<td>Accumulated commission</td>
+</tr>
+<tr>
+<td>- feeCurrencyName</td>
+<td>String</td>
+<td>Transaction fee currency</td>
+</tr>
+<tr>
+<td>- orderUpdateTime</td>
+<td>long</td>
+<td>The time of the last transaction or Order time</td>
+</tr>
+<tr>
+<td>- orderTime</td>
+<td>long</td>
+<td>order time</td>
+</tr>
+</tbody></table>
 <h2 id='cancel-orders'><span id="3">Cancel orders</span></h2>
 <p>Cancel orders</p>
-<h3 id='http-request-8'>HTTP Request:</h3>
+<h3 id='http-request-9'>HTTP Request:</h3>
 <ul>
 <li>POST /api/trade/order/cancel</li>
 </ul>
-<h3 id='request-parameters-6'>Request Parameters</h3>
+<h3 id='request-parameters-7'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1753,7 +2183,7 @@ needs to be set.</strong></p>
     </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cancel order success"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='response-data-8'>Response Data</h3>
+</span></code></pre></div><h3 id='response-data-9'>Response Data</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1777,11 +2207,11 @@ needs to be set.</strong></p>
 <td>return data</td>
 </tr>
 </tbody></table>
-<h2 id='one-click-cancellation'><span id="5">One-click cancellation</span></h2><h3 id='http-request-9'>HTTP Request:</h3>
+<h2 id='one-click-cancellation'><span id="5">One-click cancellation</span></h2><h3 id='http-request-10'>HTTP Request:</h3>
 <ul>
 <li>POST /api/trade/order/cancelAll</li>
 </ul>
-<h3 id='request-parameters-7'>Request Parameters</h3>
+<h3 id='request-parameters-8'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1806,7 +2236,7 @@ needs to be set.</strong></p>
     </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cancel all order success"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='response-data-9'>Response Data</h3>
+</span></code></pre></div><h3 id='response-data-10'>Response Data</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1832,11 +2262,11 @@ needs to be set.</strong></p>
 </tbody></table>
 <h2 id='place-batch'><span id="13">Place batch</span></h2>
 <p>Place batch</p>
-<h3 id='http-request-10'>HTTP Request:</h3>
+<h3 id='http-request-11'>HTTP Request:</h3>
 <ul>
 <li>POST /api/trade/order/placeBatch</li>
 </ul>
-<h3 id='request-parameters-8'>Request Parameters</h3>
+<h3 id='request-parameters-9'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1959,7 +2389,7 @@ needs to be set.</strong></p>
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre></div><h3 id='response-data-10'>Response Data</h3>
+</span></code></pre></div><h3 id='response-data-11'>Response Data</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1995,11 +2425,11 @@ needs to be set.</strong></p>
 </tbody></table>
 <h2 id='batch-cancellation-according-to-order-id'><span id="27">Batch cancellation according to order id</span></h2>
 <p>Batch cancellation according to order id</p>
-<h3 id='http-request-11'>HTTP Request:</h3>
+<h3 id='http-request-12'>HTTP Request:</h3>
 <ul>
 <li>POST /api/trade/orders/del</li>
 </ul>
-<h3 id='request-parameters-9'>Request Parameters</h3>
+<h3 id='request-parameters-10'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2071,7 +2501,7 @@ needs to be set.</strong></p>
         </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='response-data-11'>Response Data</h3>
+</span></code></pre></div><h3 id='response-data-12'>Response Data</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2105,9 +2535,9 @@ needs to be set.</strong></p>
 <td>set of rejected order ids        [client order ID, error code, order id]</td>
 </tr>
 </tbody></table>
-<h2 id='get-user-39-s-latest-trade'><span id="3">Get user&#39;s latest trade</span></h2>
+<h2 id='get-user-39-s-all-trade-records'><span id="3">Get user&#39;s all trade records</span></h2>
 <p>Get all trade records</p>
-<h3 id='http-request-12'>HTTP Request:</h3>
+<h3 id='http-request-13'>HTTP Request:</h3>
 <ul>
 <li>GET /api/future/queryHisMatch</li>
 </ul>
@@ -2150,7 +2580,7 @@ needs to be set.</strong></p>
   </span><span class="p">}</span><span class="w"> </span><span class="p">],</span><span class="w">
   </span><span class="nl">"message"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-parameters-10'>Request Parameters</h3>
+</span></code></pre></div><h3 id='request-parameters-11'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2196,7 +2626,7 @@ needs to be set.</strong></p>
 <td>side -1 Previous, 1 Next</td>
 </tr>
 </tbody></table>
-<h3 id='response-data-12'>Response Data</h3>
+<h3 id='response-data-13'>Response Data</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2360,9 +2790,181 @@ needs to be set.</strong></p>
 <td>ask close P&amp;L</td>
 </tr>
 </tbody></table>
+<h2 id='get-user-39-s-all-trade-records-v2'><span id="3">Get user&#39;s all trade records V2</span></h2>
+<p>Get all trade records V2 version</p>
+<h4 id='the-new-interface-api-domain-name-address-https-futures-coinstore-com-call-support-for-apikey-and-token-3'>The new interface API domain name address <code>https://futures.coinstore.com</code>  Call support for ApiKey and Token</h4><h3 id='http-request-14'>HTTP Request:</h3>
+<ul>
+<li>GET /api/v2/trade/order/queryHisMatch</li>
+</ul>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="mi">3431</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"contractId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100300144</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1762426675003393</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"clOrdId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c819f4d2282f486d9ed4711327d6381e"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"matchId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10763</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"tradeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2177</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"execSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"matchAmt"</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.672000000000000000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"avgPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">112.000000000000000000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"orderStatus"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"orderRole"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MAKER"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"remainingSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"pnl"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.000168</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"matchTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1680781089260</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"message"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='request-parameters-12'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>code</th>
+<th>type</th>
+<th>required</th>
+<th>comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contractId</td>
+<td>int</td>
+<td>N</td>
+<td>contract id</td>
+</tr>
+<tr>
+<td>ordId</td>
+<td>long</td>
+<td>N</td>
+<td>order id</td>
+</tr>
+<tr>
+<td>pageNum</td>
+<td>int</td>
+<td>N</td>
+<td>Current page number,default 1</td>
+</tr>
+<tr>
+<td>pageSize</td>
+<td>int</td>
+<td>N</td>
+<td>Quantity per page,default  20</td>
+</tr>
+<tr>
+<td>side</td>
+<td>int</td>
+<td>N</td>
+<td>side -1 sell, 1 buy</td>
+</tr>
+</tbody></table>
+<h3 id='response-data-14'>Response Data</h3>
+<table><thead>
+<tr>
+<th>code</th>
+<th>type</th>
+<th>comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>0</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td></td>
+</tr>
+<tr>
+<td>- accountId</td>
+<td>int</td>
+<td>account id</td>
+</tr>
+<tr>
+<td>- contractId</td>
+<td>long</td>
+<td>symbol ID, contract ID</td>
+</tr>
+<tr>
+<td>- orderId</td>
+<td>Long</td>
+<td>order ID</td>
+</tr>
+<tr>
+<td>- clOrdId</td>
+<td>string</td>
+<td>Client delegate ID</td>
+</tr>
+<tr>
+<td>- matchId</td>
+<td>Long</td>
+<td>match ID</td>
+</tr>
+<tr>
+<td>- tradeId</td>
+<td>Long</td>
+<td>deal ID</td>
+</tr>
+<tr>
+<td>- execSize</td>
+<td>int</td>
+<td>Transaction quantity</td>
+</tr>
+<tr>
+<td>- matchAmt</td>
+<td>Double</td>
+<td>Transaction amount</td>
+</tr>
+<tr>
+<td>- avgPrice</td>
+<td>Double</td>
+<td>Average transaction price</td>
+</tr>
+<tr>
+<td>- orderStatus</td>
+<td>int</td>
+<td>order status 0：NOT_DECLARE 1:IN_DECLARE 2:NOT_MATCH 3:PORTION_MATCH 4: ALL_MATCH 5：PORTION_CANCEL 6： ALL_CANCEL 7:IN_CANCEL 8:INVALID</td>
+</tr>
+<tr>
+<td>- orderRole</td>
+<td>string</td>
+<td>role：Taker,Maker</td>
+</tr>
+<tr>
+<td>- remainingSize</td>
+<td>int</td>
+<td>remain quantity</td>
+</tr>
+<tr>
+<td>- pnl</td>
+<td>Double</td>
+<td>Profit and loss</td>
+</tr>
+<tr>
+<td>- fee</td>
+<td>Double</td>
+<td>Accumulated commission</td>
+</tr>
+<tr>
+<td>- matchTime</td>
+<td>Long</td>
+<td>match time</td>
+</tr>
+</tbody></table>
 <h2 id='user-forced-reduction'><span id="3">User forced reduction</span></h2>
 <p>Get all trade records</p>
-<h3 id='http-request-13'>HTTP Request:</h3>
+<h3 id='http-request-15'>HTTP Request:</h3>
 <ul>
 <li>GET /api/future/queryFlOrders</li>
 </ul>
@@ -2405,7 +3007,7 @@ needs to be set.</strong></p>
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-parameters-11'>Request Parameters</h3>
+</span></code></pre></div><h3 id='request-parameters-13'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2451,7 +3053,7 @@ needs to be set.</strong></p>
 <td>side -1 Previous, 1 Next</td>
 </tr>
 </tbody></table>
-<h3 id='response-data-13'>Response Data</h3>
+<h3 id='response-data-15'>Response Data</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2577,7 +3179,7 @@ needs to be set.</strong></p>
 </tbody></table>
 <h2 id='user-liquidation-record'><span id="3">User liquidation record</span></h2>
 <p>Get all trade records</p>
-<h3 id='http-request-14'>HTTP Request:</h3>
+<h3 id='http-request-16'>HTTP Request:</h3>
 <ul>
 <li>GET /api/future/queryFcOrders</li>
 </ul>
@@ -2620,7 +3222,7 @@ needs to be set.</strong></p>
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-parameters-12'>Request Parameters</h3>
+</span></code></pre></div><h3 id='request-parameters-14'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2666,7 +3268,7 @@ needs to be set.</strong></p>
 <td>side -1 Previous, 1 Next</td>
 </tr>
 </tbody></table>
-<h3 id='response-data-14'>Response Data</h3>
+<h3 id='response-data-16'>Response Data</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2790,7 +3392,7 @@ needs to be set.</strong></p>
 <td>profit user margin type</td>
 </tr>
 </tbody></table>
-<h1 id='ticker-related'>Ticker Related</h1><h2 id='get-historical-k-line'><span id="7">Get historical K-line</span></h2><h3 id='http-request-15'>HTTP Request:</h3>
+<h1 id='ticker-related'>Ticker Related</h1><h2 id='get-historical-k-line'><span id="7">Get historical K-line</span></h2><h3 id='http-request-17'>HTTP Request:</h3>
 <ul>
 <li>GET /v1/futureQuot/queryCandlestick</li>
 </ul>
@@ -2816,7 +3418,7 @@ needs to be set.</strong></p>
         </span><span class="nl">"contractId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100280034</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-parameters-13'>Request Parameters</h3>
+</span></code></pre></div><h3 id='request-parameters-15'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2850,7 +3452,7 @@ needs to be set.</strong></p>
 <td>number of query records, default: 1440</td>
 </tr>
 </tbody></table>
-<h3 id='response-data-15'>Response Data:</h3>
+<h3 id='response-data-17'>Response Data:</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2879,7 +3481,7 @@ needs to be set.</strong></p>
 <td>[timestamp, open price, high price, low price, close price, trade volume]</td>
 </tr>
 </tbody></table>
-<h2 id='query-ticker-snapshot'><span id="7">Query ticker snapshot</span></h2><h3 id='http-request-16'>HTTP Request:</h3>
+<h2 id='query-ticker-snapshot'><span id="7">Query ticker snapshot</span></h2><h3 id='http-request-18'>HTTP Request:</h3>
 <ul>
 <li>GET /v1/futureQuot/querySnapshot</li>
 </ul>
@@ -2916,7 +3518,7 @@ needs to be set.</strong></p>
         </span><span class="nl">"lp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51001"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-parameters-14'>Request Parameters</h3>
+</span></code></pre></div><h3 id='request-parameters-16'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2932,7 +3534,7 @@ needs to be set.</strong></p>
 <td>contract id</td>
 </tr>
 </tbody></table>
-<h3 id='response-data-16'>Response Data:</h3>
+<h3 id='response-data-18'>Response Data:</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -3026,7 +3628,7 @@ needs to be set.</strong></p>
 <td>bids [price, conts]</td>
 </tr>
 </tbody></table>
-<h2 id='get-latest-trade'><span id="7">Get latest trade</span></h2><h3 id='http-request-17'>HTTP Request:</h3>
+<h2 id='get-latest-trade'><span id="7">Get latest trade</span></h2><h3 id='http-request-19'>HTTP Request:</h3>
 <ul>
 <li>GET /v1/futureQuot/queryTickTrade</li>
 </ul>
@@ -3055,7 +3657,7 @@ needs to be set.</strong></p>
         </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-parameters-15'>Request Parameters</h3>
+</span></code></pre></div><h3 id='request-parameters-17'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -3071,7 +3673,7 @@ needs to be set.</strong></p>
 <td>contract id</td>
 </tr>
 </tbody></table>
-<h3 id='response-data-17'>Response Data:</h3>
+<h3 id='response-data-19'>Response Data:</h3>
 <table><thead>
 <tr>
 <th>code</th>
