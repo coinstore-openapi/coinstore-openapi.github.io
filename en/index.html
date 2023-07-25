@@ -368,6 +368,14 @@
               </ul>
           </li>
           <li>
+            <a href="#basic-information" class="toc-h1 toc-link" data-title="Basic Information">Basic Information</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#currency-amp-spot-information" class="toc-h2 toc-link" data-title="Currency &amp; spot information"><span id="1">Currency &amp; spot information</span></a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#account-related" class="toc-h1 toc-link" data-title="Account Related">Account Related</a>
               <ul class="toc-list-h2">
                   <li>
@@ -683,9 +691,165 @@ needs to be set.</strong></p>
 <td>code=0 success, code &gt;0 failure</td>
 </tr>
 </tbody></table>
-<h1 id='account-related'>Account Related</h1><h2 id='assets-balance'><span id="1"> Assets Balance </span></h2>
-<p>Get user assets balance</p>
+<h1 id='basic-information'>Basic Information</h1><h2 id='currency-amp-spot-information'><span id="1">Currency &amp; spot information</span></h2>
+<p>Get currency &amp; spot information</p>
 <h3 id='http-request'>HTTP Request:</h3>
+<ul>
+<li>POST /v2/public/config/spot/symbols</li>
+</ul>
+<h3 id='request-params'>Request Params</h3>
+<table><thead>
+<tr>
+<th>param</th>
+<th>type</th>
+<th>required</th>
+<th>comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbolCodes</td>
+<td>array</td>
+<td>no</td>
+<td>symbol Code</td>
+</tr>
+<tr>
+<td>symbolIds</td>
+<td>array</td>
+<td>no</td>
+<td>symbol ID</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"symbolCodes"</span><span class="p">:[</span><span class="s2">"BTCUSDT"</span><span class="p">],</span><span class="w">
+  </span><span class="nl">"symbolIds"</span><span class="p">:[</span><span class="mi">10</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='response-data'>Response Data</h3>
+<table><thead>
+<tr>
+<th>code</th>
+<th>type</th>
+<th>comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>0：success, other: failure</td>
+</tr>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>Error message</td>
+</tr>
+<tr>
+<td>data</td>
+<td>Object []</td>
+<td>Transaction data</td>
+</tr>
+<tr>
+<td>- symbolId</td>
+<td>Long</td>
+<td>Currency id</td>
+</tr>
+<tr>
+<td>- symbolCode</td>
+<td>String</td>
+<td>Currency name</td>
+</tr>
+<tr>
+<td>- tradeCurrencyCode</td>
+<td>String</td>
+<td>Base currency, e.g. BTC inBTC-USDT</td>
+</tr>
+<tr>
+<td>- quoteCurrencyCode</td>
+<td>String</td>
+<td>Quote currency, e.g. USDT in BTC-USDT</td>
+</tr>
+<tr>
+<td>- openTrade</td>
+<td>boolean</td>
+<td>open trade:true, off trade:false</td>
+</tr>
+<tr>
+<td>- onLineTime</td>
+<td>Long</td>
+<td>Listing time, Unix timestamp format in milliseconds, e.g. 1597026383085</td>
+</tr>
+<tr>
+<td>- tickSz</td>
+<td>Integer</td>
+<td>Tick size, e.g. 0</td>
+</tr>
+<tr>
+<td>- lotSz</td>
+<td>Integer</td>
+<td>Lot size, e.g. 1</td>
+</tr>
+<tr>
+<td>- minLmtPr</td>
+<td>String</td>
+<td>The minimum order price of the limit order</td>
+</tr>
+<tr>
+<td>- minLmtSz</td>
+<td>String</td>
+<td>The minimum order quantity of the limit order</td>
+</tr>
+<tr>
+<td>- minMktVa</td>
+<td>String</td>
+<td>The minimum order volume of the market order</td>
+</tr>
+<tr>
+<td>- minMktSz</td>
+<td>String</td>
+<td>The minimum order quantity of the market order</td>
+</tr>
+<tr>
+<td>- makerFee</td>
+<td>String</td>
+<td>Maker fee</td>
+</tr>
+<tr>
+<td>- takerFee</td>
+<td>String</td>
+<td>Taker fee</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>响应</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"symbolId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"symbolCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSDT"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"tradeCurrencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quoteCurrencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"openTrade"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"onLineTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1609813531019</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"tickSz"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lotSz"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"minLmtPr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0002"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"minLmtSz"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.2"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"minMktVa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"minMktSz"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"makerFee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.006"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"takerFee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.003"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h1 id='account-related'>Account Related</h1><h2 id='assets-balance'><span id="1"> Assets Balance </span></h2>
+<p>Get user assets balance</p>
+<h3 id='http-request-2'>HTTP Request:</h3>
 <ul>
 <li>POST /spot/accountList</li>
 </ul>
@@ -730,7 +894,7 @@ needs to be set.</strong></p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='response-data'>Response Data</h3>
+<h3 id='response-data-2'>Response Data</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -788,7 +952,7 @@ needs to be set.</strong></p>
 <td>Account status 1: available 4: deactivated</td>
 </tr>
 </tbody></table>
-<h1 id='funding-related'>Funding Related</h1><h2 id='fund-transfer'><span id="2">Fund transfer</span></h2><h4 id='currently-supporting-contract-lt-gt-spot-transfer-api-domain-name-address-https-futures-api-coinstore-com-api-call-support-for-apikey-and-token'>Currently supporting contract&lt;-&gt;spot transfer, API domain name address <code>https://futures.api.coinstore.com/api</code>  Call support for ApiKey and Token</h4><h3 id='http-request-2'>HTTP Request:</h3>
+<h1 id='funding-related'>Funding Related</h1><h2 id='fund-transfer'><span id="2">Fund transfer</span></h2><h4 id='currently-supporting-contract-lt-gt-spot-transfer-api-domain-name-address-https-futures-api-coinstore-com-api-call-support-for-apikey-and-token'>Currently supporting contract&lt;-&gt;spot transfer, API domain name address <code>https://futures.api.coinstore.com/api</code>  Call support for ApiKey and Token</h4><h3 id='http-request-3'>HTTP Request:</h3>
 <ul>
 <li>POST /common/account/transfer</li>
 </ul>
@@ -884,7 +1048,7 @@ needs to be set.</strong></p>
 </tbody></table>
 <h1 id='order-related'>Order Related</h1><h2 id='get-current-orders'><span id="2"> Get current orders </span></h2>
 <p>Get current order</p>
-<h3 id='http-request-3'>HTTP Request:</h3>
+<h3 id='http-request-4'>HTTP Request:</h3>
 <ul>
 <li>GET /trade/order/active</li>
 </ul>
@@ -932,7 +1096,7 @@ needs to be set.</strong></p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='response-data-2'>Response Data</h3>
+<h3 id='response-data-3'>Response Data</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1058,7 +1222,7 @@ needs to be set.</strong></p>
 </tbody></table>
 <h2 id='get-current-orders-v2'><span id="2"> Get current orders V2 </span></h2>
 <p>Get current order v2 version</p>
-<h4 id='the-new-interface-api-domain-name-address-https-api-coinstore-com-call-support-for-apikey-and-token'>The new interface API domain name address <code>https://api.coinstore.com</code>  Call support for ApiKey and Token</h4><h3 id='http-request-4'>HTTP Request:</h3>
+<h4 id='the-new-interface-api-domain-name-address-https-api-coinstore-com-call-support-for-apikey-and-token'>The new interface API domain name address <code>https://api.coinstore.com</code>  Call support for ApiKey and Token</h4><h3 id='http-request-5'>HTTP Request:</h3>
 <ul>
 <li>GET /api/v2/trade/order/active</li>
 </ul>
@@ -1118,7 +1282,7 @@ needs to be set.</strong></p>
 <td>Client delegate ID</td>
 </tr>
 </tbody></table>
-<h3 id='response-data-3'>Response Data</h3>
+<h3 id='response-data-4'>Response Data</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1244,7 +1408,7 @@ needs to be set.</strong></p>
 </tbody></table>
 <h2 id='get-user-39-s-latest-trade'><span id="3"> Get user&#39;s latest trade </span></h2>
 <p>Get all trading records</p>
-<h3 id='http-request-5'>HTTP Request:</h3>
+<h3 id='http-request-6'>HTTP Request:</h3>
 <ul>
 <li>GET /trade/match/accountMatches</li>
 </ul>
@@ -1320,7 +1484,7 @@ needs to be set.</strong></p>
 <td>direction -1:SELL 1:BUY</td>
 </tr>
 </tbody></table>
-<h3 id='response-data-4'>Response Data</h3>
+<h3 id='response-data-5'>Response Data</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1458,7 +1622,7 @@ needs to be set.</strong></p>
 </tbody></table>
 <h2 id='cancel-orders'><span id="4"> Cancel orders </span></h2>
 <p>Cancel orders</p>
-<h3 id='http-request-6'>HTTP Request:</h3>
+<h3 id='http-request-7'>HTTP Request:</h3>
 <ul>
 <li>POST /trade/order/cancel</li>
 </ul>
@@ -1504,7 +1668,7 @@ needs to be set.</strong></p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='response-data-5'>Response Data</h3>
+<h3 id='response-data-6'>Response Data</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1544,7 +1708,7 @@ needs to be set.</strong></p>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='one-click-cancellation'><span id="5"> One-click cancellation </span></h2><h3 id='http-request-7'>HTTP Request:</h3>
+<h2 id='one-click-cancellation'><span id="5"> One-click cancellation </span></h2><h3 id='http-request-8'>HTTP Request:</h3>
 <ul>
 <li>POST /trade/order/cancelAll</li>
 </ul>
@@ -1578,7 +1742,7 @@ needs to be set.</strong></p>
 <td>cancel all token pair orders without transfer</td>
 </tr>
 </tbody></table>
-<h3 id='response-data-6'>Response Data</h3>
+<h3 id='response-data-7'>Response Data</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1624,7 +1788,7 @@ needs to be set.</strong></p>
         </span><span class="nl">"order_id"</span><span class="p">:</span><span class="mi">11594964764657880</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-8'>HTTP Request:</h3>
+</span></code></pre></div><h3 id='http-request-9'>HTTP Request:</h3>
 <ul>
 <li>POST /trade/order/place</li>
 </ul>
@@ -1692,7 +1856,7 @@ needs to be set.</strong></p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='response-data-7'>Response Data</h3>
+<h3 id='response-data-8'>Response Data</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1767,7 +1931,7 @@ needs to be set.</strong></p>
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-9'>HTTP Request:</h3>
+</span></code></pre></div><h3 id='http-request-10'>HTTP Request:</h3>
 <ul>
 <li>POST /trade/order/placeBatch</li>
 </ul>
@@ -1841,7 +2005,7 @@ needs to be set.</strong></p>
 <td>market price buy order required</td>
 </tr>
 </tbody></table>
-<h3 id='response-data-8'>Response Data</h3>
+<h3 id='response-data-9'>Response Data</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1895,7 +2059,7 @@ needs to be set.</strong></p>
 </tbody></table>
 <h2 id='batch-cancellation-according-to-order-id'><span id="27"> Batch cancellation according to order id </span></h2>
 <p>Batch cancellation according to order id.</p>
-<h3 id='http-request-10'>HTTP Request:</h3>
+<h3 id='http-request-11'>HTTP Request:</h3>
 <ul>
 <li>POST trade/order/cancelBatch</li>
 </ul>
@@ -1943,7 +2107,7 @@ needs to be set.</strong></p>
 <td>[1,2,3]</td>
 </tr>
 </tbody></table>
-<h3 id='response-data-9'>Response Data</h3>
+<h3 id='response-data-10'>Response Data</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2013,7 +2177,7 @@ needs to be set.</strong></p>
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-11'>HTTP Request:</h3>
+</span></code></pre></div><h3 id='http-request-12'>HTTP Request:</h3>
 <ul>
 <li>GET trade/order/orderInfo</li>
 </ul>
@@ -2033,7 +2197,7 @@ needs to be set.</strong></p>
 <td>order id</td>
 </tr>
 </tbody></table>
-<h3 id='response-data-10'>Response Data:</h3>
+<h3 id='response-data-11'>Response Data:</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2171,7 +2335,7 @@ needs to be set.</strong></p>
 </tbody></table>
 <h2 id='get-order-information-v2'><span id="14">Get order information V2 </span></h2>
 <p>Get order information v2</p>
-<h4 id='the-new-interface-api-domain-name-address-https-api-coinstore-com-call-support-for-apikey-and-token-2'>The new interface API domain name address <code>https://api.coinstore.com</code>  Call support for ApiKey and Token</h4><h3 id='http-request-12'>HTTP Request:</h3>
+<h4 id='the-new-interface-api-domain-name-address-https-api-coinstore-com-call-support-for-apikey-and-token-2'>The new interface API domain name address <code>https://api.coinstore.com</code>  Call support for ApiKey and Token</h4><h3 id='http-request-13'>HTTP Request:</h3>
 <ul>
 <li>GET /api/v2/trade/order/orderInfo</li>
 </ul>
@@ -2226,7 +2390,7 @@ needs to be set.</strong></p>
 <td>Client order number (order id optional)</td>
 </tr>
 </tbody></table>
-<h3 id='response-data-11'>Response Data</h3>
+<h3 id='response-data-12'>Response Data</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2383,7 +2547,7 @@ needs to be set.</strong></p>
     </span><span class="p">],</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
  </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-13'>HTTP request:</h3>
+</span></code></pre></div><h3 id='http-request-14'>HTTP request:</h3>
 <ul>
 <li>GET /v1/market/tickers</li>
 </ul>
@@ -2397,7 +2561,7 @@ needs to be set.</strong></p>
 </tr>
 </thead><tbody>
 </tbody></table>
-<h3 id='response-data-12'>Response data:</h3>
+<h3 id='response-data-13'>Response data:</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2530,7 +2694,7 @@ needs to be set.</strong></p>
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-14'>HTTP request:</h3>
+</span></code></pre></div><h3 id='http-request-15'>HTTP request:</h3>
 <ul>
 <li>GET /v1/market/depth/{symbol}</li>
 </ul>
@@ -2556,7 +2720,7 @@ needs to be set.</strong></p>
 <td>The number of depths, such as &quot;5, 10, 20, 50, 100&quot;, default 20</td>
 </tr>
 </tbody></table>
-<h3 id='response-data-13'>Response data:</h3>
+<h3 id='response-data-14'>Response data:</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2639,7 +2803,7 @@ needs to be set.</strong></p>
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-15'>HTTP request:</h3>
+</span></code></pre></div><h3 id='http-request-16'>HTTP request:</h3>
 <ul>
 <li>GET /v1/market/kline/{symbol}</li>
 </ul>
@@ -2671,7 +2835,7 @@ needs to be set.</strong></p>
 <td>Number of data bars, [1,2000]</td>
 </tr>
 </tbody></table>
-<h3 id='response-data-14'>Response data:</h3>
+<h3 id='response-data-15'>Response data:</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2793,7 +2957,7 @@ needs to be set.</strong></p>
     </span><span class="p">],</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
  </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-16'>HTTP request:</h3>
+</span></code></pre></div><h3 id='http-request-17'>HTTP request:</h3>
 <ul>
 <li>GET /v1/market/trade/{symbol}</li>
 </ul>
@@ -2819,7 +2983,7 @@ needs to be set.</strong></p>
 <td>Number of data bars, [1,100]</td>
 </tr>
 </tbody></table>
-<h3 id='response-data-15'>Response data:</h3>
+<h3 id='response-data-16'>Response data:</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2895,7 +3059,7 @@ needs to be set.</strong></p>
 </tbody></table>
 <h2 id='get-the-latest-price-of-all-symbols'><span id="7"> Get the latest price of all symbols </span></h2>
 <p>Get the latest price of all symbols</p>
-<h3 id='http-request-17'>HTTP Request:</h3>
+<h3 id='http-request-18'>HTTP Request:</h3>
 <ul>
 <li>GET /v1/ticker/price</li>
 </ul>
@@ -2939,7 +3103,7 @@ needs to be set.</strong></p>
 <p><strong>default: Query all symbols</strong></p>
 
 <p><strong>query the specified symbol: /v1/ticker/price;symbol=btcusdt,eosusdt,autusdt</strong></p>
-<h3 id='response-data-16'>Response Data:</h3>
+<h3 id='response-data-17'>Response Data:</h3>
 <table><thead>
 <tr>
 <th>code</th>

@@ -368,6 +368,14 @@
               </ul>
           </li>
           <li>
+            <a href="#41654e0268" class="toc-h1 toc-link" data-title="基础信息">基础信息</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#c4a4258fff" class="toc-h2 toc-link" data-title="现货币种币对信息"><span id="1">现货币种币对信息</span></a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#2a0d0be224" class="toc-h1 toc-link" data-title="账户相关">账户相关</a>
               <ul class="toc-list-h2">
                   <li>
@@ -675,9 +683,165 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <td>code=0 成功， code &gt;0 失败</td>
 </tr>
 </tbody></table>
-<h1 id='2a0d0be224'>账户相关</h1><h2 id='7c2f2901d7'><span id="1">资产余额</span></h2>
-<p>获取用户资产余额</p>
+<h1 id='41654e0268'>基础信息</h1><h2 id='c4a4258fff'><span id="1">现货币种币对信息</span></h2>
+<p>获取现货币种币对信息</p>
 <h3 id='http'>HTTP请求:</h3>
+<ul>
+<li>POST /v2/public/config/spot/symbols</li>
+</ul>
+<h3 id='1f9ac54b15'>请求参数</h3>
+<table><thead>
+<tr>
+<th>param</th>
+<th>type</th>
+<th>required</th>
+<th>comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbolCodes</td>
+<td>数组</td>
+<td>非必需</td>
+<td>币对Code</td>
+</tr>
+<tr>
+<td>symbolIds</td>
+<td>数组</td>
+<td>非必需</td>
+<td>币对ID</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>请求</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"symbolCodes"</span><span class="p">:[</span><span class="s2">"BTCUSDT"</span><span class="p">],</span><span class="w">
+  </span><span class="nl">"symbolIds"</span><span class="p">:[</span><span class="mi">10</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='2213f4c32f'>响应数据</h3>
+<table><thead>
+<tr>
+<th>code</th>
+<th>type</th>
+<th>comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>0：成功，其他失败</td>
+</tr>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>错误信息</td>
+</tr>
+<tr>
+<td>data</td>
+<td>Object []</td>
+<td>业务数据</td>
+</tr>
+<tr>
+<td>- symbolId</td>
+<td>Long</td>
+<td>币对ID</td>
+</tr>
+<tr>
+<td>- symbolCode</td>
+<td>String</td>
+<td>币对Code</td>
+</tr>
+<tr>
+<td>- tradeCurrencyCode</td>
+<td>String</td>
+<td>交易货币币种</td>
+</tr>
+<tr>
+<td>- quoteCurrencyCode</td>
+<td>String</td>
+<td>计价货币币种</td>
+</tr>
+<tr>
+<td>- openTrade</td>
+<td>boolean</td>
+<td>是否开放交易：true是，false否</td>
+</tr>
+<tr>
+<td>- onLineTime</td>
+<td>Long</td>
+<td>上线日期：Unix时间戳的毫秒数格式，如 1597026383085</td>
+</tr>
+<tr>
+<td>- tickSz</td>
+<td>Integer</td>
+<td>下单价格精度（tickSz）</td>
+</tr>
+<tr>
+<td>- lotSz</td>
+<td>Integer</td>
+<td>下单数量精度（lotSz）</td>
+</tr>
+<tr>
+<td>- minLmtPr</td>
+<td>String</td>
+<td>限价最小交易最小价（minLmtPr）</td>
+</tr>
+<tr>
+<td>- minLmtSz</td>
+<td>String</td>
+<td>限价最小交易数量（minLmtSz）</td>
+</tr>
+<tr>
+<td>- minMktVa</td>
+<td>String</td>
+<td>市价最小交易最小额（minMktVa）</td>
+</tr>
+<tr>
+<td>- minMktSz</td>
+<td>String</td>
+<td>市价最小交易数量（minMktSz）</td>
+</tr>
+<tr>
+<td>- makerFee</td>
+<td>String</td>
+<td>Maker 手续费</td>
+</tr>
+<tr>
+<td>- takerFee</td>
+<td>String</td>
+<td>Taker 手续费</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>响应</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"symbolId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"symbolCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSDT"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"tradeCurrencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quoteCurrencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"openTrade"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"onLineTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1609813531019</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"tickSz"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lotSz"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"minLmtPr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0002"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"minLmtSz"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.2"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"minMktVa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"minMktSz"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"makerFee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.006"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"takerFee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.003"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h1 id='2a0d0be224'>账户相关</h1><h2 id='7c2f2901d7'><span id="1">资产余额</span></h2>
+<p>获取用户资产余额</p>
+<h3 id='http-2'>HTTP请求:</h3>
 <ul>
 <li>POST /spot/accountList</li>
 </ul>
@@ -706,7 +870,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
     </span><span class="p">],</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='1f9ac54b15'>请求参数</h3>
+</span></code></pre></div><h3 id='1f9ac54b15-2'>请求参数</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -722,7 +886,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f'>响应数据</h3>
+<h3 id='2213f4c32f-2'>响应数据</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -771,11 +935,11 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <td>账户状态 1:可用 4:冻结</td>
 </tr>
 </tbody></table>
-<h1 id='6631e26181'>资金相关</h1><h2 id='05cec30dc0'><span id="2">资金划转</span></h2><h4 id='lt-gt-api-https-futures-api-coinstore-com-api-apikey-token'>目前支持合约&lt;一&gt;现货划转, API域名地址 <code>https://futures.api.coinstore.com/api</code>  调用支持ApiKey与Token</h4><h3 id='http-2'>HTTP请求:</h3>
+<h1 id='6631e26181'>资金相关</h1><h2 id='05cec30dc0'><span id="2">资金划转</span></h2><h4 id='lt-gt-api-https-futures-api-coinstore-com-api-apikey-token'>目前支持合约&lt;一&gt;现货划转, API域名地址 <code>https://futures.api.coinstore.com/api</code>  调用支持ApiKey与Token</h4><h3 id='http-3'>HTTP请求:</h3>
 <ul>
 <li>POST /common/account/transfer</li>
 </ul>
-<h3 id='1f9ac54b15-2'>请求参数</h3>
+<h3 id='1f9ac54b15-3'>请求参数</h3>
 <table><thead>
 <tr>
 <th>param</th>
@@ -867,7 +1031,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 </tbody></table>
 <h1 id='96a5882bf8'>订单相关</h1><h2 id='2152241f96'><span id="2">获取当前订单</span></h2>
 <p>获取当前订单</p>
-<h3 id='http-3'>HTTP请求:</h3>
+<h3 id='http-4'>HTTP请求:</h3>
 <ul>
 <li>GET /trade/order/active</li>
 </ul>
@@ -899,7 +1063,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
     </span><span class="p">],</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='1f9ac54b15-3'>请求参数</h3>
+</span></code></pre></div><h3 id='1f9ac54b15-4'>请求参数</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -915,7 +1079,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-2'>响应数据</h3>
+<h3 id='2213f4c32f-3'>响应数据</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1021,7 +1185,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 </tbody></table>
 <h2 id='v2'><span id="3">获取当前订单V2</span></h2>
 <p>获取当前订单 v2 版本</p>
-<h4 id='api-https-api-coinstore-com-apikey-token'>新接口的 API域名地址 <code>https://api.coinstore.com</code>  调用支持ApiKey与Token</h4><h3 id='http-4'>HTTP请求:</h3>
+<h4 id='api-https-api-coinstore-com-apikey-token'>新接口的 API域名地址 <code>https://api.coinstore.com</code>  调用支持ApiKey与Token</h4><h3 id='http-5'>HTTP请求:</h3>
 <ul>
 <li>GET /api/v2/trade/order/active</li>
 </ul>
@@ -1053,7 +1217,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
     </span><span class="p">],</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='1f9ac54b15-4'>请求参数</h3>
+</span></code></pre></div><h3 id='1f9ac54b15-5'>请求参数</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1081,7 +1245,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <td>客户端委托ID</td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-3'>响应数据</h3>
+<h3 id='2213f4c32f-4'>响应数据</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1187,7 +1351,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 </tbody></table>
 <h2 id='8b3c19df49'><span id="3">获取用户最新成交</span></h2>
 <p>获取全部成交记录</p>
-<h3 id='http-5'>HTTP请求:</h3>
+<h3 id='http-6'>HTTP请求:</h3>
 <ul>
 <li>GET /trade/match/accountMatches</li>
 </ul>
@@ -1223,7 +1387,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
     </span><span class="p">],</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='1f9ac54b15-5'>请求参数</h3>
+</span></code></pre></div><h3 id='1f9ac54b15-6'>请求参数</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1263,7 +1427,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <td>方向 -1卖出 1买入</td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-4'>响应数据</h3>
+<h3 id='2213f4c32f-5'>响应数据</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1379,7 +1543,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 </tbody></table>
 <h2 id='debd6c0464'><span id="4">取消委托单</span></h2>
 <p>取消委托单</p>
-<h3 id='http-6'>HTTP请求:</h3>
+<h3 id='http-7'>HTTP请求:</h3>
 <ul>
 <li>POST /trade/order/cancel</li>
 </ul>
@@ -1403,7 +1567,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
         </span><span class="nl">"ordId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1722183748419690</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='1f9ac54b15-6'>请求参数</h3>
+</span></code></pre></div><h3 id='1f9ac54b15-7'>请求参数</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1425,7 +1589,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-5'>响应数据</h3>
+<h3 id='2213f4c32f-6'>响应数据</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1459,7 +1623,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='caef340d80'><span id="5">一键撤单</span></h2><h3 id='http-7'>HTTP请求:</h3>
+<h2 id='caef340d80'><span id="5">一键撤单</span></h2><h3 id='http-8'>HTTP请求:</h3>
 <ul>
 <li>POST /trade/order/cancelAll</li>
 </ul>
@@ -1477,7 +1641,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='1f9ac54b15-7'>请求参数</h3>
+</span></code></pre></div><h3 id='1f9ac54b15-8'>请求参数</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1493,7 +1657,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <td>不传撤销所有币对订单</td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-6'>响应数据</h3>
+<h3 id='2213f4c32f-7'>响应数据</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1536,11 +1700,11 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
         </span><span class="nl">"order_id"</span><span class="p">:</span><span class="mi">11594964764657880</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-8'>HTTP请求:</h3>
+</span></code></pre></div><h3 id='http-9'>HTTP请求:</h3>
 <ul>
 <li>POST /trade/order/place</li>
 </ul>
-<h3 id='1f9ac54b15-8'>请求参数</h3>
+<h3 id='1f9ac54b15-9'>请求参数</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1604,7 +1768,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <td>时间戳</td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-7'>响应数据</h3>
+<h3 id='2213f4c32f-8'>响应数据</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1674,11 +1838,11 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-9'>HTTP请求:</h3>
+</span></code></pre></div><h3 id='http-10'>HTTP请求:</h3>
 <ul>
 <li>POST /trade/order/placeBatch</li>
 </ul>
-<h3 id='1f9ac54b15-9'>请求参数</h3>
+<h3 id='1f9ac54b15-10'>请求参数</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1748,7 +1912,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <td>市价买单必选</td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-8'>响应数据</h3>
+<h3 id='2213f4c32f-9'>响应数据</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1794,7 +1958,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 </tbody></table>
 <h2 id='id'><span id="27">根据订单id批量进行撤单</span></h2>
 <p>根据订单id批量进行撤单</p>
-<h3 id='http-10'>HTTP请求:</h3>
+<h3 id='http-11'>HTTP请求:</h3>
 <ul>
 <li>POST trade/order/cancelBatch</li>
 </ul>
@@ -1820,7 +1984,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='1f9ac54b15-10'>请求参数</h3>
+</span></code></pre></div><h3 id='1f9ac54b15-11'>请求参数</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1842,7 +2006,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <td>[1,2,3]</td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-9'>响应数据</h3>
+<h3 id='2213f4c32f-10'>响应数据</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1906,7 +2070,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-11'>HTTP请求:</h3>
+</span></code></pre></div><h3 id='http-12'>HTTP请求:</h3>
 <ul>
 <li>GET trade/order/orderInfo</li>
 </ul>
@@ -2047,7 +2211,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 </tbody></table>
 <h2 id='v2-2'><span id="15">获取订单信息V2</span></h2>
 <p>获取订单信息V2</p>
-<h4 id='api-https-api-coinstore-com-apikey-token-2'>新接口的 API域名地址 <code>https://api.coinstore.com</code>  调用支持ApiKey与Token</h4><h3 id='http-12'>HTTP请求:</h3>
+<h4 id='api-https-api-coinstore-com-apikey-token-2'>新接口的 API域名地址 <code>https://api.coinstore.com</code>  调用支持ApiKey与Token</h4><h3 id='http-13'>HTTP请求:</h3>
 <ul>
 <li>GET /api/v2/trade/order/orderInfo</li>
 </ul>
@@ -2080,7 +2244,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
     </span><span class="p">],</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='1f9ac54b15-11'>请求参数</h3>
+</span></code></pre></div><h3 id='1f9ac54b15-12'>请求参数</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2102,7 +2266,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <td>客户端委托ID</td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-10'>响应数据</h3>
+<h3 id='2213f4c32f-11'>响应数据</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2213,7 +2377,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 </tbody></table>
 <h1 id='43ee760de5'>行情相关</h1><h2 id='ticker'><span id="7">Ticker</span></h2>
 <p>市场所有交易对的Ticker</p>
-<h3 id='http-13'>HTTP请求:</h3>
+<h3 id='http-14'>HTTP请求:</h3>
 <ul>
 <li>GET /v1/market/tickers</li>
 </ul>
@@ -2385,7 +2549,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-14'>HTTP请求:</h3>
+</span></code></pre></div><h3 id='http-15'>HTTP请求:</h3>
 <ul>
 <li>GET /v1/market/depth/{symbol}</li>
 </ul>
@@ -2494,7 +2658,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-15'>HTTP请求:</h3>
+</span></code></pre></div><h3 id='http-16'>HTTP请求:</h3>
 <ul>
 <li>GET /v1/market/kline/{symbol}</li>
 </ul>
@@ -2627,7 +2791,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 </tbody></table>
 <h2 id='586cd0d257'><span id="7">最新成交</span></h2>
 <p>获取最新成交记录</p>
-<h3 id='http-16'>HTTP请求:</h3>
+<h3 id='http-17'>HTTP请求:</h3>
 <ul>
 <li>GET /v1/market/trade/{symbol}</li>
 </ul>
@@ -2770,7 +2934,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-17'>HTTP请求:</h3>
+</span></code></pre></div><h3 id='http-18'>HTTP请求:</h3>
 <ul>
 <li>GET /v1/ticker/price</li>
 </ul>
