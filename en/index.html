@@ -3551,20 +3551,92 @@ needs to be set.</strong></p>
 <p>Levels indicates the levels of the buy or sell orders, and 5/10/20/50/100 level can be selected.</p>
 <h2 id='login'><strong>Login</strong></h2>
 <p>Specify subscription data when logging in</p>
-<div class="highlight"><pre class="highlight plaintext"><code>{
-    "op": "LOGIN",
-    "channel": [
-        "7@account",
-        "80002@order"
+
+<p>for example fetch asset info
+```lang=json
+{
+    &quot;op&quot;:&quot;login&quot;,
+    &quot;channel&quot;:[
+        &quot;spot_asset&quot;
     ],
-    "auth": {
-        "user-id":4930,     // user id of user login account or user id of sub-account
-        "token": "eb737c84862f3d"  // token after login; the client user uses the token after login, and the api user fills in the api-key
-        "type": "token"      // optional values: token | api; default value is token; api users fill in api
+    &quot;auth&quot;:{
+        &quot;token&quot;:&quot;*<strong><em>9e8eaf9fe9f7558661232aa9</em></strong><em>&quot;,&quot;type&quot;:&quot;apikey&quot;,&quot;expires&quot;:1692942248236,&quot;signature&quot;:&quot;</em><strong><em>2e0c936b279a6dfbe1696dd217152f82e73413bc681f57f0eced8ebc</em></strong>*&quot;</p>
+
+<p>},
+    &quot;params&quot;:{
     }
-    "id": 2
 }
-</code></pre></div><h2 id='account'><strong>Account</strong></h2>
+<code>
+for example fetch order info
+</code>lang=json
+{
+    &quot;op&quot;:&quot;login&quot;,
+    &quot;channel&quot;:[
+        &quot;spot_order&quot;
+    ],
+    &quot;auth&quot;:{
+        &quot;token&quot;:&quot;*<strong><em>9e8eaf9fe9f7558661232aa9</em></strong><em>&quot;,&quot;type&quot;:&quot;apikey&quot;,&quot;expires&quot;:1692942248236,&quot;signature&quot;:&quot;</em><strong><em>2e0c936b279a6dfbe1696dd217152f82e73413bc681f57f0eced8ebc</em></strong>*&quot;</p>
+
+<p>},
+    &quot;params&quot;:{
+    }
+}
+```</p>
+
+<p>method of signature generation in JAVA
+```lang=json</p>
+
+<p>public static void main(String[] args) {
+        try {
+            Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
+            String secret = &quot;*<strong><em>6fea34cd140315552a76ae6c</em></strong>*&quot;;
+            long timeMillis = 1692942248236L; // Replace with your desired fixed timestamp in milliseconds
+            String payload = &quot;&quot; + timeMillis + &quot;&quot;;
+            String time = String.valueOf(timeMillis / 30_000); // Replace with your desired fixed timestamp divided by 30,000
+            System.out.println(&quot;time==&quot; + timeMillis);
+            hmacSha256.init(new SecretKeySpec(secret.getBytes(StandardCharsets.UTF_8), &quot;HmacSHA256&quot;));
+            byte[] hash = hmacSha256.doFinal(time.getBytes(StandardCharsets.UTF_8));
+            String key = Hex.encodeHexString(hash);
+            hmacSha256.reset();
+            hmacSha256.init(new SecretKeySpec(key.getBytes(), &quot;HmacSHA256&quot;));
+            hash = hmacSha256.doFinal(payload.getBytes(StandardCharsets.UTF_8));
+            String sign = Hex.encodeHexString(hash);
+            System.out.println(&quot;sign==&quot; + sign);</p>
+
+<p>} catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+```</p>
+
+<p>method of signature generation in python
+```lang=json</p>
+
+<p>import binascii
+    import hashlib
+    import hmac
+    import time</p>
+
+<p>def main():
+        secret = &#39;*<strong><em>6fea34cd140315552a76ae6c</em></strong>*&#39;
+        timeMillis = int(time.time() * 1000)  # Get current timestamp in milliseconds
+        payload = str(timeMillis)
+        timeInterval = int(timeMillis / 30000)  # Calculate the time interval</p>
+
+<p>print(&quot;time==&quot;, timeMillis)</p>
+
+<p>hash = hmac.new(bytes(secret, &#39;utf-8&#39;), bytes(str(timeInterval), &#39;utf-8&#39;), hashlib.sha256).digest()
+        key = binascii.hexlify(hash).decode()</p>
+
+<p>hash = hmac.new(bytes(key, &#39;utf-8&#39;), bytes(payload, &#39;utf-8&#39;), hashlib.sha256).digest()
+        sign = binascii.hexlify(hash).decode()</p>
+
+<p>print(&quot;sign==&quot;, sign)</p>
+
+<p>if <strong>name</strong> == &quot;<strong>main</strong>&quot;:
+        main()
+```</p>
+<h2 id='account'><strong>Account</strong></h2>
 <p>Stream Name: <code>&lt;currency&gt;@account</code>, or <code>!@account</code> all currency</p>
 <div class="highlight"><pre class="highlight plaintext"><code>{
     "accountId": 12,

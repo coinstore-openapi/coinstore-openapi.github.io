@@ -3356,21 +3356,92 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <h3 id='levels'>levels 可选值</h3>
 <p>levels表示几档买卖单信息, 可选 5/10/20/50/100档</p>
 <h2 id='0de2270bc5'><strong>登陆</strong></h2>
-<p>登陆时可以同时指定订阅数据</p>
-<div class="highlight"><pre class="highlight plaintext"><code>{
-    "op": "LOGIN",
-    "channel": [
-        "7@account",
-        "80002@order"
+<p>登陆时可以同时指定订阅数据
+例如获取资产
+```lang=json
+{
+    &quot;op&quot;:&quot;login&quot;,
+    &quot;channel&quot;:[
+        &quot;spot_asset&quot;
     ],
-    "auth": {
-        "user-id":4930,     // 用户登陆账号的 user id 或者子账号的 user id
-        "token": "eb737c84862f3d"  // 登陆之后的 token； 端上登陆用户使用登陆后的token， api 用户填写  api-key
-        "type": "token"      // 可选值范围：token | api , 默认为 token， api 用户填写 api
+    &quot;auth&quot;:{
+        &quot;token&quot;:&quot;*<strong><em>9e8eaf9fe9f7558661232aa9</em></strong><em>&quot;,&quot;type&quot;:&quot;apikey&quot;,&quot;expires&quot;:1692942248236,&quot;signature&quot;:&quot;</em><strong><em>2e0c936b279a6dfbe1696dd217152f82e73413bc681f57f0eced8ebc</em></strong>*&quot;</p>
+
+<p>},
+    &quot;params&quot;:{
     }
-    "id": 2
 }
-</code></pre></div><h2 id='2f616316f3'><strong>账户</strong></h2>
+<code>
+例如获取订单
+</code>lang=json
+{
+    &quot;op&quot;:&quot;login&quot;,
+    &quot;channel&quot;:[
+        &quot;spot_order&quot;
+    ],
+    &quot;auth&quot;:{
+        &quot;token&quot;:&quot;*<strong><em>9e8eaf9fe9f7558661232aa9</em></strong><em>&quot;,&quot;type&quot;:&quot;apikey&quot;,&quot;expires&quot;:1692942248236,&quot;signature&quot;:&quot;</em><strong><em>2e0c936b279a6dfbe1696dd217152f82e73413bc681f57f0eced8ebc</em></strong>*&quot;</p>
+
+<p>},
+    &quot;params&quot;:{
+    }
+}
+```</p>
+
+<p>websocket签名生成方法 JAVA
+```lang=json</p>
+
+<p>public static void main(String[] args) {
+        try {
+            Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
+            String secret = &quot;*<strong><em>6fea34cd140315552a76ae6c</em></strong>*&quot;;
+            long timeMillis = 1692942248236L; // Replace with your desired fixed timestamp in milliseconds
+            String payload = &quot;&quot; + timeMillis + &quot;&quot;;
+            String time = String.valueOf(timeMillis / 30_000); // Replace with your desired fixed timestamp divided by 30,000
+            System.out.println(&quot;time==&quot; + timeMillis);
+            hmacSha256.init(new SecretKeySpec(secret.getBytes(StandardCharsets.UTF_8), &quot;HmacSHA256&quot;));
+            byte[] hash = hmacSha256.doFinal(time.getBytes(StandardCharsets.UTF_8));
+            String key = Hex.encodeHexString(hash);
+            hmacSha256.reset();
+            hmacSha256.init(new SecretKeySpec(key.getBytes(), &quot;HmacSHA256&quot;));
+            hash = hmacSha256.doFinal(payload.getBytes(StandardCharsets.UTF_8));
+            String sign = Hex.encodeHexString(hash);
+            System.out.println(&quot;sign==&quot; + sign);</p>
+
+<p>} catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+```</p>
+
+<p>websocket签名生成方法 python
+```lang=json</p>
+
+<p>import binascii
+    import hashlib
+    import hmac
+    import time</p>
+
+<p>def main():
+        secret = &#39;*<strong><em>6fea34cd140315552a76ae6c</em></strong>*&#39;
+        timeMillis = int(time.time() * 1000)  # Get current timestamp in milliseconds
+        payload = str(timeMillis)
+        timeInterval = int(timeMillis / 30000)  # Calculate the time interval</p>
+
+<p>print(&quot;time==&quot;, timeMillis)</p>
+
+<p>hash = hmac.new(bytes(secret, &#39;utf-8&#39;), bytes(str(timeInterval), &#39;utf-8&#39;), hashlib.sha256).digest()
+        key = binascii.hexlify(hash).decode()</p>
+
+<p>hash = hmac.new(bytes(key, &#39;utf-8&#39;), bytes(payload, &#39;utf-8&#39;), hashlib.sha256).digest()
+        sign = binascii.hexlify(hash).decode()</p>
+
+<p>print(&quot;sign==&quot;, sign)</p>
+
+<p>if <strong>name</strong> == &quot;<strong>main</strong>&quot;:
+        main()
+```</p>
+<h2 id='2f616316f3'><strong>账户</strong></h2>
 <p>Stream Name: <code>&lt;currency&gt;@account</code>, or <code>!@account</code> all currency</p>
 <div class="highlight"><pre class="highlight plaintext"><code>{
     "accountId": 12,
