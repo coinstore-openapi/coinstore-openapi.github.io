@@ -3552,9 +3552,10 @@ needs to be set.</strong></p>
 <h2 id='login'><strong>Login</strong></h2>
 <p>Specify subscription data when logging in</p>
 
+<blockquote>
 <p>for example fetch asset info   </p>
-<div class="highlight"><pre class="highlight plaintext"><code>
-{
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>{
     "op":"login",
     "channel":[
         "spot_asset"
@@ -3566,11 +3567,11 @@ needs to be set.</strong></p>
     "params":{
     }
 }   
-
 </code></pre></div>
-<p>for example fetch order info   </p>
-<div class="highlight"><pre class="highlight plaintext"><code>
-{
+<blockquote>
+<p>for example fetch order info</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>{
     "op":"login",
     "channel":[
         "spot_order"
@@ -3582,11 +3583,11 @@ needs to be set.</strong></p>
     "params":{
     }
 }   
-
-</code></pre></div>
-<p>method of signature generation in JAVA   </p>
-<div class="highlight"><pre class="highlight plaintext"><code>
-    public static void main(String[] args) {
+</code></pre></div><h3 id='method-of-signature-generation-in-java'><strong>method of signature generation in JAVA</strong></h3>
+<blockquote>
+<p>example for java</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>    public static void main(String[] args) {
         try {
             Mac hmacSha256 = Mac.getInstance("HmacSHA256");
             String secret = "****6fea34cd140315552a76ae6c****";
@@ -3606,12 +3607,12 @@ needs to be set.</strong></p>
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }   
-
-</code></pre></div>
-<p>method of signature generation in python   </p>
-<div class="highlight"><pre class="highlight plaintext"><code>
-    import binascii
+    }       
+</code></pre></div><h3 id='method-of-signature-generation-in-python'><strong>method of signature generation in python</strong></h3>
+<blockquote>
+<p>example for python</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>    import binascii
     import hashlib
     import hmac
     import time
@@ -3633,8 +3634,7 @@ needs to be set.</strong></p>
         print("sign==", sign)
 
     if __name__ == "__main__":
-        main()   
-
+        main()       
 </code></pre></div><h2 id='account'><strong>Account</strong></h2>
 <p>Stream Name: <code>&lt;currency&gt;@account</code>, or <code>!@account</code> all currency</p>
 <div class="highlight"><pre class="highlight plaintext"><code>{
