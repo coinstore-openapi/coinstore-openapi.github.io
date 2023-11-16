@@ -279,8 +279,8 @@
   color: #859900;
 }
     </style>
-    <link href="../stylesheets/screen-297dc653.css" rel="stylesheet" media="screen" />
-    <link href="../stylesheets/print-62a209d5.css" rel="stylesheet" media="print" />
+    <link href="../stylesheets/screen-3bdfd5ec.css" rel="stylesheet" media="screen" />
+    <link href="../stylesheets/print-1afa28ad.css" rel="stylesheet" media="print" />
       <script src="../javascripts/all-1decc47a.js"></script>
 
     <script>
@@ -679,7 +679,7 @@ needs to be set.</strong></p>
 <p>Get currency &amp; contract information</p>
 <h3 id='http-request'>HTTP Request:</h3>
 <ul>
-<li>POST  /api/configs/public</li>
+<li>GET /api/configs/public</li>
 </ul>
 
 <blockquote>
@@ -1727,7 +1727,7 @@ needs to be set.</strong></p>
 </tbody></table>
 <h2 id='get-active-order-v2'><span id="2">Get active order V2</span></h2>
 <p>Get active order V2 version</p>
-<h4 id='the-new-interface-api-domain-name-address-https-futures-coinstore-com-call-support-for-apikey-and-token'>The new interface API domain name address <code>https://futures.coinstore.com</code>  Call support for ApiKey and Token</h4><h3 id='http-request-8'>HTTP Request:</h3>
+<h4 id='the-new-interface-api-domain-name-address-https-futures-coinstore-com-call-support-for-apikey'>The new interface API domain name address <code>https://futures.coinstore.com</code>  Call support for ApiKey</h4><h3 id='http-request-8'>HTTP Request:</h3>
 <ul>
 <li>GET /api/v2/trade/order/active</li>
 </ul>
@@ -1930,13 +1930,13 @@ needs to be set.</strong></p>
 </tbody></table>
 <h2 id='get-order-info-v2'><span id="2">get order info V2</span></h2>
 <p>get order info V2 version</p>
-<h4 id='the-new-interface-api-domain-name-address-https-futures-coinstore-com-call-support-for-apikey-and-token-2'>The new interface API domain name address <code>https://futures.coinstore.com</code>  Call support for ApiKey and Token</h4><h3 id='http'>HTTP请求:</h3>
+<h4 id='the-new-interface-api-domain-name-address-https-futures-coinstore-com-call-support-for-apikey-2'>The new interface API domain name address <code>https://futures.coinstore.com</code>  Call support for ApiKey</h4><h3 id='http-request-9'>HTTP Request:</h3>
 <ul>
 <li>GET /api/v2/trade/order/orderInfo</li>
 </ul>
 
 <blockquote>
-<p>响应</p>
+<p>response</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
@@ -1970,7 +1970,7 @@ needs to be set.</strong></p>
           </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='1f9ac54b15'>请求参数</h3>
+</span></code></pre></div><h3 id='request-paramters'>request paramters</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1992,7 +1992,7 @@ needs to be set.</strong></p>
 <td>Client order number</td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f'>响应数据</h3>
+<h3 id='response-parameters'>response parameters</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2148,7 +2148,7 @@ needs to be set.</strong></p>
 </tbody></table>
 <h2 id='cancel-orders'><span id="3">Cancel orders</span></h2>
 <p>Cancel orders</p>
-<h3 id='http-request-9'>HTTP Request:</h3>
+<h3 id='http-request-10'>HTTP Request:</h3>
 <ul>
 <li>POST /api/trade/order/cancel</li>
 </ul>
@@ -2207,7 +2207,7 @@ needs to be set.</strong></p>
 <td>return data</td>
 </tr>
 </tbody></table>
-<h2 id='one-click-cancellation'><span id="5">One-click cancellation</span></h2><h3 id='http-request-10'>HTTP Request:</h3>
+<h2 id='one-click-cancellation'><span id="5">One-click cancellation</span></h2><h3 id='http-request-11'>HTTP Request:</h3>
 <ul>
 <li>POST /api/trade/order/cancelAll</li>
 </ul>
@@ -2262,7 +2262,7 @@ needs to be set.</strong></p>
 </tbody></table>
 <h2 id='place-batch'><span id="13">Place batch</span></h2>
 <p>Place batch</p>
-<h3 id='http-request-11'>HTTP Request:</h3>
+<h3 id='http-request-12'>HTTP Request:</h3>
 <ul>
 <li>POST /api/trade/order/placeBatch</li>
 </ul>
@@ -2425,7 +2425,7 @@ needs to be set.</strong></p>
 </tbody></table>
 <h2 id='batch-cancellation-according-to-order-id'><span id="27">Batch cancellation according to order id</span></h2>
 <p>Batch cancellation according to order id</p>
-<h3 id='http-request-12'>HTTP Request:</h3>
+<h3 id='http-request-13'>HTTP Request:</h3>
 <ul>
 <li>POST /api/trade/orders/del</li>
 </ul>
@@ -2537,7 +2537,7 @@ needs to be set.</strong></p>
 </tbody></table>
 <h2 id='get-user-39-s-all-trade-records'><span id="3">Get user&#39;s all trade records</span></h2>
 <p>Get all trade records</p>
-<h3 id='http-request-13'>HTTP Request:</h3>
+<h3 id='http-request-14'>HTTP Request:</h3>
 <ul>
 <li>GET /api/future/queryHisMatch</li>
 </ul>
@@ -2792,7 +2792,7 @@ needs to be set.</strong></p>
 </tbody></table>
 <h2 id='get-user-39-s-all-trade-records-v2'><span id="3">Get user&#39;s all trade records V2</span></h2>
 <p>Get all trade records V2 version</p>
-<h4 id='the-new-interface-api-domain-name-address-https-futures-coinstore-com-call-support-for-apikey-and-token-3'>The new interface API domain name address <code>https://futures.coinstore.com</code>  Call support for ApiKey and Token</h4><h3 id='http-request-14'>HTTP Request:</h3>
+<h4 id='the-new-interface-api-domain-name-address-https-futures-coinstore-com-call-support-for-apikey-3'>The new interface API domain name address <code>https://futures.coinstore.com</code>  Call support for ApiKey</h4><h3 id='http-request-15'>HTTP Request:</h3>
 <ul>
 <li>GET /api/v2/trade/order/queryHisMatch</li>
 </ul>
@@ -2964,7 +2964,7 @@ needs to be set.</strong></p>
 </tbody></table>
 <h2 id='user-forced-reduction'><span id="3">User forced reduction</span></h2>
 <p>Get all trade records</p>
-<h3 id='http-request-15'>HTTP Request:</h3>
+<h3 id='http-request-16'>HTTP Request:</h3>
 <ul>
 <li>GET /api/future/queryFlOrders</li>
 </ul>
@@ -3179,7 +3179,7 @@ needs to be set.</strong></p>
 </tbody></table>
 <h2 id='user-liquidation-record'><span id="3">User liquidation record</span></h2>
 <p>Get all trade records</p>
-<h3 id='http-request-16'>HTTP Request:</h3>
+<h3 id='http-request-17'>HTTP Request:</h3>
 <ul>
 <li>GET /api/future/queryFcOrders</li>
 </ul>
@@ -3392,7 +3392,7 @@ needs to be set.</strong></p>
 <td>profit user margin type</td>
 </tr>
 </tbody></table>
-<h1 id='ticker-related'>Ticker Related</h1><h2 id='get-historical-k-line'><span id="7">Get historical K-line</span></h2><h3 id='http-request-17'>HTTP Request:</h3>
+<h1 id='ticker-related'>Ticker Related</h1><h2 id='get-historical-k-line'><span id="7">Get historical K-line</span></h2><h3 id='http-request-18'>HTTP Request:</h3>
 <ul>
 <li>GET /v1/futureQuot/queryCandlestick</li>
 </ul>
@@ -3481,7 +3481,7 @@ needs to be set.</strong></p>
 <td>[timestamp, open price, high price, low price, close price, trade volume]</td>
 </tr>
 </tbody></table>
-<h2 id='query-ticker-snapshot'><span id="7">Query ticker snapshot</span></h2><h3 id='http-request-18'>HTTP Request:</h3>
+<h2 id='query-ticker-snapshot'><span id="7">Query ticker snapshot</span></h2><h3 id='http-request-19'>HTTP Request:</h3>
 <ul>
 <li>GET /v1/futureQuot/querySnapshot</li>
 </ul>
@@ -3628,7 +3628,7 @@ needs to be set.</strong></p>
 <td>bids [price, conts]</td>
 </tr>
 </tbody></table>
-<h2 id='get-latest-trade'><span id="7">Get latest trade</span></h2><h3 id='http-request-19'>HTTP Request:</h3>
+<h2 id='get-latest-trade'><span id="7">Get latest trade</span></h2><h3 id='http-request-20'>HTTP Request:</h3>
 <ul>
 <li>GET /v1/futureQuot/queryTickTrade</li>
 </ul>
