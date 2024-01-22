@@ -3942,8 +3942,28 @@ needs to be set.</strong></p>
 </tr>
 </thead><tbody>
 <tr>
+<td>signature-failed 401</td>
+<td>Main account freezes sub-account login access</td>
+</tr>
+<tr>
+<td>signature-failed 401</td>
+<td>Sub-account has been deleted</td>
+</tr>
+<tr>
+<td>signature-failed 401</td>
+<td>Api key error</td>
+</tr>
+<tr>
 <td>unauthorized 1401</td>
 <td>Request IP is not in the IP whitelist</td>
+</tr>
+<tr>
+<td>unauthorized 1401</td>
+<td>Signature failure</td>
+</tr>
+<tr>
+<td>unauthorized 1401</td>
+<td>User login Token expired</td>
 </tr>
 <tr>
 <td>signature error 3005</td>
@@ -3954,16 +3974,36 @@ needs to be set.</strong></p>
 <td>The trading pair is not listed</td>
 </tr>
 <tr>
+<td>part-trade-limit 3012</td>
+<td>You are currently restricted from trading this spot currency pair. If you have any questions, please contact customer support. We apologize for any inconvenience this may cause.</td>
+</tr>
+<tr>
+<td>trade-limit 3013</td>
+<td>You do not currently have the qualification for spot trading. If you have any questions, please contact customer support. We apologize for any inconvenience this may cause.</td>
+</tr>
+<tr>
+<td>user-trade-limit 3014</td>
+<td>The current sub-account temporarily lacks spot trading qualifications</td>
+</tr>
+<tr>
+<td>user-part-trade-limit 3015</td>
+<td>The current sub-account is restricted from trading the current spot currency pair</td>
+</tr>
+<tr>
 <td>account-insufficient 3113</td>
 <td>Insufficient account balance</td>
 </tr>
 <tr>
-<td>duplicate-order 3011</td>
+<td>duplicate-order 3111</td>
 <td>Duplicate order</td>
 </tr>
 <tr>
 <td>order-not-found 3103</td>
 <td>Order not found or does not belong to the current account</td>
+</tr>
+<tr>
+<td>sub-user-operator-business-error 6001</td>
+<td>Sub-account is not allowed to participate in this business</td>
 </tr>
 </tbody></table>
 <h2 id='dictionary'><strong>Dictionary</strong></h2><h3 id='orderstate'>OrderState</h3>

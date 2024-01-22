@@ -475,6 +475,14 @@
                   </li>
               </ul>
           </li>
+          <li>
+            <a href="#e08c1d4f9a" class="toc-h1 toc-link" data-title="错误码">错误码</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#33c0874e49" class="toc-h2 toc-link" data-title="错误码:">错误码:</a>
+                  </li>
+              </ul>
+          </li>
         <li class="create_api"><a target="_blank" href="https://www.coinstore.com/#/user/bindAuth/ManagementAPI">创建 API Key</a></li>
       </ul>
     </div>
@@ -4505,6 +4513,66 @@ wss://ws-futures.coinstore.com/socket.io/?EIO=3&amp;transport=websocket
 <td>orderStatus</td>
 <td>int</td>
 <td>委托状态 0-未申报,1-正在申报,2-已申报未成交,3-部分成交,4-全部成交,5-部分撤单,6-全部撤单,7-撤单中,8-失效,11-缓存高于条件的委托,12-缓存低于条件的委托</td>
+</tr>
+</tbody></table>
+<h1 id='e08c1d4f9a'>错误码</h1><h3 id='33c0874e49'>错误码:</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>signature-failed 401</td>
+<td>主账号冻结子账号登录权限</td>
+</tr>
+<tr>
+<td>signature-failed 401</td>
+<td>子账号被删除</td>
+</tr>
+<tr>
+<td>signature-failed 401</td>
+<td>Api key 错误</td>
+</tr>
+<tr>
+<td>unauthorized 1401</td>
+<td>请求ip不在IP白名单中</td>
+</tr>
+<tr>
+<td>unauthorized 1401</td>
+<td>签名失败</td>
+</tr>
+<tr>
+<td>unauthorized 1401</td>
+<td>用户登录 Token 失效</td>
+</tr>
+<tr>
+<td>signature error 3005</td>
+<td>签名生成错误</td>
+</tr>
+<tr>
+<td>symbol not found 3011</td>
+<td>该币对没有上线</td>
+</tr>
+<tr>
+<td>trade-limit 3013</td>
+<td>您暂时不具备合约交易资质，如有疑问请咨询客服，给您造成不便敬请谅解。</td>
+</tr>
+<tr>
+<td>user-trade-limit 3014</td>
+<td>当前子账号暂时不具备合约交易资质</td>
+</tr>
+<tr>
+<td>user-part-trade-limit 3015</td>
+<td>当前子账号已被限制交易当前合约币对</td>
+</tr>
+<tr>
+<td>duplicate-order 3111</td>
+<td>重复订单</td>
+</tr>
+<tr>
+<td>sub-user-operator-business-error 6001</td>
+<td>子账号不允许参与该业务</td>
 </tr>
 </tbody></table>
 

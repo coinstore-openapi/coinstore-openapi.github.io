@@ -3742,8 +3742,28 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 </tr>
 </thead><tbody>
 <tr>
+<td>signature-failed 401</td>
+<td>主账号冻结子账号登录权限</td>
+</tr>
+<tr>
+<td>signature-failed 401</td>
+<td>子账号被删除</td>
+</tr>
+<tr>
+<td>signature-failed 401</td>
+<td>Api key 错误</td>
+</tr>
+<tr>
 <td>unauthorized 1401</td>
 <td>请求ip不在IP白名单中</td>
+</tr>
+<tr>
+<td>unauthorized 1401</td>
+<td>签名失败</td>
+</tr>
+<tr>
+<td>unauthorized 1401</td>
+<td>用户登录 Token 失效</td>
 </tr>
 <tr>
 <td>signature error 3005</td>
@@ -3754,16 +3774,36 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <td>该币对没有上线</td>
 </tr>
 <tr>
+<td>part-trade-limit 3012</td>
+<td>您已被限制交易当前现货币对，如有疑问请咨询客服，给您造成不便敬请谅解。</td>
+</tr>
+<tr>
+<td>trade-limit 3013</td>
+<td>您暂时不具备币币交易资质，如有疑问请咨询客服，给您造成不便敬请谅解。</td>
+</tr>
+<tr>
+<td>user-trade-limit 3014</td>
+<td>当前子账号暂时不具备币币交易资质</td>
+</tr>
+<tr>
+<td>user-part-trade-limit 3015</td>
+<td>当前子账号已被限制交易当前现货币对</td>
+</tr>
+<tr>
 <td>account-insufficient 3113</td>
 <td>账户余额不足</td>
 </tr>
 <tr>
-<td>duplicate-order 3011</td>
+<td>duplicate-order 3111</td>
 <td>重复订单</td>
 </tr>
 <tr>
 <td>order-not-found 3103</td>
 <td>订单未找到或者该订单不属于当前账号</td>
+</tr>
+<tr>
+<td>sub-user-operator-business-error 6001</td>
+<td>子账号不允许参与该业务</td>
 </tr>
 </tbody></table>
 <h2 id='42702c21cd'><strong>字典</strong></h2><h3 id='orderstate'>OrderState</h3>

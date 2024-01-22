@@ -475,6 +475,14 @@
                   </li>
               </ul>
           </li>
+          <li>
+            <a href="#error-code" class="toc-h1 toc-link" data-title="Error Code">Error Code</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#error-code-2" class="toc-h2 toc-link" data-title="error Code:">error Code:</a>
+                  </li>
+              </ul>
+          </li>
         <li class="create_api"><a target="_blank" href="https://www.coinstore.com/#/user/bindAuth/ManagementAPI">Create API KEY</a></li>
       </ul>
     </div>
@@ -4528,6 +4536,66 @@ wss://ws-futures.coinstore.com/socket.io/?EIO=3&amp;transport=websocket
 <td>orderStatus</td>
 <td>int</td>
 <td>order status 0-undeclared, 1-declaring, 2-declared but not filled, 3-partially filled, 4-fully filled, 5-partially canceled, 6-fully canceled, 7-canceling, 8-failure, 11-buffer the orders higher than limit, 12-buffer the orders lower than limit</td>
+</tr>
+</tbody></table>
+<h1 id='error-code'>Error Code</h1><h3 id='error-code-2'>error Code:</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>signature-failed 401</td>
+<td>Main account freezes sub-account login access</td>
+</tr>
+<tr>
+<td>signature-failed 401</td>
+<td>Sub-account has been deleted</td>
+</tr>
+<tr>
+<td>signature-failed 401</td>
+<td>Api key error</td>
+</tr>
+<tr>
+<td>unauthorized 1401</td>
+<td>Request IP is not in the IP whitelist</td>
+</tr>
+<tr>
+<td>unauthorized 1401</td>
+<td>Signature failure</td>
+</tr>
+<tr>
+<td>unauthorized 1401</td>
+<td>User login Token expired</td>
+</tr>
+<tr>
+<td>signature error 3005</td>
+<td>Signature generation error</td>
+</tr>
+<tr>
+<td>symbol not found 3011</td>
+<td>The trading pair is not listed</td>
+</tr>
+<tr>
+<td>trade-limit 3013</td>
+<td>You do not currently have the qualification for contract trading. If you have any questions, please contact customer support. We apologize for any inconvenience this may cause.</td>
+</tr>
+<tr>
+<td>user-trade-limit 3014</td>
+<td>The current sub-account temporarily lacks futures trading qualifications.</td>
+</tr>
+<tr>
+<td>user-part-trade-limit 3015</td>
+<td>The current sub-account is restricted from trading the current futures currency pairs.</td>
+</tr>
+<tr>
+<td>duplicate-order 3111</td>
+<td>Duplicate order</td>
+</tr>
+<tr>
+<td>sub-user-operator-business-error 6001</td>
+<td>Sub-account is not allowed to participate in this business</td>
 </tr>
 </tbody></table>
 
