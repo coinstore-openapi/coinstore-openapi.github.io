@@ -376,6 +376,9 @@
                   <li>
                     <a href="#c4a4258fff" class="toc-h2 toc-link" data-title="现货币种币对信息"><span id="1">现货币种币对信息</span></a>
                   </li>
+                  <li>
+                    <a href="#be59f6dd3c" class="toc-h2 toc-link" data-title="查询币种信息"><span id="1">查询币种信息</span></a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -390,7 +393,22 @@
             <a href="#6631e26181" class="toc-h1 toc-link" data-title="资金相关">资金相关</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#05cec30dc0" class="toc-h2 toc-link" data-title="资金划转"><span id="2">资金划转</span></a>
+                    <a href="#e7cabbfe4f" class="toc-h2 toc-link" data-title="获取充币地址"><span id="2">获取充币地址</span></a>
+                  </li>
+                  <li>
+                    <a href="#cd7b39e343" class="toc-h2 toc-link" data-title="获取充币记录"><span id="2">获取充币记录</span></a>
+                  </li>
+                  <li>
+                    <a href="#b55ecd1ce8" class="toc-h2 toc-link" data-title="获取提币记录"><span id="2">获取提币记录</span></a>
+                  </li>
+                  <li>
+                    <a href="#1ec50bd5c6" class="toc-h2 toc-link" data-title="提币"><span id="2">提币</span></a>
+                  </li>
+                  <li>
+                    <a href="#c6ca5cfc45" class="toc-h2 toc-link" data-title="撤销提币"><span id="2">撤销提币</span></a>
+                  </li>
+                  <li>
+                    <a href="#d9b723aa93" class="toc-h2 toc-link" data-title="划转资产"><span id="2">划转资产</span></a>
                   </li>
               </ul>
           </li>
@@ -882,9 +900,221 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='be59f6dd3c'><span id="1">查询币种信息</span></h2>
+<p>获取币种详细信息</p>
+<h3 id='http-2'>HTTP请求:</h3>
+<ul>
+<li>GET /fi/v1/common/currency</li>
+</ul>
+<h3 id='1f9ac54b15-2'>请求参数</h3>
+<table><thead>
+<tr>
+<th>param</th>
+<th>type</th>
+<th>required</th>
+<th>comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currencyCode</td>
+<td>string</td>
+<td>Y</td>
+<td>币对Code</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>请求</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"currencyCode"</span><span class="p">:</span><span class="s2">"ETH"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='2213f4c32f-2'>响应数据</h3>
+<table><thead>
+<tr>
+<th>code</th>
+<th>type</th>
+<th>comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>0：成功，其他失败</td>
+</tr>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>错误信息</td>
+</tr>
+<tr>
+<td>data</td>
+<td></td>
+<td>业务数据</td>
+</tr>
+<tr>
+<td>-  name</td>
+<td>string</td>
+<td>币种名称</td>
+</tr>
+<tr>
+<td>-   code</td>
+<td>string</td>
+<td>币种代码</td>
+</tr>
+<tr>
+<td>-   showPrecision</td>
+<td>string</td>
+<td>币种精度</td>
+</tr>
+<tr>
+<td>-   chainDataList</td>
+<td>Object []</td>
+<td>链信息</td>
+</tr>
+<tr>
+<td>--     currencyCode</td>
+<td>string</td>
+<td>币种code</td>
+</tr>
+<tr>
+<td>--     chainName</td>
+<td>string</td>
+<td>链名称</td>
+</tr>
+<tr>
+<td>--    chainProtocol</td>
+<td>string</td>
+<td>链协议</td>
+</tr>
+<tr>
+<td>--     contractAddress</td>
+<td>string</td>
+<td>币种合约地址</td>
+</tr>
+<tr>
+<td>--     depositOpen</td>
+<td>int</td>
+<td>是否开放充值，0关闭充值，1开放充值</td>
+</tr>
+<tr>
+<td>--     withdrawOpen</td>
+<td>int</td>
+<td>是否开启提现，0关闭提现，1开启提现</td>
+</tr>
+<tr>
+<td>--     withdrawFee</td>
+<td>string</td>
+<td>提币手续费</td>
+</tr>
+<tr>
+<td>--     withdrawMin</td>
+<td>string</td>
+<td>最小提币数量</td>
+</tr>
+<tr>
+<td>--     withdrawMax</td>
+<td>string</td>
+<td>最大提币数量</td>
+</tr>
+<tr>
+<td>--     depositMin</td>
+<td>string</td>
+<td>最小充币数量</td>
+</tr>
+<tr>
+<td>--     withdrawFeePlatform</td>
+<td>string</td>
+<td>提币平台手续费比例</td>
+</tr>
+<tr>
+<td>--     burningState</td>
+<td>int</td>
+<td>是否为燃烧币 是1 否0</td>
+</tr>
+<tr>
+<td>--     withdrawFeeOnChain</td>
+<td>string</td>
+<td>提币链上燃烧比例</td>
+</tr>
+<tr>
+<td>--     tagType</td>
+<td>int</td>
+<td>是否需要标签 0不需要 1需要 2可选</td>
+</tr>
+<tr>
+<td>--     withdrawFeeMin</td>
+<td>string</td>
+<td>提现最少手续费</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>python</p>
+</blockquote>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">hmac</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="c1"># api查询币种信息
+</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.coinstore.com/api/fi/v1/common/currency?currencyCode=ETH"</span>
+<span class="n">api_key</span> <span class="o">=</span> <span class="s">b'your api_key'</span>
+<span class="n">secret_key</span> <span class="o">=</span> <span class="s">b'your secret_key'</span>
+<span class="n">expires</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">expires_key</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">floor</span><span class="p">(</span><span class="n">expires</span> <span class="o">/</span> <span class="mi">30000</span><span class="p">))</span>
+<span class="n">expires_key</span> <span class="o">=</span> <span class="n">expires_key</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
+<span class="n">key</span> <span class="o">=</span> <span class="n">hmac</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">secret_key</span><span class="p">,</span> <span class="n">expires_key</span><span class="p">,</span> <span class="n">hashlib</span><span class="p">.</span><span class="n">sha256</span><span class="p">).</span><span class="n">hexdigest</span><span class="p">()</span>
+<span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="s">"currencyCode=ETH"</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="n">payload</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
+<span class="n">signature</span> <span class="o">=</span> <span class="n">hmac</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">hashlib</span><span class="p">.</span><span class="n">sha256</span><span class="p">).</span><span class="n">hexdigest</span><span class="p">()</span>
+
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'X-CS-APIKEY'</span><span class="p">:</span> <span class="n">api_key</span><span class="p">,</span>
+    <span class="s">'X-CS-SIGN'</span><span class="p">:</span> <span class="n">signature</span><span class="p">,</span>
+    <span class="s">'X-CS-EXPIRES'</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">expires</span><span class="p">),</span>
+    <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span>
+<span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s">"GET"</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div>
+<blockquote>
+<p>响应</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"showPrecision"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"chainDataList"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"currencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"chainName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"contractAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23412374127384ghgdwq"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"depositOpen"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"withdrawOpen"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"withdrawFee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.00000000"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"withdrawMin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.00000000"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"withdrawMax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00000000"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"depositMin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.00000000"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"withdrawFeePlatform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00000000"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"burningState"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"withdrawFeeOnChain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00000000"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"tagType"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"withdrawFeeMin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00000000"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div><h1 id='2a0d0be224'>账户相关</h1><h2 id='7c2f2901d7'><span id="1">资产余额</span></h2>
 <p>获取用户资产余额</p>
-<h3 id='http-2'>HTTP请求:</h3>
+<h3 id='http-3'>HTTP请求:</h3>
 <ul>
 <li>POST /spot/accountList</li>
 </ul>
@@ -946,7 +1176,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
     </span><span class="p">],</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='1f9ac54b15-2'>请求参数</h3>
+</span></code></pre></div><h3 id='1f9ac54b15-3'>请求参数</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -962,7 +1192,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-2'>响应数据</h3>
+<h3 id='2213f4c32f-3'>响应数据</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1011,53 +1241,1009 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <td>账户状态 1:可用 4:冻结</td>
 </tr>
 </tbody></table>
-<h1 id='6631e26181'>资金相关</h1><h2 id='05cec30dc0'><span id="2">资金划转</span></h2><h4 id='lt-gt-api-https-futures-api-coinstore-com-api-apikey'>目前支持合约&lt;一&gt;现货划转, API域名地址 <code>https://futures.api.coinstore.com/api</code>  调用支持ApiKey</h4><h3 id='http-3'>HTTP请求:</h3>
+<h1 id='6631e26181'>资金相关</h1><h2 id='e7cabbfe4f'><span id="2">获取充币地址</span></h2>
+<p>获取充币地址信息</p>
+<h3 id='http-4'>HTTP请求:</h3>
 <ul>
-<li>POST /common/account/transfer</li>
+<li>POST /fi/v3/asset/deposit/do</li>
 </ul>
-<h3 id='1f9ac54b15-3'>请求参数</h3>
+<h3 id='1f9ac54b15-4'>请求参数</h3>
 <table><thead>
 <tr>
-<th>param</th>
+<th>code</th>
 <th>type</th>
 <th>required</th>
 <th>comment</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>amount</td>
-<td>String</td>
-<td>Y</td>
-<td>划转数量, 数量不正确返回错误码 <code>102150400</code></td>
-</tr>
-<tr>
 <td>currencyCode</td>
-<td>String</td>
+<td>string</td>
 <td>Y</td>
-<td>划转币种，如<code>USDT</code>, 币种不正确或不支持返回错误码 <code>101040502</code> 目前支持划转的币种: <code>USDT</code>、<code>BOBC</code>、<code>DREAMS</code></td>
+<td>币种code</td>
 </tr>
 <tr>
-<td>clientId</td>
-<td>String</td>
-<td>N</td>
-<td>客户自定义ID字母（区分大小写）与数字的组合，可以是纯字母、纯数字且长度要在1-32位之间。 格式不符合要求返回错误码 <code>101040502</code></td>
-</tr>
-<tr>
-<td>transferType</td>
-<td>String</td>
+<td>chain</td>
+<td>string</td>
 <td>Y</td>
-<td>划转方向, 合约 -&gt; 现货 : <code>future-to-spot</code>, 现货 -&gt; 合约 : <code>spot-to-future</code>, 非次两种类型返回错误码 <code>101040502</code></td>
+<td>链名称</td>
 </tr>
 </tbody></table>
 
 <blockquote>
-<p>请求示例</p>
+<p>请求</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"currencyCode"</span><span class="p">:</span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"amount"</span><span class="p">:</span><span class="s2">"5"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"transferType"</span><span class="p">:</span><span class="s2">"spot-to-future"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"clientId"</span><span class="p">:</span><span class="s2">"SFT1679454569469"</span><span class="w">
+  </span><span class="nl">"currencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDTTRX"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"chain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRX"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='2213f4c32f-4'>响应数据</h3>
+<table><thead>
+<tr>
+<th>code</th>
+<th>type</th>
+<th>comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>0：成功，其他失败</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>错误信息</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td></td>
+</tr>
+<tr>
+<td>-  address</td>
+<td>string</td>
+<td>地址</td>
+</tr>
+<tr>
+<td>-  tag</td>
+<td>string</td>
+<td>标签</td>
+</tr>
+<tr>
+<td>-  depositMin</td>
+<td>string</td>
+<td>最小充币数量</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>python</p>
+</blockquote>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="n">python</span>
+
+<span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">hmac</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.coinstore.com/api/fi/v3/asset/deposit/do"</span>
+<span class="n">api_key</span> <span class="o">=</span> <span class="s">b'your api_key'</span>
+<span class="n">secret_key</span> <span class="o">=</span> <span class="s">b'your secret_key'</span>
+<span class="n">expires</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">expires_key</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">floor</span><span class="p">(</span><span class="n">expires</span> <span class="o">/</span> <span class="mi">30000</span><span class="p">))</span>
+<span class="n">expires_key</span> <span class="o">=</span> <span class="n">expires_key</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
+<span class="n">key</span> <span class="o">=</span> <span class="n">hmac</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">secret_key</span><span class="p">,</span> <span class="n">expires_key</span><span class="p">,</span> <span class="n">hashlib</span><span class="p">.</span><span class="n">sha256</span><span class="p">).</span><span class="n">hexdigest</span><span class="p">()</span>
+<span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">({</span>
+    <span class="s">"currencyCode"</span><span class="p">:</span> <span class="s">"USDTTRX"</span><span class="p">,</span>
+    <span class="s">"chain"</span><span class="p">:</span> <span class="s">"TRX"</span>
+<span class="p">})</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="n">payload</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
+<span class="n">signature</span> <span class="o">=</span> <span class="n">hmac</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">hashlib</span><span class="p">.</span><span class="n">sha256</span><span class="p">).</span><span class="n">hexdigest</span><span class="p">()</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'X-CS-APIKEY'</span><span class="p">:</span> <span class="n">api_key</span><span class="p">,</span>
+    <span class="s">'X-CS-SIGN'</span><span class="p">:</span> <span class="n">signature</span><span class="p">,</span>
+    <span class="s">'X-CS-EXPIRES'</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">expires</span><span class="p">),</span>
+    <span class="s">'exch-language'</span><span class="p">:</span> <span class="s">'en_US'</span><span class="p">,</span>
+    <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+    <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'*/*'</span><span class="p">,</span>
+    <span class="s">'Connection'</span><span class="p">:</span> <span class="s">'keep-alive'</span>
+<span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s">"POST"</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div>
+<blockquote>
+<p>响应</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TW4……"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"depositMin"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00010000</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='cd7b39e343'><span id="2">获取充币记录</span></h2>
+<p>获取用户充币记录</p>
+<h3 id='http-5'>HTTP请求:</h3>
+<ul>
+<li>POST /fi/v3/asset/deposit/record/list</li>
+</ul>
+<h3 id='1f9ac54b15-5'>请求参数</h3>
+<table><thead>
+<tr>
+<th>code</th>
+<th>type</th>
+<th>required</th>
+<th>comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currencyCode</td>
+<td>string</td>
+<td>N</td>
+<td>币种对</td>
+</tr>
+<tr>
+<td>startDate</td>
+<td>string</td>
+<td>N</td>
+<td>起始时间 日期型字符串 格式&quot;yyyy-MM-dd HH:mm:ss&quot;等</td>
+</tr>
+<tr>
+<td>endDate</td>
+<td>string</td>
+<td>N</td>
+<td>结束时间 日期型字符串 格式&quot;yyyy-MM-dd HH:mm:ss&quot;等</td>
+</tr>
+<tr>
+<td>fromId</td>
+<td>long</td>
+<td>N</td>
+<td>从id开始查询，缺省从头开始</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>int</td>
+<td>N</td>
+<td>条数 默认500，最大1000</td>
+</tr>
+<tr>
+<td>externalId</td>
+<td>string</td>
+<td>N</td>
+<td>外部id</td>
+</tr>
+<tr>
+<td>label</td>
+<td>string</td>
+<td>N</td>
+<td>备注标签</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>请求</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"currencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-01-01"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-03-08"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"fromId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"limit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"externalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div><h3 id='2213f4c32f-5'>响应数据</h3>
+<table><thead>
+<tr>
+<th>code</th>
+<th>type</th>
+<th>comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>type</td>
+<td>comment</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>0：成功，其他失败</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>错误信息</td>
+</tr>
+<tr>
+<td>data</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>externalId</td>
+<td>string</td>
+<td>外部id</td>
+</tr>
+<tr>
+<td>label</td>
+<td>string</td>
+<td>备注标签</td>
+</tr>
+<tr>
+<td>withdrawList</td>
+<td>Object[]</td>
+<td>业务数据</td>
+</tr>
+<tr>
+<td>--  id</td>
+<td>long</td>
+<td>ID</td>
+</tr>
+<tr>
+<td>--  symbol</td>
+<td>string</td>
+<td>币种</td>
+</tr>
+<tr>
+<td>--  amount</td>
+<td>string</td>
+<td>金额</td>
+</tr>
+<tr>
+<td>--  fee</td>
+<td>string</td>
+<td>手续费</td>
+</tr>
+<tr>
+<td>--  createdAt</td>
+<td>string</td>
+<td>时间</td>
+</tr>
+<tr>
+<td>--  status</td>
+<td>int</td>
+<td>提现状态: 0 未审核，1 审核通过，2 审核拒绝，3 支付中已经打币，4 支付失败，5 已完成，6 已撤销</td>
+</tr>
+<tr>
+<td>--  explorer</td>
+<td>string</td>
+<td>区块链浏览器</td>
+</tr>
+<tr>
+<td>--  txId</td>
+<td>string</td>
+<td>交易hash</td>
+</tr>
+<tr>
+<td>--  addressTo</td>
+<td>string</td>
+<td>提币地址</td>
+</tr>
+<tr>
+<td>--  chainName</td>
+<td>string</td>
+<td>链名称</td>
+</tr>
+<tr>
+<td>--  chainProtocol</td>
+<td>string</td>
+<td>链协议</td>
+</tr>
+<tr>
+<td>--  internalType</td>
+<td>int</td>
+<td>站内提币类型 0：非站内 1：站内</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="n">python</span>
+
+<span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">hmac</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.coinstore.com/api/fi/v3/asset/deposit/record/list"</span>
+<span class="n">api_key</span> <span class="o">=</span> <span class="s">b'your api_key'</span>
+<span class="n">secret_key</span> <span class="o">=</span> <span class="s">b'your secret_key'</span>
+<span class="n">expires</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">expires_key</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">floor</span><span class="p">(</span><span class="n">expires</span> <span class="o">/</span> <span class="mi">30000</span><span class="p">))</span>
+<span class="n">expires_key</span> <span class="o">=</span> <span class="n">expires_key</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
+<span class="n">key</span> <span class="o">=</span> <span class="n">hmac</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">secret_key</span><span class="p">,</span> <span class="n">expires_key</span><span class="p">,</span> <span class="n">hashlib</span><span class="p">.</span><span class="n">sha256</span><span class="p">).</span><span class="n">hexdigest</span><span class="p">()</span>
+<span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">({</span>
+    <span class="s">"currencyCode"</span><span class="p">:</span> <span class="s">"USDT"</span><span class="p">,</span>
+    <span class="s">"startDate"</span><span class="p">:</span> <span class="s">"2024-03-01"</span><span class="p">,</span>
+    <span class="s">"endDate"</span><span class="p">:</span> <span class="s">"2024-03-08"</span><span class="p">,</span>
+    <span class="s">"fromId"</span><span class="p">:</span> <span class="s">""</span><span class="p">,</span>
+    <span class="s">"limit"</span><span class="p">:</span> <span class="s">"10"</span><span class="p">,</span>
+    <span class="s">"externalId"</span><span class="p">:</span> <span class="s">""</span><span class="p">,</span>
+    <span class="s">"label"</span><span class="p">:</span> <span class="s">""</span>
+<span class="p">})</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="n">payload</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
+<span class="n">signature</span> <span class="o">=</span> <span class="n">hmac</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">hashlib</span><span class="p">.</span><span class="n">sha256</span><span class="p">).</span><span class="n">hexdigest</span><span class="p">()</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'X-CS-APIKEY'</span><span class="p">:</span> <span class="n">api_key</span><span class="p">,</span>
+    <span class="s">'X-CS-SIGN'</span><span class="p">:</span> <span class="n">signature</span><span class="p">,</span>
+    <span class="s">'X-CS-EXPIRES'</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">expires</span><span class="p">),</span>
+    <span class="s">'exch-language'</span><span class="p">:</span> <span class="s">'en_US'</span><span class="p">,</span>
+    <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+    <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'*/*'</span><span class="p">,</span>
+    <span class="s">'Connection'</span><span class="p">:</span> <span class="s">'keep-alive'</span><span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s">"POST"</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+
+</code></pre></div>
+<blockquote>
+<p>响应</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"depositList"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">38948</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"doge"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"chainName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"doge"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"chainProtocol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"doge"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.61"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-02-27 17:36:38"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"explorer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19ceb820c143ceae503cf6ce5a0c9064721f438099529d041026e062e99a0bdc8"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"txId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ceb820c143ceae503cf6ce5a0c9064721f438099529d041026e062e99a0bdc8"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"internalType"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"lockAccount"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"noDepositMsg"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"externalId"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='b55ecd1ce8'><span id="2">获取提币记录</span></h2>
+<p>获取用户提币记录</p>
+<h3 id='http-6'>HTTP请求:</h3>
+<ul>
+<li>POST /fi/v3/asset/withdraw/record/list</li>
+</ul>
+<h3 id='1f9ac54b15-6'>请求参数</h3>
+<table><thead>
+<tr>
+<th>code</th>
+<th>type</th>
+<th>required</th>
+<th>comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>param</td>
+<td>type</td>
+<td>required</td>
+<td>comment</td>
+</tr>
+<tr>
+<td>currencyCode</td>
+<td>string</td>
+<td>N</td>
+<td>币种对</td>
+</tr>
+<tr>
+<td>startDate</td>
+<td>string</td>
+<td>N</td>
+<td>起始时间</td>
+</tr>
+<tr>
+<td>endDate</td>
+<td>string</td>
+<td>N</td>
+<td>结束时间</td>
+</tr>
+<tr>
+<td>fromId</td>
+<td>long</td>
+<td>N</td>
+<td>从id开始查询，缺省从头开始</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>int</td>
+<td>N</td>
+<td>条数 默认500，最大1000</td>
+</tr>
+<tr>
+<td>externalId</td>
+<td>string</td>
+<td>N</td>
+<td>外部id</td>
+</tr>
+<tr>
+<td>label</td>
+<td>sring</td>
+<td>N</td>
+<td>标签</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>请求</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"currencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-03-01"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-03-08"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"fromId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"limit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"externalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div><h3 id='2213f4c32f-6'>响应数据</h3>
+<table><thead>
+<tr>
+<th>code</th>
+<th>type</th>
+<th>comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>type</td>
+<td>comment</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>0：成功，其他失败</td>
+</tr>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>错误信息</td>
+</tr>
+<tr>
+<td>data</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>externalId</td>
+<td>string</td>
+<td>外部id</td>
+</tr>
+<tr>
+<td>label</td>
+<td>string</td>
+<td>备注标签</td>
+</tr>
+<tr>
+<td>depositList</td>
+<td>Object []</td>
+<td>业务数据</td>
+</tr>
+<tr>
+<td>--  id</td>
+<td>long</td>
+<td>ID</td>
+</tr>
+<tr>
+<td>--  symbol</td>
+<td>string</td>
+<td>币种</td>
+</tr>
+<tr>
+<td>--  chainName</td>
+<td>string</td>
+<td>链名</td>
+</tr>
+<tr>
+<td>--  chainProtocol</td>
+<td>string</td>
+<td>链协议</td>
+</tr>
+<tr>
+<td>--  amount</td>
+<td>string</td>
+<td>数量</td>
+</tr>
+<tr>
+<td>--  createdAt</td>
+<td>string</td>
+<td>时间</td>
+</tr>
+<tr>
+<td>--  status</td>
+<td>int</td>
+<td>充值状态: 0 未确认，1 已完成，2 异常，3审核中，4驳回</td>
+</tr>
+<tr>
+<td>--  explorer</td>
+<td>string</td>
+<td>区块浏览器</td>
+</tr>
+<tr>
+<td>--  txId</td>
+<td>string</td>
+<td>交易hash</td>
+</tr>
+<tr>
+<td>--  internalType</td>
+<td>string</td>
+<td>站内充币类型 0：非站内 1：站内</td>
+</tr>
+<tr>
+<td>--  lockAccount</td>
+<td>boolean</td>
+<td>是否锁定</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="n">python</span>
+
+<span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">hmac</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.coinstore.com/api/fi/v3/asset/withdraw/record/list"</span>
+<span class="n">api_key</span> <span class="o">=</span> <span class="s">b'your api_key'</span>
+<span class="n">secret_key</span> <span class="o">=</span> <span class="s">b'your secret_key'</span>
+<span class="n">expires</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">expires_key</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">floor</span><span class="p">(</span><span class="n">expires</span> <span class="o">/</span> <span class="mi">30000</span><span class="p">))</span>
+<span class="n">expires_key</span> <span class="o">=</span> <span class="n">expires_key</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
+<span class="n">key</span> <span class="o">=</span> <span class="n">hmac</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">secret_key</span><span class="p">,</span> <span class="n">expires_key</span><span class="p">,</span> <span class="n">hashlib</span><span class="p">.</span><span class="n">sha256</span><span class="p">).</span><span class="n">hexdigest</span><span class="p">()</span>
+<span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">({</span>
+    <span class="s">"currencyCode"</span><span class="p">:</span> <span class="s">""</span><span class="p">,</span>
+    <span class="s">"startDate"</span><span class="p">:</span> <span class="s">"2024-01-01"</span><span class="p">,</span>
+    <span class="s">"endDate"</span><span class="p">:</span> <span class="s">"2024-03-08"</span><span class="p">,</span>
+    <span class="s">"fromId"</span><span class="p">:</span> <span class="s">""</span><span class="p">,</span>
+    <span class="s">"limit"</span><span class="p">:</span> <span class="s">"10"</span><span class="p">,</span>
+    <span class="s">"externalId"</span><span class="p">:</span> <span class="s">""</span><span class="p">,</span>
+    <span class="s">"label"</span><span class="p">:</span> <span class="s">""</span>
+<span class="p">})</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="n">payload</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
+<span class="n">signature</span> <span class="o">=</span> <span class="n">hmac</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">hashlib</span><span class="p">.</span><span class="n">sha256</span><span class="p">).</span><span class="n">hexdigest</span><span class="p">()</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'X-CS-APIKEY'</span><span class="p">:</span> <span class="n">api_key</span><span class="p">,</span>
+    <span class="s">'X-CS-SIGN'</span><span class="p">:</span> <span class="n">signature</span><span class="p">,</span>
+    <span class="s">'X-CS-EXPIRES'</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">expires</span><span class="p">),</span>
+    <span class="s">'exch-language'</span><span class="p">:</span> <span class="s">'en_US'</span><span class="p">,</span>
+    <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+    <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'*/*'</span><span class="p">,</span>
+    <span class="s">'Connection'</span><span class="p">:</span> <span class="s">'keep-alive'</span><span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s">"POST"</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+
+</code></pre></div>
+<blockquote>
+<p>响应</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"withdrawList"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4886</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DOGE"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.3"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-02-27 18:20:31"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"showStatus"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"explorer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://eth.btc.com/txinfo/"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"txId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7b06acd90f839914f2676693927d994c264a0561893d3a5461a2a910d318acba"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"addressTo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DFXm3XC49n3SBNqELip9LZHAo1nBaiDbdG"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"tag"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"chainName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DOGE"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"chainProtocol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DOGE"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"internalType"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"externalId"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='1ec50bd5c6'><span id="2">提币</span></h2>
+<p>用户提币。普通子账户不支持提币;API只能提币到免认证地址/账户上，通过 WEB/APP 可以设置免认证地址。</p>
+<h3 id='http-7'>HTTP请求:</h3>
+<ul>
+<li>POST /fi/v3/asset/doWithdraw</li>
+</ul>
+<h3 id='1f9ac54b15-7'>请求参数</h3>
+<table><thead>
+<tr>
+<th>code</th>
+<th>type</th>
+<th>required</th>
+<th>comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>param</td>
+<td>type</td>
+<td>required</td>
+<td>comment</td>
+</tr>
+<tr>
+<td>currencyCode</td>
+<td>string</td>
+<td>Y</td>
+<td>划转币种</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>Y</td>
+<td>划转金额</td>
+</tr>
+<tr>
+<td>address</td>
+<td>string</td>
+<td>Y</td>
+<td>提币地址</td>
+</tr>
+<tr>
+<td>tag</td>
+<td>string</td>
+<td>N</td>
+<td>标签 如需要</td>
+</tr>
+<tr>
+<td>chainType</td>
+<td>string</td>
+<td>Y</td>
+<td>链协议 币种详情中chainProtocol</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>请求</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"currencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TU4vEruvZwLLkSfV9bNw12EJTPvNr7Pvaa"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"698347"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"chainType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRX"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='2213f4c32f-7'>响应数据</h3>
+<table><thead>
+<tr>
+<th>code</th>
+<th>type</th>
+<th>comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>type</td>
+<td>comment</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>0：成功，其他失败</td>
+</tr>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>错误信息</td>
+</tr>
+<tr>
+<td>data</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>--  id</td>
+<td>Long</td>
+<td>提币ID</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="n">python</span>
+
+<span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">hmac</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.coinstore.com/api/fi/v3/asset/doWithdraw"</span>
+<span class="n">api_key</span> <span class="o">=</span> <span class="s">b'your api_key'</span>
+<span class="n">secret_key</span> <span class="o">=</span> <span class="s">b'your secret_key'</span>
+<span class="n">expires</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">expires_key</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">floor</span><span class="p">(</span><span class="n">expires</span> <span class="o">/</span> <span class="mi">30000</span><span class="p">))</span>
+<span class="n">expires_key</span> <span class="o">=</span> <span class="n">expires_key</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
+<span class="n">key</span> <span class="o">=</span> <span class="n">hmac</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">secret_key</span><span class="p">,</span> <span class="n">expires_key</span><span class="p">,</span> <span class="n">hashlib</span><span class="p">.</span><span class="n">sha256</span><span class="p">).</span><span class="n">hexdigest</span><span class="p">()</span>
+<span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">({</span>
+    <span class="s">"currencyCode"</span><span class="p">:</span> <span class="s">"USDT"</span><span class="p">,</span>
+    <span class="s">"amount"</span><span class="p">:</span> <span class="s">"1000"</span><span class="p">,</span>
+    <span class="s">"address"</span><span class="p">:</span> <span class="s">"TU4vEruvZwLLkSfV9bNw12EJTPvNr7Pvaa"</span><span class="p">,</span>
+    <span class="s">"tag"</span><span class="p">:</span> <span class="s">"698347"</span><span class="p">,</span>
+    <span class="s">"chainType"</span><span class="p">:</span> <span class="s">"TRX"</span>
+<span class="p">})</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="n">payload</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
+<span class="n">signature</span> <span class="o">=</span> <span class="n">hmac</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">hashlib</span><span class="p">.</span><span class="n">sha256</span><span class="p">).</span><span class="n">hexdigest</span><span class="p">()</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'X-CS-APIKEY'</span><span class="p">:</span> <span class="n">api_key</span><span class="p">,</span>
+    <span class="s">'X-CS-SIGN'</span><span class="p">:</span> <span class="n">signature</span><span class="p">,</span>
+    <span class="s">'X-CS-EXPIRES'</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">expires</span><span class="p">),</span>
+    <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s">"POST"</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+
+</code></pre></div>
+<blockquote>
+<p>响应</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4886</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='c6ca5cfc45'><span id="2">撤销提币</span></h2>
+<p>用户撤销提币</p>
+<h3 id='http-8'>HTTP请求:</h3>
+<ul>
+<li>POST /fi/v3/asset/cancelWithdraw</li>
+</ul>
+<h3 id='1f9ac54b15-8'>请求参数</h3>
+<table><thead>
+<tr>
+<th>code</th>
+<th>type</th>
+<th>required</th>
+<th>comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>withdrawId</td>
+<td>long</td>
+<td>Y</td>
+<td>提现ID</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>请求</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"withdrawId"</span><span class="p">:</span><span class="w"> </span><span class="mi">4886</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='2213f4c32f-8'>响应数据</h3>
+<table><thead>
+<tr>
+<th>code</th>
+<th>type</th>
+<th>comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>type</td>
+<td>comment</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>0：成功，其他失败</td>
+</tr>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>错误信息</td>
+</tr>
+<tr>
+<td>data</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>--  id</td>
+<td>Long</td>
+<td>提币ID</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="n">python</span>
+
+<span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">hmac</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.coinstore.com/api/fi/v3/asset/cancelWithdraw"</span>
+<span class="n">api_key</span> <span class="o">=</span> <span class="s">b'your api_key'</span>
+<span class="n">secret_key</span> <span class="o">=</span> <span class="s">b'your secret_key'</span>
+<span class="n">expires</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">expires_key</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">floor</span><span class="p">(</span><span class="n">expires</span> <span class="o">/</span> <span class="mi">30000</span><span class="p">))</span>
+<span class="n">expires_key</span> <span class="o">=</span> <span class="n">expires_key</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
+<span class="n">key</span> <span class="o">=</span> <span class="n">hmac</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">secret_key</span><span class="p">,</span> <span class="n">expires_key</span><span class="p">,</span> <span class="n">hashlib</span><span class="p">.</span><span class="n">sha256</span><span class="p">).</span><span class="n">hexdigest</span><span class="p">()</span>
+<span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">({</span>
+    <span class="s">"withdrawId"</span><span class="p">:</span> <span class="mi">4886</span>
+<span class="p">})</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="n">payload</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
+<span class="n">signature</span> <span class="o">=</span> <span class="n">hmac</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">hashlib</span><span class="p">.</span><span class="n">sha256</span><span class="p">).</span><span class="n">hexdigest</span><span class="p">()</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'X-CS-APIKEY'</span><span class="p">:</span> <span class="n">api_key</span><span class="p">,</span>
+    <span class="s">'X-CS-SIGN'</span><span class="p">:</span> <span class="n">signature</span><span class="p">,</span>
+    <span class="s">'X-CS-EXPIRES'</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">expires</span><span class="p">),</span>
+    <span class="s">'exch-language'</span><span class="p">:</span> <span class="s">'en_US'</span><span class="p">,</span>
+    <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+    <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'*/*'</span><span class="p">,</span>
+    <span class="s">'Connection'</span><span class="p">:</span> <span class="s">'keep-alive'</span><span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s">"POST"</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+
+</code></pre></div>
+<blockquote>
+<p>响应</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4886</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='d9b723aa93'><span id="2">划转资产</span></h2>
+<p>划转用户资产</p>
+<h4 id='lt-gt-api-https-futures-api-coinstore-com-api-apikey'>目前支持合约&lt;一&gt;现货划转, API域名地址 <code>https://futures.api.coinstore.com/api</code>  调用支持ApiKey</h4><h3 id='http-9'>HTTP请求:</h3>
+<ul>
+<li>POST /v1/future/transfer</li>
+</ul>
+<h3 id='1f9ac54b15-9'>请求参数</h3>
+<table><thead>
+<tr>
+<th>code</th>
+<th>type</th>
+<th>required</th>
+<th>comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>param</td>
+<td>type</td>
+<td>required</td>
+<td>comment</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>Y</td>
+<td>0, 类型 划转类型 0：账户内划转（适用于母子账户APIKey） <br/>1：母账户转子账户(仅适用于母账户APIKey) <br/>2：子账户转母账户(仅适用于母账户APIKey) <br/>默认是0</td>
+</tr>
+<tr>
+<td>currencyCode</td>
+<td>string</td>
+<td>Y</td>
+<td>&quot;USDT&quot;, 划转币种，如 USDT</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>Y</td>
+<td>划转数量</td>
+</tr>
+<tr>
+<td>from</td>
+<td>int</td>
+<td>Y</td>
+<td>转出账户 1：币币账户 2：合约账户</td>
+</tr>
+<tr>
+<td>to</td>
+<td>int</td>
+<td>Y</td>
+<td>转入账户 1：币币账户 2：合约账户</td>
+</tr>
+<tr>
+<td>subAccount</td>
+<td>string</td>
+<td>N</td>
+<td>子账户登录名 当type为1/2时，该字段必填</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>请求</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"currencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"subAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='2213f4c32f-9'>响应数据</h3>
+<table><thead>
+<tr>
+<th>code</th>
+<th>type</th>
+<th>comment</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>type</td>
+<td>comment</td>
+</tr>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>0：成功，其他失败</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>错误信息</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="n">python</span>
+
+<span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">hmac</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.coinstore.com/api/v1/future/transfer"</span>
+<span class="n">api_key</span> <span class="o">=</span> <span class="s">b'your api_key'</span>
+<span class="n">secret_key</span> <span class="o">=</span> <span class="s">b'your secret_key'</span>
+<span class="n">expires</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">expires_key</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">floor</span><span class="p">(</span><span class="n">expires</span> <span class="o">/</span> <span class="mi">30000</span><span class="p">))</span>
+<span class="n">expires_key</span> <span class="o">=</span> <span class="n">expires_key</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
+<span class="n">key</span> <span class="o">=</span> <span class="n">hmac</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">secret_key</span><span class="p">,</span> <span class="n">expires_key</span><span class="p">,</span> <span class="n">hashlib</span><span class="p">.</span><span class="n">sha256</span><span class="p">).</span><span class="n">hexdigest</span><span class="p">()</span>
+<span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">({</span>
+    <span class="s">"type"</span><span class="p">:</span> <span class="s">"0"</span><span class="p">,</span>
+    <span class="s">"currencyCode"</span><span class="p">:</span> <span class="s">"USDT"</span><span class="p">,</span>
+    <span class="s">"amount"</span><span class="p">:</span> <span class="s">"1"</span><span class="p">,</span>
+    <span class="s">"from"</span><span class="p">:</span> <span class="s">"1"</span><span class="p">,</span>
+    <span class="s">"to"</span><span class="p">:</span> <span class="s">"2"</span><span class="p">,</span>
+    <span class="s">"subAccount"</span><span class="p">:</span> <span class="s">""</span>
+<span class="p">})</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="n">payload</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
+<span class="n">signature</span> <span class="o">=</span> <span class="n">hmac</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">hashlib</span><span class="p">.</span><span class="n">sha256</span><span class="p">).</span><span class="n">hexdigest</span><span class="p">()</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'X-CS-APIKEY'</span><span class="p">:</span> <span class="n">api_key</span><span class="p">,</span>
+    <span class="s">'X-CS-SIGN'</span><span class="p">:</span> <span class="n">signature</span><span class="p">,</span>
+    <span class="s">'X-CS-EXPIRES'</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">expires</span><span class="p">),</span>
+    <span class="s">'exch-language'</span><span class="p">:</span> <span class="s">'en_US'</span><span class="p">,</span>
+    <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+    <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'*/*'</span><span class="p">,</span>
+    <span class="s">'Connection'</span><span class="p">:</span> <span class="s">'keep-alive'</span><span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s">"POST"</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+
+</code></pre></div>
+<blockquote>
+<p>响应</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
@@ -1067,15 +2253,6 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
   </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">101040502</span><span class="p">,</span><span class="w">
   </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"request field missing"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<blockquote>
-<p>响应数据:成功:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"data"</span><span class="p">:</span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='code'>其他响应code说明</h3>
 <table><thead>
@@ -1107,7 +2284,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 </tbody></table>
 <h1 id='96a5882bf8'>订单相关</h1><h2 id='2152241f96'><span id="2">获取当前订单</span></h2>
 <p>获取当前订单</p>
-<h3 id='http-4'>HTTP请求:</h3>
+<h3 id='http-10'>HTTP请求:</h3>
 <ul>
 <li>GET /trade/order/active</li>
 </ul>
@@ -1163,7 +2340,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
     </span><span class="p">],</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='1f9ac54b15-4'>请求参数</h3>
+</span></code></pre></div><h3 id='1f9ac54b15-10'>请求参数</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1179,7 +2356,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-3'>响应数据</h3>
+<h3 id='2213f4c32f-10'>响应数据</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1285,7 +2462,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 </tbody></table>
 <h2 id='v2'><span id="3">获取当前订单V2</span></h2>
 <p>获取当前订单 v2 版本</p>
-<h4 id='api-https-api-coinstore-com-apikey'>新接口的 API域名地址 <code>https://api.coinstore.com</code>  调用支持ApiKey</h4><h3 id='http-5'>HTTP请求:</h3>
+<h4 id='api-https-api-coinstore-com-apikey'>新接口的 API域名地址 <code>https://api.coinstore.com</code>  调用支持ApiKey</h4><h3 id='http-11'>HTTP请求:</h3>
 <ul>
 <li>GET /api/v2/trade/order/active</li>
 </ul>
@@ -1340,7 +2517,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
     </span><span class="p">],</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='1f9ac54b15-5'>请求参数</h3>
+</span></code></pre></div><h3 id='1f9ac54b15-11'>请求参数</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1368,7 +2545,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <td>客户端委托ID</td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-4'>响应数据</h3>
+<h3 id='2213f4c32f-11'>响应数据</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1474,7 +2651,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 </tbody></table>
 <h2 id='8b3c19df49'><span id="3">获取用户最新成交</span></h2>
 <p>获取全部成交记录</p>
-<h3 id='http-6'>HTTP请求:</h3>
+<h3 id='http-12'>HTTP请求:</h3>
 <ul>
 <li>GET /trade/match/accountMatches</li>
 </ul>
@@ -1538,7 +2715,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
     </span><span class="p">],</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='1f9ac54b15-6'>请求参数</h3>
+</span></code></pre></div><h3 id='1f9ac54b15-12'>请求参数</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1578,7 +2755,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <td>方向 -1卖出 1买入</td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-5'>响应数据</h3>
+<h3 id='2213f4c32f-12'>响应数据</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1694,7 +2871,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 </tbody></table>
 <h2 id='debd6c0464'><span id="4">取消委托单</span></h2>
 <p>取消委托单</p>
-<h3 id='http-7'>HTTP请求:</h3>
+<h3 id='http-13'>HTTP请求:</h3>
 <ul>
 <li>POST /trade/order/cancel</li>
 </ul>
@@ -1742,7 +2919,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
         </span><span class="nl">"ordId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1722183748419690</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='1f9ac54b15-7'>请求参数</h3>
+</span></code></pre></div><h3 id='1f9ac54b15-13'>请求参数</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1764,7 +2941,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-6'>响应数据</h3>
+<h3 id='2213f4c32f-13'>响应数据</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1798,7 +2975,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='caef340d80'><span id="5">一键撤单</span></h2><h3 id='http-8'>HTTP请求:</h3>
+<h2 id='caef340d80'><span id="5">一键撤单</span></h2><h3 id='http-14'>HTTP请求:</h3>
 <ul>
 <li>POST /trade/order/cancelAll</li>
 </ul>
@@ -1851,7 +3028,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='1f9ac54b15-8'>请求参数</h3>
+</span></code></pre></div><h3 id='1f9ac54b15-14'>请求参数</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1863,11 +3040,11 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <tr>
 <td>symbol</td>
 <td>string</td>
-<td>false</td>
-<td>不传撤销所有币对订单</td>
+<td>true</td>
+<td>撤销指定交易对所有订单</td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-7'>响应数据</h3>
+<h3 id='2213f4c32f-14'>响应数据</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -1950,11 +3127,11 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
         </span><span class="nl">"order_id"</span><span class="p">:</span><span class="mi">11594964764657880</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-9'>HTTP请求:</h3>
+</span></code></pre></div><h3 id='http-15'>HTTP请求:</h3>
 <ul>
 <li>POST /trade/order/place</li>
 </ul>
-<h3 id='1f9ac54b15-9'>请求参数</h3>
+<h3 id='1f9ac54b15-15'>请求参数</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2018,7 +3195,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <td>时间戳</td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-8'>响应数据</h3>
+<h3 id='2213f4c32f-15'>响应数据</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2138,11 +3315,11 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-10'>HTTP请求:</h3>
+</span></code></pre></div><h3 id='http-16'>HTTP请求:</h3>
 <ul>
 <li>POST /trade/order/placeBatch</li>
 </ul>
-<h3 id='1f9ac54b15-10'>请求参数</h3>
+<h3 id='1f9ac54b15-16'>请求参数</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2212,7 +3389,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <td>市价买单必选</td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-9'>响应数据</h3>
+<h3 id='2213f4c32f-16'>响应数据</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2258,7 +3435,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 </tbody></table>
 <h2 id='id'><span id="27">根据订单id批量进行撤单</span></h2>
 <p>根据订单id批量进行撤单</p>
-<h3 id='http-11'>HTTP请求:</h3>
+<h3 id='http-17'>HTTP请求:</h3>
 <ul>
 <li>POST trade/order/cancelBatch</li>
 </ul>
@@ -2308,7 +3485,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='1f9ac54b15-11'>请求参数</h3>
+</span></code></pre></div><h3 id='1f9ac54b15-17'>请求参数</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2330,7 +3507,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <td>[1,2,3]</td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-10'>响应数据</h3>
+<h3 id='2213f4c32f-17'>响应数据</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2422,7 +3599,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-12'>HTTP请求:</h3>
+</span></code></pre></div><h3 id='http-18'>HTTP请求:</h3>
 <ul>
 <li>GET trade/order/orderInfo</li>
 </ul>
@@ -2563,7 +3740,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 </tbody></table>
 <h2 id='v2-2'><span id="15">获取订单信息V2</span></h2>
 <p>获取订单信息V2</p>
-<h4 id='api-https-api-coinstore-com-apikey-2'>新接口的 API域名地址 <code>https://api.coinstore.com</code>  调用支持ApiKey</h4><h3 id='http-13'>HTTP请求:</h3>
+<h4 id='api-https-api-coinstore-com-apikey-2'>新接口的 API域名地址 <code>https://api.coinstore.com</code>  调用支持ApiKey</h4><h3 id='http-19'>HTTP请求:</h3>
 <ul>
 <li>GET /api/v2/trade/order/orderInfo</li>
 </ul>
@@ -2624,7 +3801,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
     </span><span class="p">],</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='1f9ac54b15-12'>请求参数</h3>
+</span></code></pre></div><h3 id='1f9ac54b15-18'>请求参数</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2646,7 +3823,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 <td>客户端委托ID</td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-11'>响应数据</h3>
+<h3 id='2213f4c32f-18'>响应数据</h3>
 <table><thead>
 <tr>
 <th>code</th>
@@ -2757,7 +3934,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 </tbody></table>
 <h1 id='43ee760de5'>行情相关</h1><h2 id='ticker'><span id="7">Ticker</span></h2>
 <p>市场所有交易对的Ticker</p>
-<h3 id='http-14'>HTTP请求:</h3>
+<h3 id='http-20'>HTTP请求:</h3>
 <ul>
 <li>GET /v1/market/tickers</li>
 </ul>
@@ -2929,7 +4106,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-15'>HTTP请求:</h3>
+</span></code></pre></div><h3 id='http-21'>HTTP请求:</h3>
 <ul>
 <li>GET /v1/market/depth/{symbol}</li>
 </ul>
@@ -3038,7 +4215,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-16'>HTTP请求:</h3>
+</span></code></pre></div><h3 id='http-22'>HTTP请求:</h3>
 <ul>
 <li>GET /v1/market/kline/{symbol}</li>
 </ul>
@@ -3171,7 +4348,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 </tbody></table>
 <h2 id='586cd0d257'><span id="7">最新成交</span></h2>
 <p>获取最新成交记录</p>
-<h3 id='http-17'>HTTP请求:</h3>
+<h3 id='http-23'>HTTP请求:</h3>
 <ul>
 <li>GET /v1/market/trade/{symbol}</li>
 </ul>
@@ -3314,7 +4491,7 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-18'>HTTP请求:</h3>
+</span></code></pre></div><h3 id='http-24'>HTTP请求:</h3>
 <ul>
 <li>GET /v1/ticker/price</li>
 </ul>
