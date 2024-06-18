@@ -1411,9 +1411,9 @@ needs to be set.</strong></p>
 </tr>
 <tr>
 <td>isolated</td>
-<td>int</td>
+<td>boolean</td>
 <td>Y</td>
-<td>margin type, default false: cross, true: isolated</td>
+<td>margin type, default false:cross, true:isolated</td>
 </tr>
 </tbody></table>
 <h3 id='response-data-5'>Response Data</h3>
@@ -1476,8 +1476,8 @@ needs to be set.</strong></p>
 <tr>
 <td>marginRate</td>
 <td>string</td>
-<td>Y</td>
-<td>margin rate, cross&gt;0, isolated&gt;0</td>
+<td>N</td>
+<td>margin rate, cross&gt;0, isolated&gt;0 marginRate=1/levarage,range:0~1</td>
 </tr>
 <tr>
 <td>leverage</td>
@@ -2305,7 +2305,7 @@ needs to be set.</strong></p>
 <td>- initRate</td>
 <td>string</td>
 <td>Y</td>
-<td>margin rate, cross&gt;0, isolated&gt;0</td>
+<td>margin rate, cross&gt;0, isolated&gt;0,initRate=1/leverage,range:0~1</td>
 </tr>
 <tr>
 <td>- marginType</td>
@@ -4421,7 +4421,7 @@ wss://ws-futures.coinstore.com/socket.io/?EIO=3&amp;transport=websocket
 <tr>
 <td>├─isolated</td>
 <td>boolean</td>
-<td>margin type, default false cros</td>
+<td>margin type, default false:cross, true:isolated</td>
 </tr>
 </tbody></table>
 <h4 id='open-orders'>Open Orders</h4>
