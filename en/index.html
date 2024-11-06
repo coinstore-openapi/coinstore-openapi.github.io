@@ -431,7 +431,7 @@
                     <a href="#cancel-orders" class="toc-h2 toc-link" data-title=" Cancel orders "><span id="4"> Cancel orders </span></a>
                   </li>
                   <li>
-                    <a href="#one-click-cancellation" class="toc-h2 toc-link" data-title=" One-click cancellation "><span id="5"> One-click cancellation </span></a>
+                    <a href="#cancel-order-by-clientorderid" class="toc-h2 toc-link" data-title="Cancel order by ClientOrderId "><span id="5">Cancel order by ClientOrderId </span></a>
                   </li>
                   <li>
                     <a href="#create-order" class="toc-h2 toc-link" data-title=" Create order "><span id="6"> Create order </span></a>
@@ -571,8 +571,6 @@
 <p><strong>WebSocket</strong></p>
 
 <p><code>wss://ws.coinstore.com/s/ws</code></p>
-
-<p>To ensure the stability of API service, it is recommended to access using Japanese AWS cloud server. If the client server in Chinese mainland is used, it would be difficult to guarantee the stability of the connection.</p>
 <h2 id='rate-limit'>Rate Limit</h2>
 <p><strong>Same IP</strong></p>
 
@@ -2962,9 +2960,9 @@ needs to be set.</strong></p>
 <p>Request Body</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"ordId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1722183748419690</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"LUFFYUSDT"</span><span class="w">
-</span><span class="p">}</span><span class="w">
+  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"LUFFYUSDT"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ordId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1722183748419690</span><span class="w">
+ </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
 <p>python </p>
@@ -3063,28 +3061,29 @@ needs to be set.</strong></p>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='one-click-cancellation'><span id="5"> One-click cancellation </span></h2><h3 id='http-request-13'>HTTP Request:</h3>
+<h2 id='cancel-order-by-clientorderid'><span id="5">Cancel order by ClientOrderId </span></h2><h3 id='http-request-13'>HTTP Request:</h3>
 <ul>
-<li>POST /trade/order/cancelAll</li>
+<li>POST /trade/order/cancel</li>
 </ul>
 
 <blockquote>
 <p>Request Body</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"LUFFYUSDT"</span><span class="w">
-</span><span class="p">}</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="w"> </span><span class="p">{</span><span class="w">
+   </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"LUFFYUSDT"</span><span class="p">,</span><span class="w">
+   </span><span class="nl">"clOrdId"</span><span class="p">:</span><span class="s2">"ccc666"</span><span class="w">
+ </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
 <p>python </p>
 </blockquote>
 <div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">hashlib</span>
 <span class="kn">import</span> <span class="nn">hmac</span>
-<span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">requests</span>
-<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.coinstore.com/api/trade/order/cancelAll"</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.coinstore.com/api/trade/order/cancel"</span>
 <span class="n">api_key</span><span class="o">=</span><span class="s">b'your api_key'</span>
 <span class="n">secret_key</span> <span class="o">=</span> <span class="s">b'your secret_key'</span>
 <span class="n">expires</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>
@@ -3092,21 +3091,10 @@ needs to be set.</strong></p>
 <span class="n">expires_key</span> <span class="o">=</span> <span class="n">expires_key</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
 <span class="n">key</span> <span class="o">=</span> <span class="n">hmac</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">secret_key</span><span class="p">,</span> <span class="n">expires_key</span><span class="p">,</span> <span class="n">hashlib</span><span class="p">.</span><span class="n">sha256</span><span class="p">).</span><span class="n">hexdigest</span><span class="p">()</span>
 <span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
-<span class="n">payload</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">({</span>
-  <span class="s">"symbol"</span><span class="p">:</span> <span class="s">"BTCUSDT"</span>
- <span class="p">})</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">({</span><span class="s">"symbol"</span><span class="p">:</span><span class="s">"LUFFYUSDT"</span><span class="p">,</span><span class="s">"clOrdId"</span><span class="p">:</span><span class="s">"ccc666"</span><span class="p">})</span>
 <span class="n">payload</span> <span class="o">=</span> <span class="n">payload</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
 <span class="n">signature</span> <span class="o">=</span> <span class="n">hmac</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">hashlib</span><span class="p">.</span><span class="n">sha256</span><span class="p">).</span><span class="n">hexdigest</span><span class="p">()</span>
-<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-   <span class="s">'X-CS-APIKEY'</span><span class="p">:</span> <span class="n">api_key</span><span class="p">,</span>
- <span class="s">'X-CS-SIGN'</span><span class="p">:</span> <span class="n">signature</span><span class="p">,</span>
- <span class="s">'X-CS-EXPIRES'</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">expires</span><span class="p">),</span>
- <span class="s">'exch-language'</span><span class="p">:</span> <span class="s">'en_US'</span><span class="p">,</span>
- <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
- <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'*/*'</span><span class="p">,</span>
- <span class="c1"># 'Host': 'https://api.coinstore.com',
-</span> <span class="s">'Connection'</span><span class="p">:</span> <span class="s">'keep-alive'</span>
-<span class="p">}</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'X-CS-APIKEY'</span><span class="p">:</span><span class="n">api_key</span><span class="p">,</span><span class="s">'X-CS-SIGN'</span><span class="p">:</span><span class="n">signature</span><span class="p">,</span><span class="s">'X-CS-EXPIRES'</span><span class="p">:</span><span class="nb">str</span><span class="p">(</span><span class="n">expires</span><span class="p">),</span><span class="s">'Content-Type'</span><span class="p">:</span><span class="s">'application/json'</span><span class="p">}</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s">"POST"</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre></div>
@@ -3114,8 +3102,13 @@ needs to be set.</strong></p>
 <p>Response</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-</span><span class="p">}</span><span class="w">
+           </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+           </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+               </span><span class="nl">"clientOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ccc666"</span><span class="p">,</span><span class="w">
+               </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CANCELED"</span><span class="p">,</span><span class="w">
+               </span><span class="nl">"ordId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1814964593492941</span><span class="w">
+           </span><span class="p">}</span><span class="w">
+ </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='request-parameters-6'>Request Parameters</h3>
 <table><thead>
 <tr>
@@ -3129,7 +3122,13 @@ needs to be set.</strong></p>
 <td>symbol</td>
 <td>string</td>
 <td>true</td>
-<td>Cancel all orders for the specified trading pair</td>
+<td>trading pair</td>
+</tr>
+<tr>
+<td>clOrdId</td>
+<td>string</td>
+<td>true</td>
+<td>ClientOrderId</td>
 </tr>
 </tbody></table>
 <h3 id='response-data-12'>Response Data</h3>
@@ -3545,31 +3544,22 @@ needs to be set.</strong></p>
 </blockquote>
 <div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">hashlib</span>
 <span class="kn">import</span> <span class="nn">hmac</span>
-<span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">requests</span>
-<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.coinstore.com/api/trade/order/cancelAll"</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.coinstore.com/api/trade/order/cancelBatch"</span>
 <span class="n">api_key</span><span class="o">=</span><span class="s">b'your api_key'</span>
-<span class="n">secret_key</span> <span class="o">=</span> <span class="s">b'your secret_key'</span>
+<span class="n">secret_key</span> <span class="o">=</span> <span class="s">b'secret_key'</span>
 <span class="n">expires</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>
 <span class="n">expires_key</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">floor</span><span class="p">(</span><span class="n">expires</span> <span class="o">/</span> <span class="mi">30000</span><span class="p">))</span>
 <span class="n">expires_key</span> <span class="o">=</span> <span class="n">expires_key</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
 <span class="n">key</span> <span class="o">=</span> <span class="n">hmac</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">secret_key</span><span class="p">,</span> <span class="n">expires_key</span><span class="p">,</span> <span class="n">hashlib</span><span class="p">.</span><span class="n">sha256</span><span class="p">).</span><span class="n">hexdigest</span><span class="p">()</span>
 <span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
-<span class="n">payload</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">({</span><span class="s">"symbol"</span><span class="p">:</span> <span class="s">"BTCUSDT"</span><span class="p">})</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">({</span><span class="s">"symbol"</span><span class="p">:</span><span class="s">"btcusdt"</span><span class="p">,</span><span class="s">"orderId"</span><span class="p">:[</span><span class="mi">1782428898165698</span><span class="p">]})</span>
 <span class="n">payload</span> <span class="o">=</span> <span class="n">payload</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
 <span class="n">signature</span> <span class="o">=</span> <span class="n">hmac</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">hashlib</span><span class="p">.</span><span class="n">sha256</span><span class="p">).</span><span class="n">hexdigest</span><span class="p">()</span>
-<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-   <span class="s">'X-CS-APIKEY'</span><span class="p">:</span> <span class="n">api_key</span><span class="p">,</span>
- <span class="s">'X-CS-SIGN'</span><span class="p">:</span> <span class="n">signature</span><span class="p">,</span>
- <span class="s">'X-CS-EXPIRES'</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">expires</span><span class="p">),</span>
- <span class="s">'exch-language'</span><span class="p">:</span> <span class="s">'en_US'</span><span class="p">,</span>
- <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
- <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'*/*'</span><span class="p">,</span>
- <span class="c1"># 'Host': 'https://api.coinstore.com',
-</span> <span class="s">'Connection'</span><span class="p">:</span> <span class="s">'keep-alive'</span>
-<span class="p">}</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'X-CS-APIKEY'</span><span class="p">:</span><span class="n">api_key</span><span class="p">,</span><span class="s">'X-CS-SIGN'</span><span class="p">:</span><span class="n">signature</span><span class="p">,</span><span class="s">'X-CS-EXPIRES'</span><span class="p">:</span><span class="nb">str</span><span class="p">(</span><span class="n">expires</span><span class="p">),</span><span class="s">'Content-Type'</span><span class="p">:</span><span class="s">'application/json'</span><span class="p">}</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s">"POST"</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre></div>
@@ -3878,8 +3868,8 @@ needs to be set.</strong></p>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.coinstore.com/api/v2/trade/order/orderInfo?ordId=1780715084580128"</span>
-<span class="n">api_key</span><span class="o">=</span><span class="s">b'da2b7ed9aeee00744193d251bc99a09c'</span>
-<span class="n">secret_key</span> <span class="o">=</span> <span class="s">b'28fd41afcb4bdcb752634b1549ad9aa7'</span>
+<span class="n">api_key</span><span class="o">=</span><span class="s">b''</span>
+<span class="n">secret_key</span> <span class="o">=</span> <span class="s">b''</span>
 <span class="n">expires</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span><span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>
 <span class="n">expires_key</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">floor</span><span class="p">(</span><span class="n">expires</span> <span class="o">/</span> <span class="mi">30000</span><span class="p">))</span>
 <span class="n">expires_key</span> <span class="o">=</span> <span class="n">expires_key</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
