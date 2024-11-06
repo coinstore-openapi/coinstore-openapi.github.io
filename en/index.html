@@ -431,7 +431,7 @@
                     <a href="#cancel-orders" class="toc-h2 toc-link" data-title=" Cancel orders "><span id="4"> Cancel orders </span></a>
                   </li>
                   <li>
-                    <a href="#cancel-order-by-clientorderid" class="toc-h2 toc-link" data-title="Cancel order by ClientOrderId "><span id="5">Cancel order by ClientOrderId </span></a>
+                    <a href="#batch-cancel-order-by-clientorderid" class="toc-h2 toc-link" data-title="Batch cancel order by ClientOrderId "><span id="5">Batch cancel order by ClientOrderId </span></a>
                   </li>
                   <li>
                     <a href="#create-order" class="toc-h2 toc-link" data-title=" Create order "><span id="6"> Create order </span></a>
@@ -3061,18 +3061,22 @@ needs to be set.</strong></p>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='cancel-order-by-clientorderid'><span id="5">Cancel order by ClientOrderId </span></h2><h3 id='http-request-13'>HTTP Request:</h3>
+<h2 id='batch-cancel-order-by-clientorderid'><span id="5">Batch cancel order by ClientOrderId </span></h2><h3 id='http-request-13'>HTTP Request:</h3>
 <ul>
-<li>POST /trade/order/cancel</li>
+<li>POST /trade/order/cancelBatchByClOrdId</li>
 </ul>
 
 <blockquote>
 <p>Request Body</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="w"> </span><span class="p">{</span><span class="w">
-   </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"LUFFYUSDT"</span><span class="p">,</span><span class="w">
-   </span><span class="nl">"clOrdId"</span><span class="p">:</span><span class="s2">"ccc666"</span><span class="w">
- </span><span class="p">}</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSDT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"clientOrderIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"ccc666"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ccc777"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ccc888"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
 <p>python </p>
@@ -3091,7 +3095,8 @@ needs to be set.</strong></p>
 <span class="n">expires_key</span> <span class="o">=</span> <span class="n">expires_key</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
 <span class="n">key</span> <span class="o">=</span> <span class="n">hmac</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">secret_key</span><span class="p">,</span> <span class="n">expires_key</span><span class="p">,</span> <span class="n">hashlib</span><span class="p">.</span><span class="n">sha256</span><span class="p">).</span><span class="n">hexdigest</span><span class="p">()</span>
 <span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
-<span class="n">payload</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">({</span><span class="s">"symbol"</span><span class="p">:</span><span class="s">"LUFFYUSDT"</span><span class="p">,</span><span class="s">"clOrdId"</span><span class="p">:</span><span class="s">"ccc666"</span><span class="p">})</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">({</span>
+<span class="s">"symbol"</span><span class="p">:</span> <span class="s">"BTCUSDT"</span><span class="p">,</span><span class="s">"clientOrderIds"</span><span class="p">:[</span><span class="s">"ccc666"</span><span class="p">,</span><span class="s">"ccc777"</span><span class="p">,</span><span class="s">"ccc888"</span><span class="p">]})</span>
 <span class="n">payload</span> <span class="o">=</span> <span class="n">payload</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
 <span class="n">signature</span> <span class="o">=</span> <span class="n">hmac</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">hashlib</span><span class="p">.</span><span class="n">sha256</span><span class="p">).</span><span class="n">hexdigest</span><span class="p">()</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'X-CS-APIKEY'</span><span class="p">:</span><span class="n">api_key</span><span class="p">,</span><span class="s">'X-CS-SIGN'</span><span class="p">:</span><span class="n">signature</span><span class="p">,</span><span class="s">'X-CS-EXPIRES'</span><span class="p">:</span><span class="nb">str</span><span class="p">(</span><span class="n">expires</span><span class="p">),</span><span class="s">'Content-Type'</span><span class="p">:</span><span class="s">'application/json'</span><span class="p">}</span>
@@ -3101,14 +3106,7 @@ needs to be set.</strong></p>
 <blockquote>
 <p>Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-           </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-           </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-               </span><span class="nl">"clientOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ccc666"</span><span class="p">,</span><span class="w">
-               </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CANCELED"</span><span class="p">,</span><span class="w">
-               </span><span class="nl">"ordId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1814964593492941</span><span class="w">
-           </span><span class="p">}</span><span class="w">
- </span><span class="p">}</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="nl">"data"</span><span class="p">:{</span><span class="nl">"success"</span><span class="p">:[</span><span class="s2">"ccc666"</span><span class="p">,</span><span class="s2">"ccc777"</span><span class="p">,</span><span class="s2">"ccc888"</span><span class="p">]},</span><span class="nl">"code"</span><span class="p">:</span><span class="mi">0</span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='request-parameters-6'>Request Parameters</h3>
 <table><thead>
 <tr>
@@ -3125,7 +3123,7 @@ needs to be set.</strong></p>
 <td>trading pair</td>
 </tr>
 <tr>
-<td>clOrdId</td>
+<td>├─clientOrderIds</td>
 <td>string</td>
 <td>true</td>
 <td>ClientOrderId</td>

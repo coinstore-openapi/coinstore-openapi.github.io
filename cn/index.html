@@ -428,7 +428,7 @@
                     <a href="#debd6c0464" class="toc-h2 toc-link" data-title="取消委托单"><span id="4">取消委托单</span></a>
                   </li>
                   <li>
-                    <a href="#clientorderid" class="toc-h2 toc-link" data-title="通过ClientOrderId撤单"><span id="5">通过ClientOrderId撤单</span></a>
+                    <a href="#clientorderid" class="toc-h2 toc-link" data-title="通过ClientOrderId批量撤单"><span id="5">通过ClientOrderId批量撤单</span></a>
                   </li>
                   <li>
                     <a href="#df83685cc8" class="toc-h2 toc-link" data-title="创建订单"><span id="6">创建订单</span></a>
@@ -2973,17 +2973,21 @@ print(response.text)
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='clientorderid'><span id="5">通过ClientOrderId撤单</span></h2><h3 id='http-14'>HTTP请求:</h3>
+<h2 id='clientorderid'><span id="5">通过ClientOrderId批量撤单</span></h2><h3 id='http-14'>HTTP请求:</h3>
 <ul>
-<li>POST /trade/order/cancel</li>
+<li>POST /trade/order/cancelBatchByClOrdId</li>
 </ul>
 
 <blockquote>
 <p>请求体</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"LUFFYUSDT"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"clOrdId"</span><span class="p">:</span><span class="s2">"ccc666"</span><span class="w">
+    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSDT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"clientOrderIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"ccc666"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ccc777"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ccc888"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
@@ -3003,7 +3007,8 @@ print(response.text)
 <span class="n">expires_key</span> <span class="o">=</span> <span class="n">expires_key</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
 <span class="n">key</span> <span class="o">=</span> <span class="n">hmac</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">secret_key</span><span class="p">,</span> <span class="n">expires_key</span><span class="p">,</span> <span class="n">hashlib</span><span class="p">.</span><span class="n">sha256</span><span class="p">).</span><span class="n">hexdigest</span><span class="p">()</span>
 <span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
-<span class="n">payload</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">({</span><span class="s">"symbol"</span><span class="p">:</span><span class="s">"LUFFYUSDT"</span><span class="p">,</span><span class="s">"clOrdId"</span><span class="p">:</span><span class="s">"ccc666"</span><span class="p">})</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">({</span>
+<span class="s">"symbol"</span><span class="p">:</span> <span class="s">"BTCUSDT"</span><span class="p">,</span><span class="s">"clientOrderIds"</span><span class="p">:[</span><span class="s">"ccc666"</span><span class="p">,</span><span class="s">"ccc777"</span><span class="p">,</span><span class="s">"ccc888"</span><span class="p">]})</span>
 <span class="n">payload</span> <span class="o">=</span> <span class="n">payload</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
 <span class="n">signature</span> <span class="o">=</span> <span class="n">hmac</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">hashlib</span><span class="p">.</span><span class="n">sha256</span><span class="p">).</span><span class="n">hexdigest</span><span class="p">()</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'X-CS-APIKEY'</span><span class="p">:</span><span class="n">api_key</span><span class="p">,</span><span class="s">'X-CS-SIGN'</span><span class="p">:</span><span class="n">signature</span><span class="p">,</span><span class="s">'X-CS-EXPIRES'</span><span class="p">:</span><span class="nb">str</span><span class="p">(</span><span class="n">expires</span><span class="p">),</span><span class="s">'Content-Type'</span><span class="p">:</span><span class="s">'application/json'</span><span class="p">}</span>
@@ -3013,14 +3018,7 @@ print(response.text)
 <blockquote>
 <p>响应</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-           </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-           </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-               </span><span class="nl">"clientOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ccc666"</span><span class="p">,</span><span class="w">
-               </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CANCELED"</span><span class="p">,</span><span class="w">
-               </span><span class="nl">"ordId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1814964593492941</span><span class="w">
-           </span><span class="p">}</span><span class="w">
- </span><span class="p">}</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="nl">"data"</span><span class="p">:{</span><span class="nl">"success"</span><span class="p">:[</span><span class="s2">"ccc666"</span><span class="p">,</span><span class="s2">"ccc777"</span><span class="p">,</span><span class="s2">"ccc888"</span><span class="p">]},</span><span class="nl">"code"</span><span class="p">:</span><span class="mi">0</span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='1f9ac54b15-14'>请求参数</h3>
 <table><thead>
 <tr>
@@ -3037,7 +3035,7 @@ print(response.text)
 <td>交易对</td>
 </tr>
 <tr>
-<td>clOrdId</td>
+<td>├─clientOrderIds</td>
 <td>string</td>
 <td>true</td>
 <td>撤销指定交易对指定ClientOrderId的订单</td>
