@@ -2883,30 +2883,30 @@ Mac hmacSha256 = Mac.getInstance(&quot;HmacSHA256&quot;);
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
-<p>python 
-<code>python
-import hashlib
-import hmac
-import math
-import time
-import requests
-import json
-url = &quot;https://api.coinstore.com/api/trade/order/cancel&quot;
-api_key=b&#39;your api_key&#39;
-secret_key = b&#39;your secret_key&#39;
-expires = int(time.time() * 1000)
-expires_key = str(math.floor(expires / 30000))
-expires_key = expires_key.encode(&quot;utf-8&quot;)
-key = hmac.new(secret_key, expires_key, hashlib.sha256).hexdigest()
-key = key.encode(&quot;utf-8&quot;)
-payload = json.dumps({&quot;symbol&quot;:&quot;btcusdt&quot;,&quot;orderId&quot;:1782425964251297})
-payload = payload.encode(&quot;utf-8&quot;)
-signature = hmac.new(key, payload, hashlib.sha256).hexdigest()
-headers = {&#39;X-CS-APIKEY&#39;:api_key,&#39;X-CS-SIGN&#39;:signature,&#39;X-CS-EXPIRES&#39;:str(expires),&#39;Content-Type&#39;:&#39;application/json&#39;}
-response = requests.request(&quot;POST&quot;, url, headers=headers, data=payload)
-print(response.text)
-</code></p>
-
+<p>python </p>
+</blockquote>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">hmac</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.coinstore.com/api/trade/order/cancel"</span>
+<span class="n">api_key</span><span class="o">=</span><span class="s">b'your api_key'</span>
+<span class="n">secret_key</span> <span class="o">=</span> <span class="s">b'your secret_key'</span>
+<span class="n">expires</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">expires_key</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">floor</span><span class="p">(</span><span class="n">expires</span> <span class="o">/</span> <span class="mi">30000</span><span class="p">))</span>
+<span class="n">expires_key</span> <span class="o">=</span> <span class="n">expires_key</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
+<span class="n">key</span> <span class="o">=</span> <span class="n">hmac</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">secret_key</span><span class="p">,</span> <span class="n">expires_key</span><span class="p">,</span> <span class="n">hashlib</span><span class="p">.</span><span class="n">sha256</span><span class="p">).</span><span class="n">hexdigest</span><span class="p">()</span>
+<span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">({</span><span class="s">"symbol"</span><span class="p">:</span><span class="s">"btcusdt"</span><span class="p">,</span><span class="s">"orderId"</span><span class="p">:</span><span class="mi">1782425964251297</span><span class="p">})</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="n">payload</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
+<span class="n">signature</span> <span class="o">=</span> <span class="n">hmac</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">hashlib</span><span class="p">.</span><span class="n">sha256</span><span class="p">).</span><span class="n">hexdigest</span><span class="p">()</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'X-CS-APIKEY'</span><span class="p">:</span><span class="n">api_key</span><span class="p">,</span><span class="s">'X-CS-SIGN'</span><span class="p">:</span><span class="n">signature</span><span class="p">,</span><span class="s">'X-CS-EXPIRES'</span><span class="p">:</span><span class="nb">str</span><span class="p">(</span><span class="n">expires</span><span class="p">),</span><span class="s">'Content-Type'</span><span class="p">:</span><span class="s">'application/json'</span><span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s">"POST"</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div>
+<blockquote>
 <p>响应</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
